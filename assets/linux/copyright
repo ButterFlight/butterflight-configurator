@@ -1,6 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Betaflight Configurator
-Source: https://github.com/betaflight/betaflight-configurator
+This package was created by the Butterflight open source flight controller firmware project (https://github.com/butterflight/butterflight).
 
 Files: *
 Copyright: Copyright 2018 The Betaflight open source project

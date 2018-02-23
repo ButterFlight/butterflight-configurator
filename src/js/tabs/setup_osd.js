@@ -8,7 +8,7 @@ TABS.setup_osd.initialize = function (callback) {
 
     if (GUI.active_tab != 'setup_osd') {
         GUI.active_tab = 'setup_osd';
-        // Disabled on merge into betaflight-configurator
+        // Disabled on merge into butterflight-configurator
         //googleAnalytics.sendAppView('Setup OSD');
     }
 
@@ -25,7 +25,7 @@ TABS.setup_osd.initialize = function (callback) {
     function process_html() {
 
         $('.tab-setup-osd .info').hide(); // requires an MSP update
-        
+
         var osdVideoModes = [
             'AUTO',
             'NTSC',
@@ -44,16 +44,16 @@ TABS.setup_osd.initialize = function (callback) {
                 });
             });
         });
-        
+
         function get_slow_data() {
             /* FIXME requires MSP update
             MSP.send_message(MSPCodes.MSP_OSD_VIDEO_STATUS, false, false, function () {
                 var element;
-                
+
                 element = $('.video-mode');
                 var osdVideoMode = osdVideoModes[OSD_VIDEO_STATE.video_mode];
                 element.text(osdVideoMode);
-                
+
                 element = $('.camera-connected');
                 element.text(OSD_VIDEO_STATE.camera_connected ? i18n.getMessage('osdSetupCameraConnectedValueYes') : i18n.getMessage('osdSetupCameraConnectedValueNo'));
             });

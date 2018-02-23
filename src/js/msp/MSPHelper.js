@@ -4,11 +4,11 @@
 function MspHelper () {
   var self = this;
 
-  // 0 based index, must be identical to 'baudRates' in 'src/main/io/serial.c' in betaflight
+  // 0 based index, must be identical to 'baudRates' in 'src/main/io/serial.c' in butterflight
   self.BAUD_RATES = ['AUTO', '9600', '19200', '38400', '57600', '115200',
     '230400', '250000', '400000', '460800', '500000', '921600', '1000000',
     '1500000', '2000000', '2470000'];
-  // needs to be identical to 'serialPortFunction_e' in 'src/main/io/serial.h' in betaflight
+  // needs to be identical to 'serialPortFunction_e' in 'src/main/io/serial.h' in butterflight
   self.SERIAL_PORT_FUNCTIONS = {
     'MSP': 0,
     'GPS': 1,
@@ -1776,7 +1776,7 @@ MspHelper.prototype.sendVoltageConfig = function(onCompleteCallback) {
     var nextFunction = send_next_voltage_config;
 
     var configIndex = 0;
-    
+
     if (VOLTAGE_METER_CONFIGS.length == 0) {
         onCompleteCallback();
     } else {
@@ -1807,7 +1807,7 @@ MspHelper.prototype.sendCurrentConfig = function(onCompleteCallback) {
     var nextFunction = send_next_current_config;
 
     var configIndex = 0;
-    
+
     if (CURRENT_METER_CONFIGS.length == 0) {
         onCompleteCallback();
     } else {

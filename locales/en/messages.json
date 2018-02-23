@@ -3,7 +3,7 @@
         "message": "0"
     },
     "windowTitle": {
-        "message": "Betaflight Configurator",
+        "message": "Butterflight Configurator",
         "description": "Title of the application window, usually not translated"
     },
     "error": {
@@ -32,7 +32,7 @@
     },
     "portOverrideText": {
         "message": "Port:"
-    },    
+    },
     "autoConnect": {
         "message": "Auto-Connect"
     },
@@ -145,7 +145,7 @@
         "message": "Show update notifications for unstable versions of the configurator"
     },
     "configuratorUpdateNotice": {
-        "message": "You are using an outdated version of the <b>Betaflight Configurator</b>.<br>Version <b>$1</b> is available online, please visit <a href=\"$2\" target=\"_blank\">the release page</a> to download and install the latest version with fixes and improvements.<br>Please close the configurator window before updating."
+        "message": "You are using an outdated version of the <b>Butterflight Configurator</b>.<br>Version <b>$1</b> is available online, please visit <a href=\"$2\" target=\"_blank\">the release page</a> to download and install the latest version with fixes and improvements.<br>Please close the configurator window before updating."
     },
     "configuratorUpdateWebsite": {
         "message": "Go to Release Website"
@@ -367,7 +367,7 @@
         "message": "This firmware version is <span class=\"message-negative\">not supported</span>. Please upgrade to firmware that supports api version <strong>$1</strong> or higher. Use CLI for backup before flashing. CLI backup/restore procedure is in the documention.<br />Alternatively download and use an old version of the configurator if you are not ready to upgrade."
     },
     "firmwareTypeNotSupported": {
-        "message": "Non - Cleanflight/Betaflight firmware is <span class=\"message-negative\">not supported</span>, except for CLI mode."
+        "message": "Non - Cleanflight/Butterflight firmware is <span class=\"message-negative\">not supported</span>, except for CLI mode."
     },
     "firmwareUpgradeRequired": {
         "message": "The firmware on this device needs upgrading to a newer version. Use CLI for backup before flashing. CLI backup/restore procedure is in the documention.<br />Alternatively download and use an old version of the configurator if you are not ready to upgrade."
@@ -397,7 +397,7 @@
     },
 
     "tabSwitchUpgradeRequired": {
-        "message": "You need to <strong>upgrade</strong> your firmware to the latest version of Betaflight before you can use the $1 tab."
+        "message": "You need to <strong>upgrade</strong> your firmware to the latest version of Butterflight before you can use the $1 tab."
     },
     "firmwareVersion": {
         "message": "Firmware Version: <strong>$1</strong>"
@@ -489,20 +489,20 @@
     },
 
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Betaflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to <strong>Butterflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
     },
 
     "defaultWelcomeHead": {
         "message": "Hardware"
     },
     "defaultWelcomeText": {
-        "message": "The application supports all hardware that can run Betaflight. Check flash tab for full list of hardware.<br><br> <a href=\"https://chrome.google.com/webstore/detail/betaflight-blackbox-explo/canpiagfkeefejklcojkhojdijglnghc\" target=\"_blank\"> Download Betaflight Blackbox</a><br /><br />The firmware source code can be downloaded from <a href=\"https://github.com/betaflight/betaflight\" title=\"www.github.com\" target=\"_blank\">here</a><br />The newest binary firmware image is available <a href=\"https://github.com/betaflight/betaflight/releases\" title=\"www.github.com\" target=\"_blank\">here</a><br /><br />Latest <a href=\"http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx\" title=\"http://www.silabs.com\" target=\"_blank\">CP210x Drivers</a> can be downloaded from <a href=\"http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx\" title=\"http://www.silabs.com\" target=\"_blank\">here</a><br />Latest <a href=\"http://www.st.com/web/en/catalog/tools/PF257938\" title=\"http://www.st.com\" target=\"_blank\">STM USB VCP Drivers</a> can be downloaded from <a href=\"http://www.st.com/web/en/catalog/tools/PF257938\" title=\"http://www.st.com\" target=\"_blank\">here</a><br />Latest <a href=\"http://zadig.akeo.ie/\" title=\"http://zadig.akeo.ie\" target=\"_blank\">Zadig</a> for Windows USB driver installation can be downloaded from <a href=\"http://zadig.akeo.ie/\" title=\"http://zadig.akeo.ie\" target=\"_blank\">here</a><br />"
+        "message": "The application supports all hardware that can run Butterflight. Check flash tab for full list of hardware.<br><br> <a href=\"https://chrome.google.com/webstore/detail/butterflight-blackbox-explo/canpiagfkeefejklcojkhojdijglnghc\" target=\"_blank\"> Download Butterflight Blackbox</a><br /><br />The firmware source code can be downloaded from <a href=\"https://github.com/butterflight/butterflight\" title=\"www.github.com\" target=\"_blank\">here</a><br />The newest binary firmware image is available <a href=\"https://github.com/butterflight/butterflight/releases\" title=\"www.github.com\" target=\"_blank\">here</a><br /><br />Latest <a href=\"http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx\" title=\"http://www.silabs.com\" target=\"_blank\">CP210x Drivers</a> can be downloaded from <a href=\"http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx\" title=\"http://www.silabs.com\" target=\"_blank\">here</a><br />Latest <a href=\"http://www.st.com/web/en/catalog/tools/PF257938\" title=\"http://www.st.com\" target=\"_blank\">STM USB VCP Drivers</a> can be downloaded from <a href=\"http://www.st.com/web/en/catalog/tools/PF257938\" title=\"http://www.st.com\" target=\"_blank\">here</a><br />Latest <a href=\"http://zadig.akeo.ie/\" title=\"http://zadig.akeo.ie\" target=\"_blank\">Zadig</a> for Windows USB driver installation can be downloaded from <a href=\"http://zadig.akeo.ie/\" title=\"http://zadig.akeo.ie\" target=\"_blank\">here</a><br />"
     },
     "defaultContributingHead": {
         "message": "Contributing"
     },
     "defaultContributingText": {
-        "message": "If you would like to help make Betaflight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums and IRC.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/Betaflight/betaflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/betaflight/betaflight/issues\" target=\"_blank\">issues and commenting on feature requests</a>.</li><li>Collaborate by <a href=\"https://crowdin.com/project/betaflight-configurator\" target=\"_blank\">translating the configurator application</a> into your language.</li><li></li></ul>"
+        "message": "If you would like to help make Butterflight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums and IRC.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/Butterflight/butterflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/butterflight/butterflight/issues\" target=\"_blank\">issues and commenting on feature requests</a>.</li><li>Collaborate by <a href=\"https://crowdin.com/project/butterflight-configurator\" target=\"_blank\">translating the configurator application</a> into your language.</li><li></li></ul>"
     },
     "defaultChangelogAction": {
         "message": "Changelog"
@@ -517,7 +517,7 @@
         "message": "Open Source / Donation Notice"
     },
     "defaultDonateText": {
-        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>Betaflight</strong> users.<br />If you found the Betaflight or Betaflight configurator useful, please consider <strong>supporting</strong> its development by donating."
+        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>Butterflight</strong> users.<br />If you found the Butterflight or Butterflight configurator useful, please consider <strong>supporting</strong> its development by donating."
     },
     "defaultDonate": {
         "message": "Donate"
@@ -529,13 +529,13 @@
         "message": "Documentation / Manual"
     },
     "defaultDocumentation": {
-        "message": "Betaflight documentation is available in release notes and wiki.<br /><br />"
+        "message": "Butterflight documentation is available in release notes and wiki.<br /><br />"
     },
     "defaultDocumentation1": {
-        "message": "The Betaflight wiki is a great resource for information, it can be found <a href=\"https://github.com/betaflight/betaflight/wiki\" target=\"_blank\">here</a>."
+        "message": "The Butterflight wiki is a great resource for information, it can be found <a href=\"https://github.com/butterflight/butterflight/wiki\" target=\"_blank\">here</a>."
     },
     "defaultDocumentation2": {
-        "message": "The release notes for the firmware can be read at GitHub releases page, <a href=\"https://github.com/Betaflight/Betaflight/releases\" target=\"_blank\">here</a>."
+        "message": "The release notes for the firmware can be read at GitHub releases page, <a href=\"https://github.com/Butterflight/Butterflight/releases\" target=\"_blank\">here</a>."
     },
     "defaultSupportHead": {
         "message": "Support"
@@ -553,20 +553,20 @@
         "message": "<a href=\"http://www.rcgroups.com/forums/showthread.php?t=2464844&page=1\" target=\"_blank\">RC Groups thread</a>"
     },
     "defaultSupport2": {
-        "message": "<a href=\"http://betaflight.info\" target=\"_blank\">Betaflight Wiki</a>"
+        "message": "<a href=\"http://butterflight.info\" target=\"_blank\">Butterflight Wiki</a>"
     },
     "defaultSupport3": {
-        "message": "<a href=\"https://www.youtube.com/playlist?list=PLwoDb7WF6c8kdK6yHr7vhsU9iRTr5HxP4\" target=\"_blank\">Joshua Bardwell Betaflight Videos</a>"
+        "message": "<a href=\"https://www.youtube.com/playlist?list=PLwoDb7WF6c8kdK6yHr7vhsU9iRTr5HxP4\" target=\"_blank\">Joshua Bardwell Butterflight Videos</a>"
     },
     "defaultSupport4": {
-        "message": "<a href=\"https://github.com/Betaflight\" target=\"_blank\">GitHub</a>"
+        "message": "<a href=\"https://github.com/Butterflight\" target=\"_blank\">GitHub</a>"
     },
     "defaultSupport5": {
-        "message": "<a href=\"https://slack.betaflight.com\" target=\"_blank\">Betaflight devs on slack</a>"
+        "message": "<a href=\"http://butterflight.tk/slack\" target=\"_blank\">Butterflight devs on slack</a>"
     },
 
     "initialSetupBackupAndRestoreApiVersion": {
-        "message": "<span class=\"message-negative\">Backup and restore functionality disabled.</span> You have firmware with API version <span class=\"message-negative\">$1</span>, backup and restore requires <span class=\"message-positive\">$2</span>.  Please backup your settings via the CLI, see Betaflight documentation for procedure."
+        "message": "<span class=\"message-negative\">Backup and restore functionality disabled.</span> You have firmware with API version <span class=\"message-negative\">$1</span>, backup and restore requires <span class=\"message-positive\">$2</span>.  Please backup your settings via the CLI, see Butterflight documentation for procedure."
     },
     "initialSetupButtonCalibrateAccel": {
         "message": "Calibrate Accelerometer"
@@ -935,7 +935,7 @@
         "message": "Motor direction is reversed"
     },
        "configurationReverseMotorSwitchHelp": {
-        "message": "Enabling this option will tell Betaflight that motors and props are set to run in the reverse direction."
+        "message": "Enabling this option will tell Butterflight that motors and props are set to run in the reverse direction."
     },
     "configurationAutoDisarmDelay": {
         "message": "Disarm motors after set delay [seconds] (Requires MOTOR_STOP feature)"
@@ -1450,7 +1450,7 @@
     },
 
     "receiverMspWarningText": {
-        "message": "These sticks allow Betaflight to be armed and tested without a transmitter or receiver being present. However, <strong>this feature is not intended for flight and propellers must not be attached.</strong><br><br>This feature does not guarantee reliable control of your craft. <strong>Serious injury is likely to result if propellers are left on.</strong>"
+        "message": "These sticks allow Butterflight to be armed and tested without a transmitter or receiver being present. However, <strong>this feature is not intended for flight and propellers must not be attached.</strong><br><br>This feature does not guarantee reliable control of your craft. <strong>Serious injury is likely to result if propellers are left on.</strong>"
     },
     "receiverMspEnableButton": {
         "message": "Enable controls"
@@ -2004,7 +2004,7 @@
     },
     "dataflashLogsSpace": {
         "message": "Free space for logs"
-    },    
+    },
     "dataflashNote": {
         "message": "Flight logs can be recorded to your flight controller's onboard dataflash chip."
     },
@@ -2050,25 +2050,25 @@
     "dataflashFileWriteFailed": {
         "message": "Failed to write to the file you selected, are the permissions on that folder okay?"
     },
-    
+
     "sdcardStatusNoCard": {
         "message": "No card inserted"
-    },    
+    },
     "sdcardStatusReboot": {
         "message": "Fatal error<br>Reboot to retry"
-    },    
+    },
     "sdcardStatusReady": {
         "message": "Card ready"
-    },    
+    },
     "sdcardStatusStarting": {
         "message": "Card starting..."
-    },    
+    },
     "sdcardStatusFileSystem": {
         "message": "Filesystem starting..."
-    },    
+    },
     "sdcardStatusUnknown": {
         "message": "Unknown state $1"
-    },    
+    },
 
     "firmwareFlasherReleaseSummaryHead": {
         "message": "Release info"
@@ -2160,7 +2160,7 @@
     },
     "firmwareFlasherBaudRate": {
         "message": "Baud Rate"
-    },    
+    },
     "firmwareFlasherShowDevelopmentReleases":{
         "message": "Show unstable releases"
     },
@@ -2213,13 +2213,13 @@
         "message": "Message:"
     },
     "firmwareFlasherWarningText": {
-        "message": "Please do <span class=\"message-negative\">not</span> try to flash <strong>non-Betaflight</strong> hardware with this firmware flasher.<br />Do <span class=\"message-negative\">not</span> <strong>disconnect</strong> the board or <strong>turn off</strong> your computer while flashing.<br /><br /><strong>Note: </strong>STM32 bootloader is stored in ROM, it cannot be bricked.<br /><strong>Note: </strong><span class=\"message-negative\">Auto-Connect</span> is always disabled while you are inside firmware flasher.<br /><strong>Note: </strong>Make sure you have a backup; some upgrades/downgrades will wipe your configuration.<br /><strong>Note:</strong> If you have problems flashing <strong>try disconnecting all cables from your FC</strong> first, try rebooting, upgrade chrome, upgrade drivers.<br /><strong>Note:</strong> When flashing boards that have directly connected USB sockets (most newer boards) ensure you have read the USB Flashing section of the Betaflight manual and have the correct software and drivers installed"
+        "message": "Please do <span class=\"message-negative\">not</span> try to flash <strong>non-Butterflight</strong> hardware with this firmware flasher.<br />Do <span class=\"message-negative\">not</span> <strong>disconnect</strong> the board or <strong>turn off</strong> your computer while flashing.<br /><br /><strong>Note: </strong>STM32 bootloader is stored in ROM, it cannot be bricked.<br /><strong>Note: </strong><span class=\"message-negative\">Auto-Connect</span> is always disabled while you are inside firmware flasher.<br /><strong>Note: </strong>Make sure you have a backup; some upgrades/downgrades will wipe your configuration.<br /><strong>Note:</strong> If you have problems flashing <strong>try disconnecting all cables from your FC</strong> first, try rebooting, upgrade chrome, upgrade drivers.<br /><strong>Note:</strong> When flashing boards that have directly connected USB sockets (most newer boards) ensure you have read the USB Flashing section of the Butterflight manual and have the correct software and drivers installed"
     },
     "firmwareFlasherRecoveryHead": {
         "message": "<strong>Recovery / Lost communication</strong>"
     },
     "firmwareFlasherRecoveryText": {
-        "message": "If you have lost communication with your board follow these steps to restore communication: <ul><li>Power off</li><li>Enable 'No reboot sequence', enable 'Full chip erase'.</li><li>Jumper the BOOT pins or hold BOOT button.</li><li>Power on (activity LED will NOT flash if done correctly).</li><li>Install all STM32 drivers and Zadig if required (see <a href=\"https://github.com/betaflight/betaflight/wiki/Installing-Betaflight\"target=\"_blank\">USB Flashing</a> section of Betaflight manual).</li><li>Close configurator, Close all running chrome instances, Close all Chrome apps, Restart Configurator.</li><li>Release BOOT button if your FC has one.</li><li>Flash with correct firmware (using manual baud rate if specified in your FC's manual).</li><li>Power off.</li><li>Remove BOOT jumper.</li><li>Power on (activity LED should flash).</li><li>Connect normally.</li></ul>"
+        "message": "If you have lost communication with your board follow these steps to restore communication: <ul><li>Power off</li><li>Enable 'No reboot sequence', enable 'Full chip erase'.</li><li>Jumper the BOOT pins or hold BOOT button.</li><li>Power on (activity LED will NOT flash if done correctly).</li><li>Install all STM32 drivers and Zadig if required (see <a href=\"https://github.com/butterflight/butterflight/wiki/Installing-Butterflight\"target=\"_blank\">USB Flashing</a> section of Butterflight manual).</li><li>Close configurator, Close all running chrome instances, Close all Chrome apps, Restart Configurator.</li><li>Release BOOT button if your FC has one.</li><li>Flash with correct firmware (using manual baud rate if specified in your FC's manual).</li><li>Power off.</li><li>Remove BOOT jumper.</li><li>Power on (activity LED should flash).</li><li>Connect normally.</li></ul>"
     },
     "firmwareFlasherButtonLeave": {
         "message": "Leave Firmware Flasher"
@@ -2580,7 +2580,7 @@
         "message": "RC Expo Power"
     },
     "pidTuningRcExpoPowerHelp": {
-        "message": "The exponent that is used when calculating RC Expo. In Betaflight versions prior to 3.0, value is fixed at 3."
+        "message": "The exponent that is used when calculating RC Expo. In Butterflight versions prior to 3.0, value is fixed at 3."
     },
     "pidTuningLevel": {
         "message": "Angle/Horizon"
@@ -2694,7 +2694,7 @@
         "message": "Arbitrary board rotation in degrees, to allow mounting it sideways / upside down / rotated etc. When running external sensors, use the sensor alignments (Gyro, Acc, Mag) to define sensor position independent from board orientation. "
     },
     "failsafeFeaturesHelpOld": {
-        "message": "Failsafe configuration has changed considerably. Use Betaflight <strong>v1.12.0+</strong> to enable the improved configuration panel."
+        "message": "Failsafe configuration has changed considerably. Use Butterflight <strong>v1.12.0+</strong> to enable the improved configuration panel."
     },
     "failsafePaneTitleOld": {
         "message": "Receiver failsafe"
@@ -2770,7 +2770,7 @@
         "message": "Save"
     },
     "powerFirmwareUpgradeRequired": {
-        "message": "Firmware upgrade <span class=\"message-negative\">required</span>. Battery/Amperage/Voltage configurations using API &lt; 1.33.0 (Betaflight release &lt;= 3.17) is not supported."
+        "message": "Firmware upgrade <span class=\"message-negative\">required</span>. Battery/Amperage/Voltage configurations using API &lt; 1.33.0 (Butterflight release &lt;= 3.17) is not supported."
     },
     "powerBatteryVoltageMeterSource": {
         "message": "Voltage Meter Source"
@@ -2997,7 +2997,7 @@
         "message": "<strong>Note:</strong> OSD preview may not show the actual font that is installed on the flight controller."
     },
     "osdSetupUnsupportedNote1": {
-        "message": "Your flight controller isn't responding to OSD commands. This probably means that it does not have an integrated BetaFlight OSD."
+        "message": "Your flight controller isn't responding to OSD commands. This probably means that it does not have an integrated ButterFlight OSD."
     },
     "osdSetupUnsupportedNote2": {
         "message": "Note that some flight controllers have an onboard <a href=\"https://www.youtube.com/watch?v=ikKH_6SQ-Tk\" target=\"_blank\">MinimOSD</a> that can be flashed and configured with <a href=\"https://github.com/ShikOfTheRa/scarab-osd/releases/latest\" target='_blank'>scarab-osd</a>, however the MinimOSD cannot be configured through this interface."
@@ -3482,7 +3482,7 @@
         "message": "<b>Derivative from Error</b> provides more direct stick response and is mostly prefered for Racing.<br><br><b>Derivative from Measurement</b> provides smoother stick response what is more usefull for freestyling"
     },
     "pidTuningPidControllerTip": {
-        "message": "<b>Legacy vs Betaflight (float):</b> PID scaling and PID logic is exactly the same. Not necessarily retune needed. Legacy is old betaflight evolved rewrite, which is basic PID controller based on integer math. Betaflight PID controller uses floating point math and has many new features specifically designed for multirotor applications <br> <b>Float vs Integer:</b> PID scaling and PID logic is exactly the same. No retune needed. F1 boards have no onboard FPU and floating point math increases CPU load and integer math will improve performance, but float math might gain slightly more precision."
+        "message": "<b>Legacy vs Butterflight (float):</b> PID scaling and PID logic is exactly the same. Not necessarily retune needed. Legacy is old butterflight evolved rewrite, which is basic PID controller based on integer math. Butterflight PID controller uses floating point math and has many new features specifically designed for multirotor applications <br> <b>Float vs Integer:</b> PID scaling and PID logic is exactly the same. No retune needed. F1 boards have no onboard FPU and floating point math increases CPU load and integer math will improve performance, but float math might gain slightly more precision."
     },
     "pidTuningFilterTip": {
         "message": "<b>Gyro Soft Filter:</b> Lowpass filter for gyro. Use lower value for more filtering.<br><b>D Term Filter:</b> Lowpass filter for Dterm. Can affect D tuning. Use lower value for more filtering. <br><b>Yaw Filter:</b> Filters yaw output. It can help on setups with noisy yaw axis."
