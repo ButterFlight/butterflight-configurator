@@ -9,7 +9,7 @@ TABS.power.initialize = function (callback) {
 
     if (GUI.active_tab != 'power') {
         GUI.active_tab = 'power';
-        // Disabled on merge into betaflight-configurator
+        // Disabled on merge into butterflight-configurator
         //googleAnalytics.sendAppView('Power');
     }
 
@@ -212,7 +212,7 @@ TABS.power.initialize = function (callback) {
         if (haveFc) {
             currentMeterTypes.push(i18n.getMessage('powerBatteryCurrentMeterTypeVirtual'));
             currentMeterTypes.push(i18n.getMessage('powerBatteryCurrentMeterTypeEsc'));
-            
+
             if (semver.gte(CONFIG.apiVersion, "1.36.0")) {
                 currentMeterTypes.push(i18n.getMessage('powerBatteryCurrentMeterTypeMsp'));
             }

@@ -877,7 +877,7 @@ OSD.constants = {
     { file: "bold", name: "Bold" },
     { file: "large", name: "Large" },
     { file: "extra_large", name: "Extra Large" },
-    { file: "betaflight", name: "Betaflight" },
+    { file: "butterflight", name: "Butterflight" },
     { file: "digital", name: "Digital" },
     { file: "clarity", name: "Clarity" }
   ]
@@ -1478,7 +1478,7 @@ TABS.osd.initialize = function (callback) {
             }
             $('.supported').fadeIn();
 
-            // show Betaflight logo in preview
+            // show Butterflight logo in preview
             var $previewLogo = $('.preview-logo').empty();
             $previewLogo.append(
               $('<label for="preview-logo">Logo: </label><input type="checkbox" name="preview-logo" class="togglesmall"></input>')

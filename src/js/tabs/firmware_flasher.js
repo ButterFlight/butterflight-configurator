@@ -2,7 +2,7 @@
 
 TABS.firmware_flasher = {
     releases: null,
-    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/betaflight/betaflight/releases')
+    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases')
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -69,7 +69,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                     $('div.release_info .status').text(summary.status);
                     $('div.release_info .file').text(summary.file).prop('href', summary.url);
 
-                    var formattedNotes = summary.notes.replace(/#(\d+)/g, '[#$1](https://github.com/betaflight/betaflight/pull/$1)');
+                    var formattedNotes = summary.notes.replace(/#(\d+)/g, '[#$1](https://github.com/butterflight/butterflight/pull/$1)');
                     formattedNotes = marked(formattedNotes);
                     $('div.release_info .notes').html(formattedNotes);
                     $('div.release_info .notes').find('a').each(function() {
@@ -110,7 +110,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                 var unsortedTargets = [];
                 releaseData.forEach(function(release){
                     release.assets.forEach(function(asset){
-                        var targetFromFilenameExpression = /betaflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
+                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
                         if ((!showDevReleases && release.prerelease) || !match) {
@@ -133,7 +133,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                     var version = matchVersionFromTag[1];
 
                     release.assets.forEach(function(asset){
-                        var targetFromFilenameExpression = /betaflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
+                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
                         if ((!showDevReleases && release.prerelease) || !match) {
