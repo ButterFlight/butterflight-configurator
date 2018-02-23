@@ -3,7 +3,7 @@
 openNewWindowsInExternalBrowser();
 
 //Asynchronous configuration to be done.
-//When finish the startProcess() function must be called 
+//When finish the startProcess() function must be called
 $(document).ready(function () {
     i18n.init(function() {
         startProcess();
@@ -243,11 +243,11 @@ function startProcess() {
                         var languageName = i18n.getMessage('language_' + element);
                         userLanguage_e.append('<option value="' + element + '">' + languageName + '</option>');
                     });
-                    
+
                     if (result.userLanguageSelect) {
                         userLanguage_e.val(result.userLanguageSelect);
                     }
-                    
+
                     userLanguage_e.change(function () {
                         var languageSelected = $(this).val();
 
@@ -391,7 +391,7 @@ function startProcess() {
 };
 
 function checkForConfiguratorUpdates() {
-    var releaseChecker = new ReleaseChecker('configurator', 'https://api.github.com/repos/betaflight/betaflight-configurator/releases');
+    var releaseChecker = new ReleaseChecker('configurator', 'https://api.github.com/repos/butterflight/butterflight-configurator/releases');
 
     releaseChecker.loadReleaseData(notifyOutdatedVersion);
 }

@@ -111,7 +111,7 @@ TABS.transponder.initialize = function(callback, scrollPosition) {
 
     if ( GUI.active_tab != 'transponder' ) {
         GUI.active_tab = 'transponder';
-        // Disabled on merge into betaflight-configurator
+        // Disabled on merge into butterflight-configurator
         //googleAnalytics.sendAppView('Transponder');
     }
     // transponder supported added in MSP API Version 1.16.0

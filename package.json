@@ -1,6 +1,6 @@
 {
-  "name": "betaflight-configurator",
-  "description": "Crossplatform configuration tool for Betaflight flight control system.",
+  "name": "butterflight-configurator",
+  "description": "Crossplatform configuration tool for Butterflight flight control system.",
   "version": "10.2.0",
   "main": "main_nwjs.html",
   "bg-script": "js/eventPage.js",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/betaflight/betaflight-configurator"
+    "url": "github.com/butterflight/butterflight-configurator"
   },
   "webview": {
     "partitions": [
@@ -31,7 +31,7 @@
       }
     ]
   },
-  "author": "The Betaflight open source project.",
+  "author": "The Butterflight open source project.",
   "license": "GPL-3.0",
   "dependencies": {
     "i18next": "^10.3.0",

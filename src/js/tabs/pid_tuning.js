@@ -272,7 +272,7 @@ TABS.pid_tuning.initialize = function (callback) {
             var checked = $(this).is(':checked');
             var hz = FILTER_CONFIG.gyro_soft_notch_hz_1 > 0 ? FILTER_CONFIG.gyro_soft_notch_hz_1 : DEFAULT.gyro_soft_notch_hz_1;
             var cutoff = FILTER_CONFIG.gyro_soft_notch_cutoff_1 > 0 ? FILTER_CONFIG.gyro_soft_notch_cutoff_1 : DEFAULT.gyro_soft_notch_cutoff_1;
-            
+
             $('.pid_filter input[name="gyroNotch1Frequency"]').val(checked ? hz : 0).attr('disabled', !checked);
         });
 
@@ -557,7 +557,7 @@ TABS.pid_tuning.initialize = function (callback) {
             $(this).addClass('active');
         });
 
-        
+
         function loadProfilesList() {
             var numberOfProfiles = 3;
             if (semver.gte(CONFIG.apiVersion, "1.20.0")
@@ -588,7 +588,7 @@ TABS.pid_tuning.initialize = function (callback) {
         // This vars are used here for populate the profile (and rate profile) selector AND in the copy profile (and rate profile) window
         var selectRateProfileValues = loadRateProfilesList();
         var selectProfileValues = loadProfilesList();
-        
+
         function populateProfilesSelector(selectProfileValues) {
             var profileSelect = $('select[name="profile"]');
             selectProfileValues.forEach(function(value, key) {
@@ -647,7 +647,7 @@ TABS.pid_tuning.initialize = function (callback) {
             MSP.promise(MSPCodes.MSP_SELECT_SETTING, [self.currentProfile]).then(function () {
                 self.refresh(function () {
                     self.updating = false;
-                    
+
                     $('.tab-pid_tuning select[name="profile"]').prop('disabled', 'false');
                     CONFIG.profile = self.currentProfile;
 
@@ -736,7 +736,7 @@ TABS.pid_tuning.initialize = function (callback) {
             } else {
                 pidControllerList = [
                     {name: "Legacy"},
-                    {name: "Betaflight"}
+                    {name: "Butterflight"}
                 ]
             }
 
@@ -940,18 +940,18 @@ TABS.pid_tuning.initialize = function (callback) {
                 $('.dialogCopyProfile').find('.contentProfile').show();
                 $('.dialogCopyProfile').find('.contentRateProfile').hide();
                 dialogCopyProfileMode = DIALOG_MODE_PROFILE;
-                dialogCopyProfile.showModal(); 
+                dialogCopyProfile.showModal();
             });
 
             $('.copyrateprofilebtn').click(function() {
                 $('.dialogCopyProfile').find('.contentProfile').hide();
                 $('.dialogCopyProfile').find('.contentRateProfile').show();
                 dialogCopyProfileMode = DIALOG_MODE_RATEPROFILE;
-                dialogCopyProfile.showModal(); 
+                dialogCopyProfile.showModal();
             });
 
             $('.dialogCopyProfile-cancelbtn').click(function() {
-                dialogCopyProfile.close(); 
+                dialogCopyProfile.close();
             });
 
             $('.dialogCopyProfile-confirmbtn').click(function() {
@@ -964,7 +964,7 @@ TABS.pid_tuning.initialize = function (callback) {
                         MSP.send_message(MSPCodes.MSP_COPY_PROFILE, mspHelper.crunch(MSPCodes.MSP_COPY_PROFILE), false, close_dialog);
 
                         break;
-                    
+
                     case DIALOG_MODE_RATEPROFILE:
                         COPY_PROFILE.type = DIALOG_MODE_RATEPROFILE;    // 1 = rate profile
                         COPY_PROFILE.dstProfile = parseInt(selectRateProfile.val());
@@ -980,7 +980,7 @@ TABS.pid_tuning.initialize = function (callback) {
                 }
 
                 function close_dialog() {
-                    dialogCopyProfile.close(); 
+                    dialogCopyProfile.close();
                 }
             });
         } else {
