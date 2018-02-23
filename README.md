@@ -12,7 +12,7 @@ Various types of aircraft are supported by the tool and by Butterflight, e.g. qu
 
 ## Authors
 
-Butterflight Configurator is a [fork](#credits) of the Cleanflight Configurator with support for Butterflight instead of Cleanflight.
+Butterflight Configurator is a fork of [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator) which itself is a [fork](#credits) of the Cleanflight Configurator with support for Butterflight instead of Cleanflight.
 
 This configurator is the only configurator with support for Butterflight specific features. It will likely require that you run the latest firmware on the flight controller.
 If you are experiencing any problems please make sure you are running the [latest firmware version](https://github.com/butterflight/butterflight/releases/).
