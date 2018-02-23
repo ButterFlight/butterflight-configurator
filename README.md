@@ -23,27 +23,6 @@ If you are experiencing any problems please make sure you are running the [lates
 
 Download the installer from [Releases.](https://github.com/butterflight/butterflight-configurator/releases)
 
-### Via Chrome Web Store
-
-[![available in the Chrome web store](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png)](https://chrome.google.com/webstore/detail/butterflight-configurator/kdaghagfopacdngbohiknlhcocjccjao)
-
-1. Visit [Chrome web store](https://chrome.google.com/webstore/detail/butterflight-configurator/kdaghagfopacdngbohiknlhcocjccjao)
-2. Click **+ Add to Chrome**
-
-Please note - the application will automatically update itself when new versions are released.  Please ensure you maintain configuration backups as described in the Butterflight documentation.
-
-### Alternative way, Chrome app:
-
-1. Clone the repo to any local directory or download it as zip.
-2. Extract to a folder and not the folder.
-3. Start Google Chrome.
-4. Click the 3-dots on the far right of the URL bar.
-5. Select "More Tools"
-6. Select "Extensions"
-7. Check the Developer Mode checkbox.
-8. Click on load unpacked extension.
-9. Point it to the folder you extracted the zip to.
-
 ## How to use
 
 You can find the Butterflight Configurator icon in your application tab "Apps"
