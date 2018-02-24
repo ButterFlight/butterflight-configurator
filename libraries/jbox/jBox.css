@@ -18,7 +18,7 @@
 
 .jBox-container {
 	background: #fff;
-	border:1px solid #ffbb00;
+	border:1px solid #f7931e;
 	font-size:11px;
 	line-height:13px;
 	color:#525352;
@@ -82,7 +82,7 @@
 	background: #fff;
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
-	border:1px solid #ffbb00;
+	border:1px solid #f7931e;
 
 }
 
@@ -167,7 +167,7 @@
 	border-radius: 3px;
 	padding: 0 20px;
 	-webkit-transition: color .2s, background-color .2s;
-	transition: color .2s, background-color .2s;	
+	transition: color .2s, background-color .2s;
 }
 
 .jBox-Confirm-button-cancel {
@@ -515,7 +515,7 @@ body[class*=" jBox-blockScroll-"] {
     margin-top: -10px;
     margin-left: -10px;
 }
- 
+
 .jBox-spinner:before {
     content: 'Loading…';
     display: block;
@@ -525,7 +525,7 @@ body[class*=" jBox-blockScroll-"] {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
- 
+
 .jBox-spinner:not(:required):before {
     content: '';
     border-radius: 50%;

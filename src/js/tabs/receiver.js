@@ -80,7 +80,7 @@ TABS.receiver.initialize = function (callback) {
                 tab.yawDeadband = parseInt($(this).val());
             }).change();
         }
-        
+
         if (semver.lt(CONFIG.apiVersion, "1.15.0")) {
             $('.sticks').hide();
         } else {
@@ -464,10 +464,10 @@ TABS.receiver.initModelPreview = function () {
     if (CONFIG.flightControllerIdentifier == 'CLFL' && semver.lt(CONFIG.apiVersion, '2.0.0')) {
         useOldRateCurve = true;
     }
-    if (CONFIG.flightControllerIdentifier == 'BTFL' && semver.lt(CONFIG.flightControllerVersion, '2.8.0')) {
+    if (CONFIG.flightControllerIdentifier == 'BTTR' && semver.lt(CONFIG.flightControllerVersion, '2.8.0')) {
         useOldRateCurve = true;
     }
-        
+
     this.rateCurve = new RateCurve(useOldRateCurve);
 
     $(window).on('resize', $.proxy(this.model.resize, this.model));

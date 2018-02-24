@@ -6,7 +6,7 @@ body {
 }
 
 .control-gimbals {
-    /* A generous padding around the window edges ensures that we continue to receive mousemove events (since 
+    /* A generous padding around the window edges ensures that we continue to receive mousemove events (since
      * cursor stays in the window for longer)
      */
     padding: 25px;
@@ -113,7 +113,7 @@ a:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    background-color: #ffbb00;
+    background-color: #f7931e;
     border-radius: 3px;
     border: 1px solid #4c8829;
     color: #fff;

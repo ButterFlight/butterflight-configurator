@@ -170,7 +170,7 @@
 }
 
 .buttonarea {
-    min-height: 100px; 
+    min-height: 100px;
     width: 20%;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .modelwrapper {
-    clear: both; 
+    clear: both;
     margin-bottom: 5px;
 }
 
@@ -209,42 +209,42 @@
 
 #accel_calib_running {
     display: none;
-    
+
     width: 100%;
     position: relative;
     margin-bottom: 0px;
     margin-top: 0px;
     float: left;
-    
+
     padding: 5px 0px 5px 0px;
     text-align: center;
     background-color: #fff;
     border-radius: 4px;
-    border: 1px solid #ffbb00;
-    color: #ffbb00;
+    border: 1px solid #f7931e;
+    color: #f7931e;
     font-family: 'open_sanssemibold', Arial;
     font-size: 12px;
     line-height: 13px;
     transition: all ease 0.2s;
     text-decoration:none;
-    
+
 }
 
 #mag_calib_running {
     display: none;
-    
+
     width: 100%;
     position: relative;
     margin-bottom: 0px;
     margin-top: 0px;
     float: left;
-    
+
     padding: 5px 0px 5px 0px;
     text-align: center;
     background-color: #fff;
     border-radius: 4px;
-    border: 1px solid #ffbb00;
-    color: #ffbb00;
+    border: 1px solid #f7931e;
+    color: #f7931e;
     font-family: 'open_sanssemibold', Arial;
     font-size: 12px;
     line-height: 13px;
@@ -262,7 +262,7 @@
     margin-top: 8px;
     margin-bottom: 8px;
     margin-right: 10px;
-    background-color: #ffbb00;
+    background-color: #f7931e;
     border-radius: 3px;
     border: 1px solid #dba718;
     color: #000;
