@@ -13,7 +13,7 @@
 }
 
 .tab-landing .content_top {
-    height: 140px;
+    height: auto;
     background: #fff;
     padding: 20px;
     background-image: url(../../images/pattern.png);
@@ -21,7 +21,7 @@
 }
 
 .tab-landing .content_mid {
-    background-color: #ffbb00;
+    background-color: #f7931e;
     overflow: hidden;
 }
 
@@ -36,14 +36,14 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
-    width: 800px;
+    width: 80%;
     color: black;
     font-size: 14px;
     font-family: 'open_sanslight', Arial;
 }
 
 .tab-landing .logowrapper img {
-    width: 600px;
+    width: 100%;
     margin: 5px;
 }
 
@@ -176,7 +176,7 @@
 #changelog .wrapper {
     height: 100%;
     padding: 0 20px;
-    border-left: 5px solid #ffbb00;
+    border-left: 5px solid #f7931e;
     overflow-y: auto;
     display: none;
 }
@@ -186,7 +186,7 @@
     top: 50px;
     right: 215px;
     position: absolute;
-    background: #ffbb00;
+    background: #f7931e;
     border-radius: 5px 5px 0 0;
     border-bottom: none;
     height: 30px;
