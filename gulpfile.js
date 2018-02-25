@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 const pkg = require('./package.json');
 
@@ -95,7 +95,7 @@ function getInputPlatforms() {
         if (supportedPlatforms.indexOf(defaultPlatform) > -1) {
             platforms.push(defaultPlatform);
         } else {
-            console.error(`Your current platform (${os.platform()}) is not a supported build platform. Please specify platform to build for on the command line.`);
+            console.error('Your current platform (${os.platform()}) is not a supported build platform. Please specify platform to build for on the command line.');
             process.exit();
         }
     }

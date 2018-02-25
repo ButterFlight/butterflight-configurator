@@ -494,6 +494,12 @@
     "defaultContributingText": {
         "message": "If you would like to help make Butterflight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums and IRC.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/Butterflight/butterflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/butterflight/butterflight/issues\" target=\"_blank\">issues and commenting on feature requests</a>.</li><li>Collaborate by <a href=\"https://crowdin.com/project/butterflight-configurator\" target=\"_blank\">translating the configurator application</a> into your language.</li><li></li></ul>"
     },
+    "defaultSettingsHead": {
+        "message": "STARTER SETTINGS FOR BUTTER"
+    },
+    "defaultSettingsText": {
+        "message": "Here you will find helpful commands for getting your quad setup with Fast Kalman Filters, make sure you disable all of your NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> For OLD AKK Smart Audio use: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+    },
     "defaultChangelogAction": {
         "message": "Changelog"
     },
