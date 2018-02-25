@@ -128,7 +128,7 @@
 }
 
 .tab-landing .content_mid .text1 {
-    width: 37%;
+    width: 27%;
 }
 
 .tab-landing .content_mid .text2 {
@@ -145,10 +145,10 @@
 }
 
 .tab-landing .content_mid .text3 {
-    width: 23%;
+    width: 33%;
 }
 
-.tab-landing .content_mid .text3 .wrap2 {
+.tab-landing .wrap2 {
     border: 1px solid silver;
     border-radius: 5px;
     background: white;
@@ -237,4 +237,15 @@
 
 #changelog .log p {
     margin-bottom: 20px;
+}
+
+.wrap2 .settingsIntro {
+  padding: 8px 0;
+}
+
+.wrap2 .settingsIntro li {
+  padding: 2px 0;
+  border-bottom: 1px solid black;
+  width: 100%;
+  display: block;
 }

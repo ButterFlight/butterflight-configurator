@@ -442,6 +442,12 @@
     "defaultContributingText": {
         "message": "Ja jūs vēlaties padarīt Butterflight vēl labāku jūs varat palīdzēt daudzos veidos, ieskaitot:<br \/><ul><li>Atbildot uz citu lietotāju jautājumiem forumos un IRC.<\/li><li>Atbalstot programmatūras un konfiguratora kodu - jaunas iespējas, labojumi, uzlabojumi<\/li><li>Testējot <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">jaunās iespējas\/labojumus<\/a> sniedzot atsauksmes.<\/li><li>Palīdzot ar <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">problēmām un komentējot iespēju pieprasījumus<\/a>.<\/li><li>Sadarbojoties <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">tulkojot konfiguratora aplikāciju<\/a>jūsu valodā.<\/li><li><\/li><\/ul>"
     },
+    "defaultSettingsHead": {
+        "message": "Krūzīšu iestatījumi krūšturim"
+    },
+    "defaultSettingsText": {
+        "message": "Šeit jūs atradīsit noderīgas komandas, lai iegūtu savu quad setup ar Fast Kalman filtri, pārliecinieties, ka esat atspējojis visus savus NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> OLD AKK Smart Audio lietošanai: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+    },
     "defaultChangelogAction": {
         "message": "Izmaiņas"
     },

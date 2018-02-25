@@ -442,6 +442,12 @@
     "defaultContributingText": {
         "message": "Si vols contribuir a fer un Butterflight encara millor pots ajudar de diverses maneres, incloent:<br \/><ul><li>Responent a altres usuaris les preguntes als forums i IRC.<\/li><li>Aportant codi al firmware i configurador - noves caracteristiques, solucions, millores<\/li><li>Proves <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">noves caracteristiques\/solucions<\/a> i facilitant feedback.<\/li><li>Ajudar amb <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">problemes i comentar sol·licituds de funcions<\/a>.<\/li><li><\/li><\/ul>Coŀlabora traduint <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">al teu idioma.<\/li><li><\/li><\/ul>"
     },
+    "defaultSettingsHead": {
+        "message": "CONFIGURACIÓ D'ENTRADA PER A LA MANTEGA"
+    },
+    "defaultSettingsText": {
+        "message": "Aquí trobareu comandaments útils per obtenir la configuració de quad amb els filtres ràpids de Kalman, assegureu-vos de desactivar tots els FILTRES DE FITXA:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> Per a l'ús d'àudio intel·ligent OLD AKK: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+    },
     "defaultChangelogAction": {
         "message": "Canvis"
     },
