@@ -21,6 +21,8 @@ node_js:
 
 addons:
   chrome: stable
+  artifacts:
+    s3_region: "us-west-2"
 
 before_install:
   - npm i -g npm@6.0.1
