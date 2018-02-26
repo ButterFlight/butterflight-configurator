@@ -3,10 +3,6 @@ language: node_js
 node_js:
   - "node"
 
-addons:
-  artifacts:
-    s3_region: "us-west-2"
-
 before_install:
   - npm install gulp -g
 
@@ -17,3 +13,11 @@ script:
 cache:
   directories:
   - node_modules
+
+addons:
+  artifacts:
+    s3_region: "us-west-2"
+    paths:
+      - $(git ls-files -o -x node_modules/ | tr "\n" ":")
+    target_paths:
+      - /$TRAVIS_BUILD_NUMBER/
