@@ -19,6 +19,10 @@ language: node_js
 node_js:
   - 8.11.2
 
+addons:
+  artifacts:
+    s3_region: "us-west-2"
+
 before_install:
   - npm i -g npm@6.0.1
   - npm install gulp -g
