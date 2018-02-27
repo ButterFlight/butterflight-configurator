@@ -24,8 +24,8 @@ Name "${APP_NAME}"
 BrandingText "${COMPANY_NAME}"
 
 # set the icon
-!define MUI_ICON ".\butter_installer_icon.ico"
-!define MUI_UNICON ".\butter_uninstaller_icon.ico"
+!define MUI_ICON ".\butter_installer.ico"
+!define MUI_UNICON ".\butter_uninstaller.ico"
 
 #Define uninstall list name
 !define UninstName "uninbf00"
