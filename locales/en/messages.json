@@ -498,7 +498,7 @@
         "message": "STARTER SETTINGS FOR BUTTER"
     },
     "defaultSettingsText": {
-        "message": "Here you will find helpful commands for getting your quad setup with Fast Kalman Filters, make sure you disable all of your NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> For OLD AKK Smart Audio use: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "Here you will find helpful commands for getting your quad setup with Fast Kalman Filters, make sure you disable all of your NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> For OLD AKK Smart Audio use: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "Changelog"
