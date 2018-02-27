@@ -449,7 +449,7 @@
         "message": "黄油起动机设置"
     },
     "defaultSettingsText": {
-        "message": "在这里您可以找到有用的命令，以便使用快速卡尔曼滤波器获得四路设置，确保禁用所有NOTCH滤波器:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> 对于旧AKK智能音频使用: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "在这里您可以找到有用的命令，以便使用快速卡尔曼滤波器获得四路设置，确保禁用所有NOTCH滤波器:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> 对于旧AKK智能音频使用: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "更新日志"

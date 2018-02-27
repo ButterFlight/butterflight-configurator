@@ -440,7 +440,7 @@
         "message": "STARTERINSTELLINGEN VOOR BOTER"
     },
     "defaultSettingsText": {
-        "message": "Hier vindt u nuttige commando's om uw quad-opstelling te krijgen met Fast Kalman Filters, zorg ervoor dat u al uw NOTCH FILTERS uitschakelt:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> Voor OUD AKK Smart Audio-gebruik: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "Hier vindt u nuttige commando's om uw quad-opstelling te krijgen met Fast Kalman Filters, zorg ervoor dat u al uw NOTCH FILTERS uitschakelt:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> Voor OUD AKK Smart Audio-gebruik: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "Changelog"
