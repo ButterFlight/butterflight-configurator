@@ -446,7 +446,7 @@
         "message": "버터 용 스타터 설정"
     },
     "defaultSettingsText": {
-        "message": "Fast Kalman Filters로 쿼드 설정을하는 데 도움이되는 명령을 찾을 수 있습니다. 모든 NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> OLD AKK 스마트 오디오 사용: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "Fast Kalman Filters로 쿼드 설정을하는 데 도움이되는 명령을 찾을 수 있습니다. 모든 NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> OLD AKK 스마트 오디오 사용: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "변경이력"

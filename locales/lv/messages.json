@@ -446,7 +446,7 @@
         "message": "Krūzīšu iestatījumi krūšturim"
     },
     "defaultSettingsText": {
-        "message": "Šeit jūs atradīsit noderīgas komandas, lai iegūtu savu quad setup ar Fast Kalman filtri, pārliecinieties, ka esat atspējojis visus savus NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> OLD AKK Smart Audio lietošanai: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "Šeit jūs atradīsit noderīgas komandas, lai iegūtu savu quad setup ar Fast Kalman filtri, pārliecinieties, ka esat atspējojis visus savus NOTCH FILTERS:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> OLD AKK Smart Audio lietošanai: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "Izmaiņas"
