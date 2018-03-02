@@ -442,6 +442,9 @@
     "defaultContributingText": {
         "message": "Si quieres ayudar a hacer Butterflight incluso mejor puedes hacerlo de diferentes maneras, incluyendo:<br \/><ul><li>Responder a preguntas de otros usuarios en foros e IRC.<\/li><li>Contribuyendo con código al firmware y al configurador- nuevas funcionalidades, correcciones, mejoras.<\/li><li>Testeando <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">nuevas funcionalidades\/correcciones<\/a> y comentando resultados.<\/li><li>Ayudando con <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">problemas y opinando sobre las solicitudes de funcionalidades<\/a>.<\/li><li>Colaborando en <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">la traducción de la aplicación del configurador<\/a> a tu idioma.<\/li><li><\/li><\/ul>"
     },
+    "defaultSettingsNotice": {
+        "message": "POR FAVOR, SIGA ESTA SECCIÓN SI USTED ESTÁ EJECUTANDO UN CONTROLADOR HELIO FLIGHT"
+    },
     "defaultSettingsHead": {
         "message": "CONFIGURACIÓN DE ARRANQUE PARA MANTEQUILLA"
     },

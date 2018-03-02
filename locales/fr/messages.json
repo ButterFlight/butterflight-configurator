@@ -442,12 +442,14 @@
     "defaultContributingText": {
         "message": "Vous souhaitez participer à l'amélioration de Butterflight, plusieurs possibilités:<br \/><ul><li>Répondre aux question des autres utilisateurs sur les forums, IRC et Slack.<\/li><li>Participer au développement du firmware et du configurateur - nouvelles fonctionnalités, améliorations et résolutions de bugs<\/li><li>Tester <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">les nouvelles fonctionnalités\/résolutions de bugs<\/a> et transmettre des retours.<\/li><li>Aider <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">avec des idées, commentaires et des demandes de fonctionnalités<\/a>.<\/li><li>Collaborer <a href=\"<a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">\" target=\"_blank\">à traduire le configurateur <\/a> dans votre langue.<\/li><li><\/li><\/ul>"
     },
+    "defaultSettingsNotice": {
+        "message": "VEUILLEZ SAUTER CETTE SECTION SI VOUS UTILISEZ UN CONTRÔLEUR HELIO FLIGHT"
+    },
     "defaultSettingsHead": {
         "message": "PARAMÈTRES DE DÉMARRAGE POUR BEURRE"
     },
     "defaultSettingsText": {
-        "message": "Ici vous trouverez des commandes utiles pour obtenir votre configuration quad avec Fast Kalman Filters, assurez-vous de désactiver tous vos filtres NOTCH:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br>
-Pour l'utilisation d'OLD AKK Smart Audio: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
+        "message": "Ici vous trouverez des commandes utiles pour obtenir votre configuration quad avec Fast Kalman Filters, assurez-vous de désactiver tous vos filtres NOTCH:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br/>Pour l'utilisation d'OLD AKK Smart Audio: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
     },
     "defaultChangelogAction": {
         "message": "Notes de MAJ"

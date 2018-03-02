@@ -249,3 +249,9 @@
   width: 100%;
   display: block;
 }
+
+.settings-notice {
+    background-color: #f7931e;
+    font-weight: 700;
+    text-transform: uppercase;
+}
