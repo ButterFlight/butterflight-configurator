@@ -495,7 +495,7 @@
         "message": "If you would like to help make Butterflight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums and IRC.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/Butterflight/butterflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/butterflight/butterflight/issues\" target=\"_blank\">issues and commenting on feature requests</a>.</li><li>Collaborate by <a href=\"https://crowdin.com/project/butterflight-configurator\" target=\"_blank\">translating the configurator application</a> into your language.</li><li></li></ul>"
     },
     "defaultSettingsNotice": {
-        "message": "PLEASE SKIP THIS SECTION IF YOU ARE RUNNING A HELIO FLIGHT CONTROLLER"
+        "message": "PLEASE SKIP THIS SECTION IF YOU ARE RUNNING <br> HELIO FLIGHT CONTROLLER"
     },
     "defaultSettingsHead": {
         "message": "STARTER SETTINGS FOR BUTTER"
