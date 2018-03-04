@@ -442,6 +442,9 @@
     "defaultContributingText": {
         "message": "Si vols contribuir a fer un Butterflight encara millor pots ajudar de diverses maneres, incloent:<br \/><ul><li>Responent a altres usuaris les preguntes als forums i IRC.<\/li><li>Aportant codi al firmware i configurador - noves caracteristiques, solucions, millores<\/li><li>Proves <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">noves caracteristiques\/solucions<\/a> i facilitant feedback.<\/li><li>Ajudar amb <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">problemes i comentar sol·licituds de funcions<\/a>.<\/li><li><\/li><\/ul>Coŀlabora traduint <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">al teu idioma.<\/li><li><\/li><\/ul>"
     },
+    "defaultSettingsNotice": {
+        "message": "SI US PLAU AQUEST SECCIÓ SI ESTÀ FUN UN CONTROLADOR DE VOL DE HELIO"
+    },
     "defaultSettingsHead": {
         "message": "CONFIGURACIÓ D'ENTRADA PER A LA MANTEGA"
     },

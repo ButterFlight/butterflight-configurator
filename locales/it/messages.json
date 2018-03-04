@@ -442,6 +442,9 @@
     "defaultContributingText": {
         "message": "Se vuoi contribuire a rendere Butterflight ancora migliore puoi aiutare in molti modi, quali:<ul><li>Rispondere alle domande degli altri utenti sui forum e IRC.<\/li><li>Contribuire a scrivere codice per il firmware ed il configuratore - nuove funzioni, correzioni, miglioramenti<\/li><li>Testare le <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">nuove funzioni\/correzzioni<\/a> e fornendo feedback.<\/li><li>Aiutare a risolvere<a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\"> problemi e commentare le funzioni richieste<\/a><\/li><li>Collaborare alla <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">traduzione deldel configuratore<\/a> nella tua lingua<\/li><\/ul>"
     },
+    "defaultSettingsNotice": {
+        "message": "PER FAVORE SALTA QUESTA SEZIONE SE STIA FUNZIONANDO UN CONTROLLER HELIO VOLO"
+    },
     "defaultSettingsHead": {
         "message": "IMPOSTAZIONI DI AVVIAMENTO PER IL BURRO"
     },
