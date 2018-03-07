@@ -1,31 +1,31 @@
-# Butterflight Configurator
+# Cleanerflight Configurator
 
-![Butterflight](http://butterflight.co/img/butterflight-logo.svg)
+![Cleanerflight](http://Cleanerflight.co/img/Cleanerflight-logo.svg)
 
-Butterflight Configurator is a crossplatform configuration tool for the Butterflight flight control system.
+Cleanerflight Configurator is a crossplatform configuration tool for the Cleanerflight flight control system.
 
-It runs as an app within Google Chrome and allows you to configure the Butterflight software running on any [supported Butterflight target](https://github.com/butterflight/butterflight/tree/master/src/main/target).
+It runs as an app within Google Chrome and allows you to configure the Cleanerflight software running on any [supported Cleanerflight target](https://github.com/Cleanerflight/Cleanerflight/tree/master/src/main/target).
 
-There is also now a standalone version available, since Google Chrome Apps are getting deprecated on platforms that aren't Chrome OS. [Downloads are available in Releases.](https://github.com/butterflight/butterflight-configurator/releases)
+There is also now a standalone version available, since Google Chrome Apps are getting deprecated on platforms that aren't Chrome OS. [Downloads are available in Releases.](https://github.com/Cleanerflight/Cleanerflight-configurator/releases)
 
-Various types of aircraft are supported by the tool and by Butterflight, e.g. quadcopters, hexacopters, octocopters and fixed-wing aircraft.
+Various types of aircraft are supported by the tool and by Cleanerflight, e.g. quadcopters, hexacopters, octocopters and fixed-wing aircraft.
 
 ## Authors
 
-Butterflight Configurator is a fork of [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator) which itself is a [fork](#credits) of the Cleanflight Configurator with support for Butterflight instead of Cleanflight.
+Cleanerflight Configurator is a fork of [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator) which itself is a [fork](#credits) of the Cleanflight Configurator with support for Cleanerflight instead of Cleanflight.
 
-This configurator is the only configurator with support for Butterflight specific features. It will likely require that you run the latest firmware on the flight controller.
-If you are experiencing any problems please make sure you are running the [latest firmware version](https://github.com/butterflight/butterflight/releases/).
+This configurator is the only configurator with support for Cleanerflight specific features. It will likely require that you run the latest firmware on the flight controller.
+If you are experiencing any problems please make sure you are running the [latest firmware version](https://github.com/Cleanerflight/Cleanerflight/releases/).
 
 ## Installation
 
 ### Standalone
 
-Download the installer from [Releases.](https://github.com/butterflight/butterflight-configurator/releases)
+Download the installer from [Releases.](https://github.com/Cleanerflight/Cleanerflight-configurator/releases)
 
 ## How to use
 
-You can find the Butterflight Configurator icon in your application tab "Apps"
+You can find the Cleanerflight Configurator icon in your application tab "Apps"
 
 ## Native app build via NW.js
 
@@ -64,7 +64,7 @@ You can also use multiple platforms e.g. `gulp <taskname> --osx64 --linux64`.
 
 ## Languages
 
-Butterflight Configurator has been translated into several languages. The application will try to detect and use your system language if a translation into this language is available. You can help [translating the application into your language](https://crowdin.com/project/butterflight-configurator).
+Cleanerflight Configurator has been translated into several languages. The application will try to detect and use your system language if a translation into this language is available. You can help [translating the application into your language](https://crowdin.com/project/Cleanerflight-configurator).
 
 If you prefer to have the application in English or any other language, you can select your desired language in the options menu of the application.
 
@@ -84,17 +84,17 @@ If you have 3D model animation problems, enable "Override software rendering lis
 
 ## Support
 
-If you need help please reach out on the [butterflightgroup](https://butterflightgroup.slack.com) slack channel before raising issues on github. Register and [request slack access here](http://www.butterflight.tk).
+If you need help please reach out on the [Cleanerflightgroup](https://Cleanerflightgroup.slack.com) slack channel before raising issues on github. Register and [request slack access here](http://www.Cleanerflight.tk).
 
 ### Issue trackers
 
-For Butterflight configurator issues raise them here
+For Cleanerflight configurator issues raise them here
 
-https://github.com/butterflight/butterflight-configurator/issues
+https://github.com/Cleanerflight/Cleanerflight-configurator/issues
 
-For Butterflight firmware issues raise them here
+For Cleanerflight firmware issues raise them here
 
-https://github.com/butterflight/butterflight/issues
+https://github.com/Cleanerflight/Cleanerflight/issues
 
 ## Technical details
 
@@ -110,4 +110,4 @@ ctn - primary author and maintainer of Baseflight Configurator from which Cleanf
 
 Hydra -  author and maintainer of Cleanflight Configurator from which this project was forked.
 
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/butterflight-configurator/localized.svg)](https://crowdin.com/project/butterflight-configurator)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/Cleanerflight-configurator/localized.svg)](https://crowdin.com/project/Cleanerflight-configurator)
