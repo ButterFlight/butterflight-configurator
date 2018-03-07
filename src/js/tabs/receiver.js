@@ -461,7 +461,7 @@ TABS.receiver.initModelPreview = function () {
     }
 
     var useOldRateCurve = false;
-    if (CONFIG.flightControllerIdentifier == 'CLFL' && semver.lt(CONFIG.apiVersion, '2.0.0')) {
+    if (CONFIG.flightControllerIdentifier == 'BTFL' && semver.lt(CONFIG.apiVersion, '2.0.0')) {
         useOldRateCurve = true;
     }
     if (CONFIG.flightControllerIdentifier == 'BTTR' && semver.lt(CONFIG.flightControllerVersion, '2.8.0')) {

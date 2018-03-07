@@ -567,7 +567,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         }
 
         if ((CONFIG.flightControllerIdentifier === 'BTTR' && semver.gte(CONFIG.flightControllerVersion, "2.6.0")) ||
-            (CONFIG.flightControllerIdentifier === 'CLFL' && semver.gte(CONFIG.apiVersion, "1.31.0"))) {
+            (CONFIG.flightControllerIdentifier === 'BTFL' && semver.gte(CONFIG.apiVersion, "1.31.0"))) {
             serialRXtypes.push('JETIEXBUS');
         }
 
