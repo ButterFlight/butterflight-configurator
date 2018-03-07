@@ -436,12 +436,6 @@
     "defaultContributingText": {
         "message": "Wenn du helfen willst, Butterflight noch besser zu machen, kannst du das auf mehrere Arten tun:<br \/><ul><li>Beantworte Fragen anderer Benutzer in Foren oder im IRC.<\/li><li>Steuere Code für neue Firmwares und den Konfigurator bei - neue Funktionen, Bugfixes oder Verbesserungen.<\/li><li>Teste <a href=\"https:\/\/github.com\/Butterflight\/butterflight\/pulls\" target=\"_blank\">neue Funktionen<\/a> und gibt uns Feedback.<\/li><li>Hilf uns bei <a href=\"https:\/\/github.com\/butterflight\/butterflight\/issues\" target=\"_blank\">Problemen und Funktionswünschen<\/a>.<\/li><li>Hilf mit den <a href=\"https:\/\/crowdin.com\/project\/butterflight-configurator\" target=\"_blank\">Konfigurator zu übersetzen<\/a><\/li><li><\/li><\/ul>"
     },
-    "defaultSettingsHead": {
-        "message": "STARTERINSTELLINGEN VOOR BOTER"
-    },
-    "defaultSettingsText": {
-        "message": "Hier vindt u nuttige commando's om uw quad-opstelling te krijgen met Fast Kalman Filters, zorg ervoor dat u al uw NOTCH FILTERS uitschakelt:<br /><ul class=\"settingsIntro\"><li>set dterm_lowpass_type = PT1</li><li>feature AIRMODE</li><li>feature ANTI</li><li>feature DYNAMIC</li><li>set gyro_stage2_filter_type = FAST_KALMAN</li><li>SAVE</li><li>set gyro_filter_q = 400</li><li>set gyro_filter_r = 88</li><li>SAVE</li></ul><br> Voor OUD AKK Smart Audio-gebruik: <br><ul><li>set VTX_AKK_HACK = ON</li></ul>"
-    },
     "defaultChangelogAction": {
         "message": "Changelog"
     },
