@@ -2,7 +2,8 @@
 
 TABS.firmware_flasher = {
     releases: null,
-    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases')
+    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
+    helioReleaseURL: 'https://www.heliorc.com/files/BuF_IMUF_UPDATER.hex'
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -44,7 +45,7 @@ TABS.firmware_flasher.initialize = function (callback) {
 
                 var releases = {};
                 var sortedTargets = [];
-                var unsortedTargets = [];
+                var unsortedTargets = [];                
                 releaseData.forEach(function(release){
                     release.assets.forEach(function(asset){
                         var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
@@ -64,6 +65,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                     releases[release] = [];
                 });
 
+                var helioAdded = false;
                 releaseData.forEach(function(release){
                     var versionFromTagExpression = /v?(.*)/;
                     var matchVersionFromTag = versionFromTagExpression.exec(release.tag_name);
@@ -98,7 +100,15 @@ TABS.firmware_flasher.initialize = function (callback) {
                             "notes"     : release.body,
                             "status"    : release.prerelease ? "release-candidate" : "stable"
                         };
-                        releases[target].push(descriptor);
+                        if (!helioAdded && target === 'HELIOSPRING') {
+                            descriptor.releaseUrl = TABS.firmware_flasher.helioReleaseURL;
+                            descriptor.version = "LATEST_STABLE";
+                            descriptor.file = "BuF_IMUF_UPDATER.hex";
+                            helioAdded = true;
+                            releases[target].push(descriptor);
+                        } else {
+                            releases[target].push(descriptor);
+                        }
                     });
                 });
                 var selectTargets = [];
