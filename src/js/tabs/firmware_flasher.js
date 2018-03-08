@@ -167,6 +167,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                             descriptor.releaseUrl = TABS.firmware_flasher.helioReleaseURL;
                             descriptor.version = "LATEST_STABLE";
                             descriptor.file = "BuF_IMUF_UPDATER.hex";
+                            descriptor.url = TABS.firmware_flasher.helioReleaseURL;
                             helioAdded = true;
                             releases[target].push(descriptor);
                         } else {
