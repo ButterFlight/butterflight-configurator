@@ -85,8 +85,12 @@ var Features = function (config) {
         if (semver.gte(CONFIG.apiVersion, "1.36.0")) {
             features.push(
                 {bit: 28, group: 'other', name: 'ANTI_GRAVITY'},
-                {bit: 29, group: 'other', name: 'DYNAMIC_FILTER'}
             );
+            if (CONFIG.boardIdentifier !== "HESP") {
+                features.push(
+                    {bit: 29, group: 'other', name: 'DYNAMIC_FILTER'}
+                );
+            }
         }
 
         if (!semver.gte(CONFIG.apiVersion, "1.36.0")) {

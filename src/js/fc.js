@@ -332,25 +332,48 @@ var FC = {
             digitalIdlePercent:         0,
             gyroUse32kHz:               0,
         };
+        if (CONFIG.boardIdentifier === "IMUF") {
+            FILTER_CONFIG = {
+                dterm_lpf_hz:               0,
+                imuf_pitch_lpf_cutoff_hz:   0,
+                imuf_roll_lpf_cutoff_hz:    0,
+                imuf_yaw_lpf_cutoff_hz:     0,
+                imuf_pitch_q:               0,
+                imuf_roll_q:                0,
+                imuf_yaw_q:                 0,
+                dterm_notch_hz:             0,
+                dterm_notch_cutoff:         0,
+                dterm_filter_type:          0,
+                dterm_filter_style:         0,
+            };
+            
+            KALMAN_FILTER_CONFIG = {
+                imuf_pitch_q:               0,
+                imuf_roll_q:                0,
+                imuf_yaw_q:                 0,
+                imuf_pitch_w:               0,
+                imuf_roll_w:                0,
+                imuf_yaw_w:                 0
+            }
+        } else {
+            FILTER_CONFIG = {
+                gyro_soft_lpf_hz:           0,
+                dterm_lpf_hz:               0,
+                yaw_lpf_hz:                 0,
+                gyro_soft_notch_hz_1:       0,
+                gyro_soft_notch_cutoff_1:   0,
+                dterm_notch_hz:             0,
+                dterm_notch_cutoff:         0,
+                gyro_soft_notch_hz_2:       0,
+                gyro_soft_notch_cutoff_2:   0,
+                dterm_filter_type:          0,
+            };
 
-        FILTER_CONFIG = {
-            gyro_soft_lpf_hz:           0,
-            dterm_lpf_hz:               0,
-            yaw_lpf_hz:                 0,
-            gyro_soft_notch_hz_1:       0,
-            gyro_soft_notch_cutoff_1:   0,
-            dterm_notch_hz:             0,
-            dterm_notch_cutoff:         0,
-            gyro_soft_notch_hz_2:       0,
-            gyro_soft_notch_cutoff_2:   0,
-            dterm_filter_type:          0,
-            gyro_stage2_filter_type:    0,
-        };
-
-        KALMAN_FILTER_CONFIG = {
-            gyro_filter_q:              0,
-            gyro_filter_r:              0,
-        };
+            KALMAN_FILTER_CONFIG = {
+                gyro_filter_q:              0,
+                gyro_filter_r:              0,
+            };
+        }
 
         ADVANCED_TUNING = {
             rollPitchItermIgnoreRate:   0,

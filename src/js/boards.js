@@ -26,6 +26,7 @@ var BOARD_DEFINITIONS = [
     {name: 'FURYF3', identifier: 'FYF3', vcp: true},
     {name: 'FURYF4', identifier: 'FYF4', vcp: true},
     {name: 'FURYF7', identifier: 'FYF7', vcp: true},
+    {name: 'HELIOSPRING', identifier: 'HESP', vcp: true},
     {name: 'IMPULSERCF3', identifier: 'IMF3', vcp: true},
     {name: 'IRCFUSIONF3', identifier: 'IFF3', vcp: true},
     {name: 'ISHAPEDF3', identifier: 'ISF3', vcp: false},

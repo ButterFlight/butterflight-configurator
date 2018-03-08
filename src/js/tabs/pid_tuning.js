@@ -35,7 +35,11 @@ TABS.pid_tuning.initialize = function (callback) {
         return MSP.promise(MSPCodes.MSP_FILTER_CONFIG);
     }).then(function () {
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+            if (CONFIG.boardIdentifier === "IMUF") {
+                return MSP.promise(MSPCodes.MSP_IMUF_CONFIG);
+            } else {
+                return MSP.promise(MSPCodes.MSP_FILTER_CONFIG);
+            }
         }
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_RC_DEADBAND);
@@ -223,9 +227,16 @@ TABS.pid_tuning.initialize = function (callback) {
 
         if (semver.gte(CONFIG.apiVersion, "1.16.0")) {
             $('.pid_tuning input[name="rc_rate_yaw"]').val(RC_tuning.rcYawRate.toFixed(2));
-            $('.pid_filter input[name="gyroLowpassFrequency"]').val(FILTER_CONFIG.gyro_soft_lpf_hz);
+            if (CONFIG.boardIdentifier === "IMUF") {
+                $('.pid_filter input[name="imuf_pitch_lpf_cutoff_hz"]').val(FILTER_CONFIG.imuf_pitch_lpf_cutoff_hz);
+                $('.pid_filter input[name="imuf_roll_lpf_cutoff_hz"]').val(FILTER_CONFIG.imuf_roll_lpf_cutoff_hz);
+                $('.pid_filter input[name="imuf_yaw_lpf_cutoff_hz"]').val(FILTER_CONFIG.imuf_yaw_lpf_cutoff_hz);
+            } else {
+                $('.pid_filter input[name="gyroLowpassFrequency"]').val(FILTER_CONFIG.gyro_soft_lpf_hz);
+            }
+            $('.pid_filter input[name="yawLowpassFrequency"]').val(FILTER_CONFIG.yaw_lpf_hz);            
             $('.pid_filter input[name="dtermLowpassFrequency"]').val(FILTER_CONFIG.dterm_lpf_hz);
-            $('.pid_filter input[name="yawLowpassFrequency"]').val(FILTER_CONFIG.yaw_lpf_hz);
+            
         } else {
             $('.tab-pid_tuning .subtab-filter').hide();
             $('.tab-pid_tuning .tab_container').hide();
@@ -270,6 +281,7 @@ TABS.pid_tuning.initialize = function (callback) {
 
         if (semver.gte(CONFIG.apiVersion, "1.36.0")) {
             $('.profile select[name="dtermFilterType"]').val(FILTER_CONFIG.dterm_filter_type);
+            $('.profile select[name="dtermFilterStyle"]').val(FILTER_CONFIG.dterm_filter_style);
             $('.antigravity input[name="itermThrottleThreshold"]').val(ADVANCED_TUNING.itermThrottleThreshold);
             $('.antigravity input[name="itermAcceleratorGain"]').val(ADVANCED_TUNING.itermAcceleratorGain / 1000);
         } else {
