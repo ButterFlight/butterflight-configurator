@@ -3,7 +3,7 @@
 TABS.firmware_flasher = {
     releases: null,
     releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
-    helioReleaseURL: 'https://www.heliorc.com/files/BuF_IMUF_UPDATER.hex'
+    helioReleaseURL: 'https://raw.githubusercontent.com/heliorc/imuf-release/master/Butterflight_3.3.0_MSD_1.0.0_IMUF_1.0.1.hex'
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
