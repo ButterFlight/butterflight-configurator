@@ -3,7 +3,9 @@
 TABS.firmware_flasher = {
     releases: null,
     releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
-    helioReleaseURL: 'https://raw.githubusercontent.com/heliorc/imuf-release/master/Butterflight_3.3.0_MSD_1.0.0_IMUF_1.0.1.hex'
+    helioURL: 'https://raw.githubusercontent.com/heliorc/imuf-release/master/',
+    helioPrevious: 'Butterflight_3.3.0_MSD_1.0.0_IMUF_1.0.1.hex',
+    helioCurrent: 'Butterflight_3.4.3_MSD_1.0.0_IMUF_1.0.2.hex'
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -88,26 +90,43 @@ TABS.firmware_flasher.initialize = function (callback) {
 
                         var date = new Date(release.published_at);
                         var formattedDate = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
-
-                        var descriptor = {
-                            "releaseUrl": release.html_url,
-                            "name"      : version,
-                            "version"   : version,
-                            "url"       : asset.browser_download_url,
-                            "file"      : asset.name,
-                            "target"    : target,
-                            "date"      : formattedDate,
-                            "notes"     : release.body,
-                            "status"    : release.prerelease ? "release-candidate" : "stable"
-                        };
                         if (!helioAdded && target === 'HELIOSPRING') {
-                            descriptor.releaseUrl = TABS.firmware_flasher.helioReleaseURL;
-                            descriptor.version = "LATEST_STABLE";
-                            descriptor.file = "BuF_IMUF_UPDATER.hex";
-                            descriptor.url = TABS.firmware_flasher.helioReleaseURL;
+                            releases[target].push({
+                                "releaseUrl": TABS.firmware_flasher.helioURL,
+                                "name"      : 'LATEST_STABLE',
+                                "version"   : 'LATEST_STABLE',
+                                "url"       : TABS.firmware_flasher.helioURL + '/' + TABS.firmware_flasher.helioCurrent,
+                                "file"      : TABS.firmware_flasher.helioCurrent,
+                                "target"    : target,
+                                "date"      : formattedDate,
+                                "notes"     : release.body,
+                                "status"    : "stable"
+                            });
+                            releases[target].push({
+                                "releaseUrl": TABS.firmware_flasher.helioURL,
+                                "name"      : 'PREVIOUS_STABLE',
+                                "version"   : 'PREVIOUS_STABLE',
+                                "url"       : TABS.firmware_flasher.helioURL + '/' + TABS.firmware_flasher.helioPrevious,
+                                "file"      : TABS.firmware_flasher.helioPrevious,
+                                "target"    : target,
+                                "date"      : formattedDate,
+                                "notes"     : release.body,
+                                "status"    : "stable"
+                            });
                             helioAdded = true;
-                            releases[target].push(descriptor);
+                            
                         } else {
+                            var descriptor = {
+                                "releaseUrl": release.html_url,
+                                "name"      : version,
+                                "version"   : version,
+                                "url"       : asset.browser_download_url,
+                                "file"      : asset.name,
+                                "target"    : target,
+                                "date"      : formattedDate,
+                                "notes"     : release.body,
+                                "status"    : release.prerelease ? "release-candidate" : "stable"
+                            };
                             releases[target].push(descriptor);
                         }
                     });
