@@ -772,6 +772,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "Filtro di attenuazione dinamica giroscopio"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "Supporto legacy AKK e Mach2 VTX Smart Audio"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "Funzionalità di retrocompatibilità per AKK e Mach 2 VTX con <strong>'erroneamente'</strong> implementazione di smart audio."
+    },
     "featureFAILSAFE": {
         "message": "Abilita Failsafe Stadio 2"
     },
