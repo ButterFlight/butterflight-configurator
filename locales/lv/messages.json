@@ -772,6 +772,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "Žiroskopa dinamiskā joslu ierobežojošā filtrēšana"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "Legacy AKK un Mach2 VTX Smart Audio atbalsts"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "AKK un Mach 2 VTX ar <strong>'nepareizi'</strong> smart audio ieviešanas funkciju ar atpakaļejošu datubāzi."
+    },
     "featureFAILSAFE": {
         "message": "Ieslēgt Failsafe posmu 2"
     },
