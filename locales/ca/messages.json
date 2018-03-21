@@ -772,6 +772,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "Filtratge notch dinamic de gyro"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "Suport d'àudio intelligent llegat AKK i Mach2 VTX"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "Funció de compatibilitat amb versions anteriors per AKK i Mach 2 VTX amb <strong>'incorrectament'</strong> implementació d'àudio intelligent."
+    },
     "featureFAILSAFE": {
         "message": "Activa Failsafe Stage 2"
     },

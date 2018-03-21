@@ -772,6 +772,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "다이나믹 자이로 노치 필터링"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "레거시 AKK 및 Mach2 VTX 스마트 오디오 지원"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "<strong>'잘못'</strong> 스마트 오디오 구현으로 AKK 및 Mach 2 VTX의 하위 호환성 기능."
+    },
     "featureFAILSAFE": {
         "message": "페일세이프 단계 2 활성"
     },
