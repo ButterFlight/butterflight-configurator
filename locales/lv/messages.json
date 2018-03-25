@@ -130,6 +130,9 @@
     "tabFirmwareFlasher": {
         "message": "Programmators"
     },
+    "tabBlackBoxExplorer": {
+        "message": "Blackbox explorer"
+    },
     "tabLanding": {
         "message": "Laipni lūgti"
     },

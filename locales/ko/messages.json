@@ -130,6 +130,9 @@
     "tabFirmwareFlasher": {
         "message": "펌웨어 플래시 도구"
     },
+    "tabBlackBoxExplorer": {
+        "message": "블랙 박스 탐색기"
+    },
     "tabLanding": {
         "message": "환영합니다"
     },
