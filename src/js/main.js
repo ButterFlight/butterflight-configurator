@@ -49,6 +49,12 @@ function startProcess() {
         }
     });
 
+    chrome.storage.local.get('leftMenuCollapsed', function (result) {
+        if (result.leftMenuCollapsed) {
+            $(".tab_container, #tab_container_vertical_divider").addClass("collapsed");
+        }
+    });
+
     // log webgl capability
     // it would seem the webgl "enabling" through advanced settings will be ignored in the future
     // and webgl will be supported if gpu supports it by default (canary 40.0.2175.0), keep an eye on this one
@@ -110,6 +116,9 @@ function startProcess() {
                         break;
                     case 'firmware_flasher':
                         TABS.firmware_flasher.initialize(content_ready);
+                        break;
+                    case 'black_box_explorer':
+                        TABS.black_box_explorer.initialize(content_ready);
                         break;
                     case 'help':
                         TABS.help.initialize(content_ready);
@@ -347,6 +356,12 @@ function startProcess() {
                 element.val(val.toFixed(decimal_places));
             }
         }
+    });
+
+    $("#tab_container_vertical_divider").click(function () {
+        var leftMenuDivider = $(".tab_container, #tab_container_vertical_divider");
+        leftMenuDivider.toggleClass("collapsed");
+        chrome.storage.local.set({ 'leftMenuCollapsed': leftMenuDivider.hasClass("collapsed") });
     });
 
     $("#showlog").on('click', function () {
