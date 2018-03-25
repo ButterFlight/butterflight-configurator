@@ -775,6 +775,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "动态陷波滤波"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "传统AKK和Mach2 VTX智能音频支持"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "向AKK和Mach 2 VTX提供向后兼容功能，其中<strong>'不正确'</strong>智能音频实施。"
+    },
     "featureFAILSAFE": {
         "message": "启用二阶失控保护"
     },

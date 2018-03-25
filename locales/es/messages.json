@@ -772,6 +772,12 @@
     "featureDYNAMIC_FILTER": {
         "message": "Filtro notch dinámico para el giro"
     },
+    "featureLEGACY_SA_SUPPORT": {
+        "message": "Compatibilidad con Legacy AKK y Mach2 VTX Smart Audio"
+    },
+    "featureLEGACY_SA_SUPPORTTip": {
+        "message": "Compatibilidad con versiones anteriores para AKK y Mach 2 VTX con implementación de audio inteligente <strong>'incorrectamente'</strong>."
+    },
     "featureFAILSAFE": {
         "message": "Activar Etapa 2 del Modo de Seguridad"
     },
