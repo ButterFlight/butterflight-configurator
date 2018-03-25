@@ -4,7 +4,7 @@
 var mixerList = [
     {name: 'Quad X',           pos: 0,  model: 'quad_x',     image: 'quad_x'},
     {name: 'Quad X 1234',      pos: 1,  model: 'quad_x',     image: 'quad_x_1234'}
-    {name: 'Custom',           pos: 2,  model: 'custom',     image: 'custom'},
+    {name: 'Custom',           pos: 2,  model: 'custom',     image: 'custom'}
 ];
 
 // 3D model
