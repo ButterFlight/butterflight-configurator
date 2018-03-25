@@ -1,10 +1,10 @@
 {
-  "name": "butterflight-configurator",
-  "description": "Crossplatform configuration tool for Butterflight flight control system.",
-  "version": "10.2.0",
-  "integrated_bbe_version": "3.1.0",
+  "name": "butterflight-blackbox-explorer",
+  "displayName": "Butterflight - Blackbox Explorer",
+  "description": "Crossplatform blackbox analitics tool for Butterflight flight control system.",
+  "version": "3.1.0",
   "main": "main_nwjs.html",
-  "bg-script": "js/eventPage.js",
+  "bg-script": "background.js",
   "default_locale": "en",
   "scripts": {
     "start": "node node_modules/gulp/bin/gulp.js debug",
@@ -13,38 +13,19 @@
     "gulp": "gulp"
   },
   "window": {
-    "show": false,
+    "show": true,
     "icon": "images/bf_icon_128.png"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/butterflight/butterflight-configurator"
-  },
-  "webview": {
-    "partitions": [
-      {
-        "name": "map",
-        "accessible_resources": [
-          "tabs/map.html",
-          "js/tabs/map.js",
-          "/images/icons/cf_icon_position.png"
-        ]
-      }
-    ]
+    "url": "github.com/butterflight/blackbox-log-viewer"
   },
   "author": "The Butterflight open source project.",
   "license": "GPL-3.0",
-  "dependencies": {
-    "i18next": "^10.3.0",
-    "i18next-xhr-backend": "^1.5.1",
-    "lru_map": "^0.3.3",
-    "marked": "^0.3.12"
-  },
+  "dependencies": {},
   "devDependencies": {
     "command-exists": "^1.2.2",
     "del": "^3.0.0",
-    "follow-redirects": "^1.4.1",
-    "fs-extra": "^6.0.1",
     "gulp": "~4.0.0",
     "gulp-concat": "~2.6.1",
     "gulp-debian": "~0.1.8",
@@ -55,10 +36,9 @@
     "jquery-ui-npm": "1.12.0",
     "makensis": "^0.9.0",
     "nw-builder": "^3.4.1",
+    "rpm-builder": "^0.6.1",
     "os": "^0.1.1",
     "platform-dependent-modules": "0.0.14",
-    "rpm-builder": "^0.7.0",
-    "targz": "^1.0.1",
     "temp": "^0.8.3"
   },
   "config": {
