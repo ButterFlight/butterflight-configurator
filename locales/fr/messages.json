@@ -130,6 +130,9 @@
     "tabFirmwareFlasher": {
         "message": "Flasher un microprogramme"
     },
+    "tabBlackBoxExplorer": {
+        "message": "Explorateur Blackbox"
+    },
     "tabLanding": {
         "message": "Bienvenue"
     },
