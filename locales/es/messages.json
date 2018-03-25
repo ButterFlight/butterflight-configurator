@@ -130,6 +130,9 @@
     "tabFirmwareFlasher": {
         "message": "Instalar Firmware"
     },
+    "tabBlackBoxExplorer": {
+        "message": "Explorador Blackbox"
+    },
     "tabLanding": {
         "message": "Bienvenido"
     },

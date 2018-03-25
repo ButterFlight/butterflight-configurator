@@ -130,6 +130,9 @@
     "tabFirmwareFlasher": {
         "message": "Flaixejador de firmware"
     },
+    "tabBlackBoxExplorer": {
+        "message": "Blackbox Explorer"
+    },
     "tabLanding": {
         "message": "Benvingut"
     },

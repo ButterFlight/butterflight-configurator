@@ -19,7 +19,7 @@ TABS.landing.initialize = function (callback) {
         $("#changelog_toggle").on('click', function() {
             var state = $(this).data('state2');
             if (state) {
-                $("#changelog").animate({right: -245}, 200, function () {
+                $("#changelog").animate({ right: -695}, 200, function () {
                     $("#content").removeClass('log_open');
                     });
                 state = false;
