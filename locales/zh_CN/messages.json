@@ -133,6 +133,9 @@
     "tabFirmwareFlasher": {
         "message": "固件烧写工具"
     },
+    "tabBlackBoxExplorer": {
+        "message": "黑盒探险家"
+    },
     "tabLanding": {
         "message": "欢迎"
     },
