@@ -1,0 +1,17 @@
+{
+  "name": "ButterFlight - Blackbox Explorer",
+  "description": "Interactive flight log viewer for ButterFlight",
+  "version": "3.1.0",
+  "manifest_version": 2,
+  "default_locale": "en",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "permissions": [
+       {"fileSystem": ["write"]},
+       "storage"
+   ],
+  "icons": [{ "128": "images/bf_icon_128.png" }]
+}
