@@ -17,7 +17,8 @@ var GUI_control = function () {
     this.defaultAllowedTabsWhenDisconnected = [
         'landing',
         'firmware_flasher',
-        'help'
+        'help',
+        'black_box_explorer'
     ];
     this.defaultAllowedFCTabsWhenConnected = [
         'setup',
