@@ -2,7 +2,9 @@
 
 TABS.firmware_flasher = {
     releases: null,
-    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases')
+    releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
+    helioReleaseChecker:  new ReleaseChecker('helioFirmware', 'https://api.github.com/repos/heliorc/imuf-release/contents'),
+    helioRgex: new RegExp("butterflight_(\\d\\.\\d\\.\\d).+?IMUF_(\\d\\.\\d\\.\\d(-(\\w{3}))?)(.+)", "i")
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -17,6 +19,29 @@ TABS.firmware_flasher.initialize = function (callback) {
         parsed_hex = false; // parsed raw hex in array format
 
     $('#content').load("./tabs/firmware_flasher.html", function () {
+        function loadReleases() {
+            self.releaseChecker.loadReleaseData(function(releaseData){
+                self.helioReleaseChecker.loadReleaseData(function(helioReleaseData){
+                    buildBoardOptions(releaseData.concat([
+                        {
+                            "html_url": "https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md",
+                            "body": "You are downloading an aggregate binary from https://github.com/heliorc/imuf-release/. See the release notes here: https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md",
+                            "prerelease": false,
+                            "assets": helioReleaseData.filter(function(item){
+                                return item.name.endsWith('.hex');
+                            }).map(function(item) {
+                                let match = self.helioRgex.exec(item.name);
+                                item.$date = "RELEASE";
+                                item.$target = "HELIOSPRING";
+                                item.$version = match[1] + " | IMUF: " + match[2];
+                                item.$format = "hex";
+                                item.browser_download_url = item.download_url;
+                                return item;
+                            })
+                        }]));
+                });
+            });
+        }
         function parse_hex(str, callback) {
             // parsing hex in different thread
             var worker = new Worker('./js/workers/hex_parser.js');
@@ -44,16 +69,17 @@ TABS.firmware_flasher.initialize = function (callback) {
 
                 var releases = {};
                 var sortedTargets = [];
-                var unsortedTargets = [];
+                var unsortedTargets = [];                
                 releaseData.forEach(function(release){
                     release.assets.forEach(function(asset){
-                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
+                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/i;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
-                        if ((!showDevReleases && release.prerelease) || !match) {
+                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match)) {
                             return;
                         }
-                        var target = match[2];
+
+                        var target = asset.$target || match[2];
                         if($.inArray(target, unsortedTargets) == -1) {
                             unsortedTargets.push(target);
                         }
@@ -70,27 +96,26 @@ TABS.firmware_flasher.initialize = function (callback) {
                     var version = matchVersionFromTag[1];
 
                     release.assets.forEach(function(asset){
-                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/;
+                        var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/i;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
-                        if ((!showDevReleases && release.prerelease) || !match) {
+                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match)) {
                             return;
                         }
 
-                        var target = match[2];
-                        var format = match[4];
+                        var target = asset.$target || match[2];
+                        var format = asset.$format || match[4];
 
                         if (format != 'hex') {
                             return;
                         }
 
                         var date = new Date(release.published_at);
-                        var formattedDate = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
-
+                        var formattedDate = asset.$date || ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                         var descriptor = {
                             "releaseUrl": release.html_url,
-                            "name"      : version,
-                            "version"   : version,
+                            "name"      : asset.$version || version,
+                            "version"   : asset.$version || version,
                             "url"       : asset.browser_download_url,
                             "file"      : asset.name,
                             "target"    : target,
@@ -132,12 +157,12 @@ TABS.firmware_flasher.initialize = function (callback) {
 
         // bind events
         $('input.show_development_releases').click(function () {
-            self.releaseChecker.loadReleaseData(buildBoardOptions);
+            loadReleases();
         });
 
         $('select[name="board"]').change(function() {
             $("a.load_remote_file").addClass('disabled');
-            var target = $(this).val();
+            var target = $(this).val() || Object.keys(TABS.firmware_flasher.releases)[0];
 
             if (!GUI.connect_lock) {
                 $('.progress').val(0).removeClass('valid invalid');
@@ -487,7 +512,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                 $('input.show_development_releases').prop('checked', false);
             }
 
-            self.releaseChecker.loadReleaseData(buildBoardOptions);
+            loadReleases();
 
             $('input.show_development_releases').change(function () {
                 chrome.storage.local.set({'show_development_releases': $(this).is(':checked')});
