@@ -27,17 +27,26 @@ TABS.pid_tuning.initialize = function (callback) {
         return MSP.promise(MSPCodes.MSP_PID);
     }).then(function() {
         if (semver.gte(CONFIG.apiVersion, "1.16.0")) {
-          return MSP.promise(MSPCodes.MSP_PID_ADVANCED);
+            return MSP.promise(MSPCodes.MSP_PID_ADVANCED);
         }
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_RC_TUNING);
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_FILTER_CONFIG);
+    }).then(function () {
+        if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+            return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+        }
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_RC_DEADBAND);
     }).then(function() {
         $('#content').load("./tabs/pid_tuning.html", process_html);
-    });
+        });
+
+    function isKalmanFilterSelected() {
+        var selectedStage2Filter = $('.profile select[name="stage2FilterType"]').val();
+        return selectedStage2Filter == 2 || selectedStage2Filter == 3;
+    }
 
     function pid_and_rc_to_form() {
         self.setProfile();
@@ -278,6 +287,23 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.antigravity').hide();
         }
 
+        if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+            $('.profile select[name="stage2FilterType"]').change(function () {
+                $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
+            });
+            $('.profile select[name="stage2FilterType"]').val(FILTER_CONFIG.gyro_stage2_filter_type);
+
+            $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
+            $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
+
+            updateExpertModeOnlyUIElements();
+            $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
+        } else {
+            $('.stage2FilterWarning').hide();
+            $('.stage2FilterType').hide();
+            $('.kalmanFilterSettingsPanel').hide();
+        }
+
         $('input[id="gyroNotch1Enabled"]').change(function() {
             var checked = $(this).is(':checked');
             var hz = FILTER_CONFIG.gyro_soft_notch_hz_1 > 0 ? FILTER_CONFIG.gyro_soft_notch_hz_1 : DEFAULT.gyro_soft_notch_hz_1;
@@ -420,6 +446,14 @@ TABS.pid_tuning.initialize = function (callback) {
             FILTER_CONFIG.dterm_filter_type = $('.profile select[name="dtermFilterType"]').val();
             ADVANCED_TUNING.itermThrottleThreshold = parseInt($('.antigravity input[name="itermThrottleThreshold"]').val());
             ADVANCED_TUNING.itermAcceleratorGain = parseInt($('.antigravity input[name="itermAcceleratorGain"]').val() * 1000);
+        }
+
+        if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+            if (isExpertModeEnabled()) {
+                FILTER_CONFIG.gyro_stage2_filter_type = $('.profile select[name="stage2FilterType"]').val();
+            }
+            KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
+            KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
         }
     }
 
@@ -1031,6 +1065,10 @@ TABS.pid_tuning.initialize = function (callback) {
               return MSP.promise(MSPCodes.MSP_SET_PID_ADVANCED, mspHelper.crunch(MSPCodes.MSP_SET_PID_ADVANCED));
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_FILTER_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_FILTER_CONFIG));
+            }).then(function () {
+                if (semver.gte(CONFIG.apiVersion, "1.40.0") && isKalmanFilterSelected()) {
+                    return MSP.promise(MSPCodes.MSP_SET_FAST_KALMAN, mspHelper.crunch(MSPCodes.MSP_SET_FAST_KALMAN));
+                }
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_RC_TUNING, mspHelper.crunch(MSPCodes.MSP_SET_RC_TUNING));
             }).then(function () {
