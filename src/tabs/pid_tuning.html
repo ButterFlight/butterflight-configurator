@@ -463,6 +463,35 @@
                     <div class="note_spacer">
                         <p i18n="tuningHelp"></p>
                     </div>
+                    <div class="note_spacer stage2FilterWarning">
+                        <p i18n="stage2FiltersHelp"></p>
+                    </div>
+                </div>
+
+                <div class="cf_column two_columns">
+                    <div class="dtermfiltertype profile single-field" style="width:200px; margin-bottom: 0px;">
+                        <div class="helpicon cf_tip" i18n_title="pidTuningDTermLowpassTypeTip" style="margin-top: 5px;"></div>
+                        <div class="head" i18n="pidTuningDTermLowpassType"></div>
+                        <div class="bottomarea">
+                            <select name="dtermFilterType">
+                                <option value="0" class="PT1">PT1</option>
+                                <option value="1" class="BIQUAD">BIQUAD</option>
+                                <option value="2" class="FIR">FIR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="stage2FilterType profile single-field" style="width:200px; margin-bottom: 0px;">
+                        <div class="helpicon cf_tip" i18n_title="pidTuningStage2FilterTypeTip" style="margin-top: 5px;"></div>
+                        <div class="head" i18n="pidTuningStage2FilterType"></div>
+                        <div class="bottomarea">
+                            <select name="stage2FilterType">
+                                <option value="0" class="NONE">NONE</option>
+                                <option value="1" class="BIQUAD_RC_FIR2">BIQUAD RC FIR2</option>
+                                <option value="2" class="FAST_KALMAN">FAST KALMAN (DEFAULT)</option>
+                                <option value="3" class="FIXED_K_KALMAN">FIXED K KALMAN</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="cf_column two_columns">
@@ -731,6 +760,41 @@
                                         <label>
                                             <span i18n="pidTuningYawLowpassFrequency"></span>
                                         </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="gui_box grey topspacer pid_filter kalmanFilterSettingsPanel">
+                        <table class="pid_titlebar new_rates">
+                            <tr>
+                                <th i18n="pidTuningKalmanFilterSettings"></th>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="number" name="kalmanQCoefficient" step="1" min="20" max="48000"/>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <span i18n="pidTuningKalmanFilterQ"></span>
+                                        </label>
+                                        <div class="helpicon cf_tip" i18n_title="pidTuningKalmanFilterQHelp"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="newFilter">
+                                <td>
+                                    <input type="number" name="kalmanRCoefficient" step="1" min="0" max="16000"/>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <span i18n="pidTuningKalmanFilterR"></span>
+                                        </label>
+                                        <div class="helpicon cf_tip" i18n_title="pidTuningKalmanFilterRHelp"></div>
                                     </div>
                                 </td>
                             </tr>

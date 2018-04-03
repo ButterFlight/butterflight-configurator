@@ -849,7 +849,14 @@ MspHelper.prototype.process_data = function(dataHandler) {
                         FILTER_CONFIG.gyro_lowpass2_type = data.readU8();
                         FILTER_CONFIG.dterm_lowpass2_hz = data.readU16();
                     }
+                    if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+                        FILTER_CONFIG.gyro_stage2_filter_type = data.readU8();
+                    }
                 }
+                break;
+            case MSPCodes.MSP_FAST_KALMAN:
+                KALMAN_FILTER_CONFIG.gyro_filter_q = data.readU16();
+                KALMAN_FILTER_CONFIG.gyro_filter_r = data.readU16();
                 break;
             case MSPCodes.MSP_SET_PID_ADVANCED:
                 console.log("Advanced PID settings saved");
@@ -1496,7 +1503,14 @@ MspHelper.prototype.crunch = function(code) {
                           .push8(FILTER_CONFIG.gyro_lowpass2_type)
                           .push16(FILTER_CONFIG.dterm_lowpass2_hz);
                 }
+                if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+                    buffer.push8(FILTER_CONFIG.gyro_stage2_filter_type);
+                }
             }
+            break;
+        case MSPCodes.MSP_SET_FAST_KALMAN:
+            buffer.push16(KALMAN_FILTER_CONFIG.gyro_filter_q);
+            buffer.push16(KALMAN_FILTER_CONFIG.gyro_filter_r);
             break;
         case MSPCodes.MSP_SET_PID_ADVANCED:
             if (semver.gte(CONFIG.apiVersion, "1.20.0")) {

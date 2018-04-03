@@ -53,6 +53,7 @@ var FAILSAFE_CONFIG;
 var RXFAIL_CONFIG;
 var PID_ADVANCED_CONFIG;
 var FILTER_CONFIG;
+var KALMAN_FILTER_CONFIG;
 var ADVANCED_TUNING;
 var SENSOR_CONFIG;
 var COPY_PROFILE;
@@ -350,6 +351,13 @@ var FC = {
             dterm_notch_hz:             0,
             dterm_notch_cutoff:         0,
             yaw_lowpass_hz:             0,
+            dterm_filter_type:          0,
+            gyro_stage2_filter_type:    0,
+        };
+
+        KALMAN_FILTER_CONFIG = {
+            gyro_filter_q:              0,
+            gyro_filter_r:              0,
         };
 
         ADVANCED_TUNING = {

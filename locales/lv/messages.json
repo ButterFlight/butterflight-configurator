@@ -1306,6 +1306,9 @@
     "tuningHelp": {
         "message": "<b>Ieregulēšanas ieteikumi <\/b><br \/><span class=\"message-negative\">SVARĪGI:<\/span> Ir svarīgi pārbaudīt motoru temperatūras pirmā lidojuma laikā. Jo lielākas filtru vērtības, jo labāk iespējams tas lidos, bet jūs iegūsiet lielāku trokšņu līmeni motoros. <br>Noklusētā vērtība 100Hz ir optimāla, bet pie trokšņainākām konstrukcijām, jūs varat mēģināt samazināt Dterm filtru uz 50Hz un iespējams arī žiroskopa filtru."
     },
+    "stage2FiltersHelp": {
+        "message": "<b>2. posma filtri</b><br /><span class=\"message-negative\">SVARĪGI:</span> Mainiet 2. posma filtru tikai tad, ja zināt, ko darāt. Ir vajadzīgi plašie pētījumi, lai izprastu noteiktus filtrus un nepieciešamo konfigurāciju tiem.<br>Šī iemesla dēļ šis iestatījums ir pieejams tikai tad, ja ir aktivizēts '<span class=\"message-negative\">Expert mode</span>'."
+    },
     "receiverThrottleMid": {
         "message": "Droseles vidus"
     },
@@ -2550,17 +2553,38 @@
     "pidTuningFilterSettings": {
         "message": "Filtra iestatījumi"
     },
+    "pidTuningKalmanFilterSettings": {
+        "message": "Kalman filtra iestatījumi"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-Term zemfrekvenču filtrs"
     },
     "pidTuningDTermLowpassTypeTip": {
-        "message": "Izvēlieties kuru D-Term zemfrekvenču filtra tipu izmantot. Noklusējums ir BIQUAD"
+        "message": "Izvēlieties kuru D-Term zemfrekvenču filtra tipu izmantot. Noklusējums ir PT1"
+    },
+    "pidTuningStage2FilterType": {
+        "message": "2. posma filtrs"
+    },
+    "pidTuningStage2FilterTypeTip": {
+        "message": "2. posms, lai izmantotu filtra veidu. Noklusējums ir FAST KALMAN"
     },
     "pidTuningDTermLowpassFrequency": {
         "message": "D Term zemfrekvenču frekvence [Hz]"
     },
     "pidTuningDTermLowpassFrequencyHelp": {
         "message": "D Term zemfrekvenču frekvence [Hz] (0 nozīmē izslēgts)"
+    },
+    "pidTuningKalmanFilterQ": {
+        "message": "Kalman Q koeficients"
+    },
+    "pidTuningKalmanFilterQHelp": {
+        "message": "Kalman Q koeficients. Uzticības summa žiroskopa datu precizitātei (lielāka vērtība = lielāka uzticamība un mazāka filtrēšana)"
+    },
+    "pidTuningKalmanFilterR": {
+        "message": "Kalman R koeficients"
+    },
+    "pidTuningKalmanFilterRHelp": {
+        "message": "Kalman R koeficients. Giroskopiskajos datos paredzētā kļūdu summa (lielāka vērtība = ir paredzētas vairāk kļūdu un vairāk filtrēšanas)"
     },
     "pidTuningDTermNotchEnable": {
         "message": "Ieslēgt D Term joslas filtru"

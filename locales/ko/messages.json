@@ -1306,6 +1306,9 @@
     "tuningHelp": {
         "message": "<b>튜닝 팁<\/b><br \/><span class=\"message-negative\">중요:<\/span> 첫 비행 중 모터 온도를 확인하는 것이 중요합니다. 필터 값이 높을수록 더 잘 날 수 있지만 모터에 더 많은 노이즈가 들리게 됩니다. <br> 기본값 100Hz가 최적이지만, 노이즈 설정을 위하여 D 항목 필터를 50Hz로 낮출 수 있으며, 자이로 필터를 낮추는 것 또한 가능합니다."
     },
+    "stage2FiltersHelp": {
+        "message": "<b>2 단계 필터</b><br /><span class=\"message-negative\">중요:</span> 자신이하는 일을 아는 경우에만 2 단계 필터를 변경하십시오. 특정 필터 및 필요한 구성을 이해하려면 광범위한 연구가 필요합니다.<br>바로이 이유 때문에이 설정은 '<span class=\"message-negative\">전문가 모드</span>' 가 활성화 된 경우에만 사용할 수 있습니다."
+    },
     "receiverThrottleMid": {
         "message": "스로틀 중간값"
     },
@@ -2550,17 +2553,38 @@
     "pidTuningFilterSettings": {
         "message": "필터 설정"
     },
+    "pidTuningKalmanFilterSettings": {
+        "message": "칼만 필터 설정"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-텀 저역통과 필터"
     },
     "pidTuningDTermLowpassTypeTip": {
-        "message": "사용할 D-텀 저역통과 필터 형태를 선택하세요. 기본은 BIQUAD입니다."
+        "message": "사용할 D-텀 저역통과 필터 형태를 선택하세요. 기본은 PT1입니다."
+    },
+    "pidTuningStage2FilterType": {
+        "message": "2 단계 필터"
+    },
+    "pidTuningStage2FilterTypeTip": {
+        "message": "2 단계 사용할 필터 유형입니다. 기본값은 FAST KALMAN입니다."
     },
     "pidTuningDTermLowpassFrequency": {
         "message": "D 항목 저역통과 주파수 [Hz]"
     },
     "pidTuningDTermLowpassFrequencyHelp": {
         "message": "D 항목 저역통과 주파수 [Hz] (0은 비활성화를 의미)"
+    },
+    "pidTuningKalmanFilterQ": {
+        "message": "Q 칼만 계수"
+    },
+    "pidTuningKalmanFilterQHelp": {
+        "message": "Q 칼만 계수. 자이로 데이터 정확도의 신뢰도 (높은 값 = 신뢰 증가 및 필터링 감소)"
+    },
+    "pidTuningKalmanFilterR": {
+        "message": "R 칼만 계수"
+    },
+    "pidTuningKalmanFilterRHelp": {
+        "message": "R 칼만 계수. 자이로 데이터에서 예측 된 오류의 양 (높은 값 = 더 많은 오류 예측 및 더 많은 필터링)"
     },
     "pidTuningDTermNotchEnable": {
         "message": "D-텀 노치필터 활성"
