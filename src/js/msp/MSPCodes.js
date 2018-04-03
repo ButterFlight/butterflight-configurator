@@ -146,6 +146,10 @@ var MSPCodes = {
     MSP_SET_GPS_CONFIG:             223,
     MSP_SET_COMPASS_CONFIG:         224,
 
+    //Fast Kalman Q & R
+    MSP_FAST_KALMAN:                225,
+    MSP_SET_FAST_KALMAN:            226,
+
     MSP_SET_ACC_TRIM:               239,
     MSP_ACC_TRIM:                   240,
     MSP_SERVO_MIX_RULES:            241,

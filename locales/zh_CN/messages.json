@@ -1309,6 +1309,9 @@
     "tuningHelp": {
         "message": "<b> 调校技巧<\/b><br \/><span class=\"message-negative\">重要：<\/span>调校后的初次飞行需注意电机温度。滤波值越高，飞行效果可能越好，但也会导致更多的信号“噪音”进入电机。<br>100Hz 是默认较佳的数值，但对震动较严重的情况，你可以尝试把 Dterm 和 Gyro 滤波器降低到50Hz。"
     },
+    "stage2FiltersHelp": {
+        "message": "<b>第2阶段过滤器</b><br /><span class=\"message-negative\">重要：</span> 如果您知道自己在做什么，请只更改第2阶段过滤器。需要广泛的研究来了解某些过滤器及其所需的配置。<br>出于这个原因，只有在启用 '<span class=\"message-negative\">专家模式</span>' 时，此设置才可用。"
+    },
     "receiverThrottleMid": {
         "message": "油门中点"
     },
@@ -2386,17 +2389,38 @@
     "pidTuningFilterSettings": {
         "message": "滤波器设置"
     },
+    "pidTuningKalmanFilterSettings": {
+        "message": "卡尔曼滤波器设置"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-term 低通滤波器"
     },
     "pidTuningDTermLowpassTypeTip": {
-        "message": "选择 D-Term 低通滤波器类型，默认是BIQUAD。"
+        "message": "选择 D-Term 低通滤波器类型，默认是PT1。"
+    },
+    "pidTuningStage2FilterType": {
+        "message": "第2阶段过滤器"
+    },
+    "pidTuningStage2FilterTypeTip": {
+        "message": "阶段2使用的过滤器类型。默认为FAST KALMAN"
     },
     "pidTuningDTermLowpassFrequency": {
         "message": "D Term 低通频率 [Hz]"
     },
     "pidTuningDTermLowpassFrequencyHelp": {
         "message": "D Term 低通频率 [Hz] (0 表示禁用)"
+    },
+    "pidTuningKalmanFilterQ": {
+        "message": "卡尔曼Q系数"
+    },
+    "pidTuningKalmanFilterQHelp": {
+        "message": "卡尔曼Q系数. 陀螺仪数据准确性的信任量 (更高的值=更多的信任和更少的过滤)"
+    },
+    "pidTuningKalmanFilterR": {
+        "message": "卡尔曼R系数"
+    },
+    "pidTuningKalmanFilterRHelp": {
+        "message": "卡尔曼R系数. 在陀螺仪数据中预测的误差量 (更高的值=更多的误差预测和更多的过滤)"
     },
     "pidTuningDTermNotchEnable": {
         "message": "启用 D Term 陷波滤波器"
