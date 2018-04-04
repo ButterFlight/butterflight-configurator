@@ -1,5 +1,5 @@
 .tab-firmware_flasher .info {
-    margin: 10px 0 0 0;
+    margin: 3px 0 0 10px;
     position: relative;
 }
 
@@ -26,7 +26,6 @@
 }
 
 .tab-firmware_flasher .info {
-    float: left;
     width: 100%;
 }
 
@@ -256,6 +255,23 @@
 .tab-firmware_flasher .buttons .back {
     float: right;
     margin: 0;
+}
+
+.content_toolbar {
+    display:flex;
+}
+
+.content_toolbar .progress_wrapper {
+    flex: 1 1 auto;
+    margin-right: 50px;
+}
+
+.content_toolbar .button_wrapper {
+    flex: 0 0 auto;
+}
+
+.btn {
+    float: right;
 }
 
 .btn .disabled {
