@@ -257,16 +257,16 @@
     margin: 0;
 }
 
-.content_toolbar {
+.tab-firmware_flasher .content_toolbar {
     display:flex;
 }
 
-.content_toolbar .progress_wrapper {
+.tab-firmware_flasher .content_toolbar .progress_wrapper {
     flex: 1 1 auto;
     margin-right: 50px;
 }
 
-.content_toolbar .button_wrapper {
+.tab-firmware_flasher .content_toolbar .button_wrapper {
     flex: 0 0 auto;
 }
 
