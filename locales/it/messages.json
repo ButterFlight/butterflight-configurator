@@ -1306,6 +1306,9 @@
     "tuningHelp": {
         "message": "<b>Suggerimento per la messa a punto<\/b><br \/><span class=\"message-negative\">IMPORTANTE:<\/span> E' importante verificare la temperatura del motore durante il primo volo. Più alto è il valore del filtro, più dovrebbe volare meglio, ma avrai anche più rumore nei motori. <br>Il valore predefinito di 100Hz è ottimale, ma per setup più rumorosi puoi provare ad abbassare il filtro Dterm a 50Hz e possibilmente anche il filtro del giroscopio."
     },
+    "stage2FiltersHelp": {
+        "message": "<b>Fase 2 Filtri</b><br /><span class=\"message-negative\">IMPORTANTE:</span> Si prega di cambiare il filtro Stage 2 solo se sai cosa stai facendo. Sono necessarie ricerche approfondite per comprendere determinati filtri e la configurazione richiesta per loro.<br>Per questo motivo, questa impostazione è disponibile solo se è abilitata la '<span class=\"message-negative\">Modalità esperto</span>'."
+    },
     "receiverThrottleMid": {
         "message": "Gas Medio"
     },
@@ -2383,17 +2386,38 @@
     "pidTuningFilterSettings": {
         "message": "Impostazioni filtro"
     },
+    "pidTuningKalmanFilterSettings": {
+        "message": "Impostazioni del filtro di Kalman"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-Term Lowpass Filter"
     },
     "pidTuningDTermLowpassTypeTip": {
-        "message": "Selezionare il tipo di filtro D-Term lowpass da utilizzare. L'impostazione predefinita è BIQUAD"
+        "message": "Selezionare il tipo di filtro D-Term lowpass da utilizzare. L'impostazione predefinita è PT1"
+    },
+    "pidTuningStage2FilterType": {
+        "message": "Filtro Stage 2"
+    },
+    "pidTuningStage2FilterTypeTip": {
+        "message": "Fase 2 Tipo di filtro da utilizzare. L&#39;impostazione predefinita è FAST KALMAN"
     },
     "pidTuningDTermLowpassFrequency": {
         "message": "D-Term lowpass Frequenza [Hz]"
     },
     "pidTuningDTermLowpassFrequencyHelp": {
         "message": "D-Term lowpass Frequenza [Hz] (0 significa disabilitato)"
+    },
+    "pidTuningKalmanFilterQ": {
+        "message": "Coefficiente di Kalman Q"
+    },
+    "pidTuningKalmanFilterQHelp": {
+        "message": "Coefficiente di Kalman Q. La quantità di fiducia nella precisione dei dati del giroscopio (valore più alto = più fiducia e meno filtri)"
+    },
+    "pidTuningKalmanFilterR": {
+        "message": "Coefficiente di Kalman R"
+    },
+    "pidTuningKalmanFilterRHelp": {
+        "message": "Coefficiente di Kalman R. La quantità di errori previsti nei dati del giroscopio (valore più alto = più errori previsti e più filtri)"
     },
     "pidTuningDTermNotchEnable": {
         "message": "Abilita filtro Notch D Term"

@@ -220,6 +220,7 @@ function startProcess() {
                         if (FEATURE_CONFIG) {
                             updateTabList(FEATURE_CONFIG.features);
                         }
+                        updateExpertModeOnlyUIElements();
 
                     }).change();
                 });
@@ -401,6 +402,7 @@ function startProcess() {
             if (FEATURE_CONFIG) {
                 updateTabList(FEATURE_CONFIG.features);
             }
+            updateExpertModeOnlyUIElements();
         }).change();
     });
 };
@@ -552,6 +554,11 @@ function updateTabList(features) {
     } else {
         $('#tabs ul.mode-connected li.tab_power').hide();
     }
+}
+
+function updateExpertModeOnlyUIElements() {
+    $('.stage2FilterType').toggle(isExpertModeEnabled());
+    $('.stage2FilterWarning').toggle(isExpertModeEnabled());
 }
 
 function zeroPad(value, width) {

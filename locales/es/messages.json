@@ -1306,6 +1306,9 @@
     "tuningHelp": {
         "message": "<b>Consejos para ajustar<\/b><br \/><span class=\"message-negative\">IMPORTANTE:<\/span> Es importante verificar las temperaturas de los motores durante los primeros vuelos. Cuanto más alto sea el valor del filtro puede que vuele mejor, pero más ruido llegará a los motores. <br>El valor por defecto de 100Hz es óptimo, pero para montajes más ruidosos puedes probar a bajar el filtro D Term a 50Hz y posiblemente también el filtro del giro."
     },
+    "stage2FiltersHelp": {
+        "message": "<b>Etapa 2 Filtros</b><br /><span class=\"message-negative\">IMPORTANTE:</span> Cambie el filtro Etapa 2 si sabe lo que está haciendo. Se necesita una amplia investigación para comprender ciertos filtros y la configuración requerida para ellos.<br>Por esta misma razón, esta configuración solo está disponible si se habilita '<span class=\"message-negative\">Modo experto</span>'."
+    },
     "receiverThrottleMid": {
         "message": "Acelerador MED"
     },
@@ -2383,17 +2386,38 @@
     "pidTuningFilterSettings": {
         "message": "Ajustes de Filtros"
     },
+    "pidTuningKalmanFilterSettings": {
+        "message": "Configuración del filtro de Kalman"
+    },
     "pidTuningDTermLowpassType": {
         "message": "Filtro Paso Bajo D Term"
     },
     "pidTuningDTermLowpassTypeTip": {
-        "message": "Selecciona el tipo de filtro de paso bajo del D-Term a usar. Por defecto BIQUAD"
+        "message": "Selecciona el tipo de filtro de paso bajo del D-Term a usar. Por defecto PT1"
+    },
+    "pidTuningStage2FilterType": {
+        "message": "Etapa 2 Filtro"
+    },
+    "pidTuningStage2FilterTypeTip": {
+        "message": "Etapa 2 Tipo de filtro a usar. El valor predeterminado es FAST KALMAN"
     },
     "pidTuningDTermLowpassFrequency": {
         "message": "Frecuencia Paso Bajo D Term [Hz]"
     },
     "pidTuningDTermLowpassFrequencyHelp": {
         "message": "Frecuencia Paso Bajo D Term en Hz (0 significa desactivado)"
+    },
+    "pidTuningKalmanFilterQ": {
+        "message": "Coeficiente de Kalman Q"
+    },
+    "pidTuningKalmanFilterQHelp": {
+        "message": "Coeficiente de Kalman Q. La cantidad de confianza en la precisión de datos del giroscopio (Mayor valor = más confianza y menos filtrado)"
+    },
+    "pidTuningKalmanFilterR": {
+        "message": "Coeficiente de Kalman R"
+    },
+    "pidTuningKalmanFilterRHelp": {
+        "message": "Coeficiente de Kalman R. La cantidad de errores predichos en datos de giro (valor más alto = más errores predichos y más filtrado)"
     },
     "pidTuningDTermNotchEnable": {
         "message": "Activar Filtro Notch D Term"
