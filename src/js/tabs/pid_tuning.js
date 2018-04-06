@@ -97,6 +97,9 @@ TABS.pid_tuning.initialize = function (callback) {
                 case 1:
                     $(this).val(PIDs[2][i++]);
                     break;
+                case 2:
+                    $(this).val(PIDs[2][i++]);
+                    break;
             }
         });
         $('.pid_tuning .YAW_JUMP_PREVENTION input').each(function () {
