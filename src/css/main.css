@@ -959,7 +959,7 @@ li.active .ic_mission {
 #content.logopen {
     margin-top: 0px;
     padding: 0px;
-    height: calc(100% - 254px); /*  (port picker, log OPEN, status bar: 20px + padding) - was: calc(100% - 171px)*/
+    height: calc(100% - 235px); /*  (port picker, log OPEN, status bar: 20px + padding) - was: calc(100% - 171px)*/
     background-color: white;
     overflow-x: hidden;
     overflow-y: auto;
