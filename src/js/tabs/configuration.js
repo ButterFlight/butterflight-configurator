@@ -308,6 +308,11 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             orientation_acc_e.val(SENSOR_ALIGNMENT.align_acc);
             orientation_mag_e.val(SENSOR_ALIGNMENT.align_mag);
         }
+        if (CONFIG.boardIdentifier == "HESP") { 
+            
+            orientation_acc_e.hide();
+            orientation_mag_e.hide();
+        }
 
         // ESC protocols
         var escprotocols = [
@@ -354,9 +359,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $('div.maxthrottle').show();
                 $('div.mincommand').show();
                 $('div.checkboxPwm').show();
-                //trigger change unsyncedPWMSwitch to show/hide Motor PWM freq input
-                $("input[id='unsyncedPWMSwitch']").change();
-
+                $("input[id='unsyncedPWMSwitch']").hide();
+                $('div.unsyncedpwmfreq').hide();
                 $('div.digitalIdlePercent').hide();
             }
         }).change();
@@ -639,11 +643,19 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         // code below is a temporary fix, which we will be able to remove in the future (hopefully)
         $('#content').scrollTop((scrollPosition) ? scrollPosition : 0);
 
-        // fill board alignment
-        $('input[name="board_align_roll"]').val(BOARD_ALIGNMENT_CONFIG.roll);
-        $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
-        $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
-
+        if (CONFIG.boardIdentifier != "HESP") {
+            // fill board alignment
+            $('input[name="board_align_roll"]').val(BOARD_ALIGNMENT_CONFIG.roll);
+            $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
+            $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
+        } else {
+            $('input[name="board_align_roll"]').hide();
+            $('input[name="board_align_pitch"]').hide();
+            $('input[name="board_align_yaw"]').hide(); 
+            $('.board_align_content').hide();            
+            $('#sensor_acc_align').hide();
+            $('#sensor_mag_align').hide();
+        }
         // fill accel trims
         $('input[name="roll"]').val(CONFIG.accelerometerTrims[1]);
         $('input[name="pitch"]').val(CONFIG.accelerometerTrims[0]);
@@ -666,12 +678,13 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         }
 
         $('._smallAngle').hide();
-        if(semver.gte(CONFIG.apiVersion, "1.37.0")) {
+        if(CONFIG.boardIdentifier != "HESP" && semver.gte(CONFIG.apiVersion, "1.37.0")) {
             $('input[id="configurationSmallAngle"]').val(ARMING_CONFIG.small_angle);
             if (SENSOR_CONFIG.acc_hardware !== 1) {
-              $('._smallAngle').show();
+                $('._smallAngle').show();
             }
         }
+
 
         // fill throttle
         $('input[name="minthrottle"]').val(MOTOR_CONFIG.minthrottle);
