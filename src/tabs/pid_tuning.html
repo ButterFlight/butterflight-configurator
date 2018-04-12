@@ -459,7 +459,7 @@
 
             <div class="subtab-filter" style="display: none;">
                 <div class="clear-both"></div>
-                <div class="note topspacer" style="margin-top: 0px;">
+                <div id="filterTuningHelp" class="note topspacer" style="margin-top: 0px;">
                     <div class="note_spacer">
                         <p i18n="tuningHelp"></p>
                     </div>
@@ -495,7 +495,7 @@
                 </div>
 
                 <div class="cf_column two_columns">
-                    <div class="gui_box grey topspacer pid_filter two_columns_first">
+                    <div id="profileIndependentFilterSettings" class="gui_box grey topspacer pid_filter">
                         <table class="pid_titlebar new_rates">
                             <tr>
                                 <th i18n="pidTuningNonProfileFilterSettings"></th>
@@ -639,6 +639,54 @@
                             </tr>
                         </table>
                     </div>
+                    <div id="imufFilterSettingsPanel" style="display: none;" class="gui_box grey topspacer pid_filter">
+                        <table class="pid_titlebar new_rates">
+                            <tr>
+                                <th i18n="pidTuningIMUFFilterSettings"></th>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input id="imuf_roll_q" type="number" name="imuf_roll_q" step="100" min="100" max="16000"/>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <span i18n="pidTuningImufRollQ"></span>
+                                        </label>
+                                        <div class="helpicon cf_tip" i18n_title="pidTuningKalmanFilterQHelp"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="imuf_pitch_q" type="number" name="imuf_pitch_q" step="100" min="100" max="16000"/>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <span i18n="pidTuningImufPitchQ"></span>
+                                        </label>
+                                        <div class="helpicon cf_tip" i18n_title="pidTuningKalmanFilterQHelp"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="imuf_yaw_q" type="number" name="imuf_yaw_q" step="100" min="100" max="48000"/>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <span i18n="pidTuningImufYawQ"></span>
+                                        </label>
+                                        <div class="helpicon cf_tip" i18n_title="pidTuningKalmanFilterQHelp"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="gui_box grey topspacer pid_filter two_columns_second">
                         <table class="pid_titlebar new_rates">
                             <tr>
@@ -744,7 +792,7 @@
 
                             <tr>
                                 <th colspan="2">
-                                    <div class="pid_mode" i18n="pidTuningYawLospassFiltersGroup" />
+                                    <div class="pid_mode" i18n="pidTuningYawLowpassFrequency" />
                                 </th>
                             </tr>
 
@@ -774,7 +822,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input type="number" name="kalmanQCoefficient" step="1" min="20" max="48000"/>
+                                    <input id="QCoefficient" type="number" name="kalmanQCoefficient" step="1" min="20" max="48000"/>
                                 </td>
                                 <td>
                                     <div>
@@ -785,7 +833,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="newFilter">
+                            <tr>
                                 <td>
                                     <input type="number" name="kalmanRCoefficient" step="1" min="0" max="16000"/>
                                 </td>

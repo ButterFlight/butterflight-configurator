@@ -38,7 +38,11 @@ TABS.pid_tuning.initialize = function (callback) {
         return MSP.promise(MSPCodes.MSP_FILTER_CONFIG);
     }).then(function () {
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+            if (CONFIG.boardIdentifier !== "HESP") {
+                return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+            } else {
+                return MSP.promise(MSPCodes.MSP_IMUF_CONFIG);
+            }
         }
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_RC_DEADBAND);
@@ -293,25 +297,41 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.dtermLowpassType').hide();
             $('.antigravity').hide();
         }
+        if (CONFIG.boardIdentifier != "HESP") {
+            $('.dtermfiltertype').hide();            
+        }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-
             $('.pid_filter input[name="gyroLowpass2Frequency"]').val(FILTER_CONFIG.gyro_lowpass2_hz);
             $('.pid_filter select[name="gyroLowpassType"]').val(FILTER_CONFIG.gyro_lowpass_type);
             $('.pid_filter select[name="gyroLowpass2Type"]').val(FILTER_CONFIG.gyro_lowpass2_type);
             $('.pid_filter input[name="dtermLowpass2Frequency"]').val(FILTER_CONFIG.dterm_lowpass2_hz);
 
-            $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
-            $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
-
-            // We load it again because the limits are now bigger than in 1.16.0
-            $('.pid_filter input[name="gyroLowpassFrequency"]').attr("max","16000");
-            $('.pid_filter input[name="gyroLowpassFrequency"]').val(FILTER_CONFIG.gyro_lowpass_hz);
-
+            if (CONFIG.boardIdentifier !== "HESP"){
+                $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
+                $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
+            } else {
+                console.log(KALMAN_FILTER_CONFIG);
+                $('#imuf_roll_q').val(KALMAN_FILTER_CONFIG.imuf_roll_q);
+                $('#imuf_pitch_q').val(KALMAN_FILTER_CONFIG.imuf_pitch_q);
+                $('#imuf_yaw_q').val(KALMAN_FILTER_CONFIG.imuf_yaw_q);
+            }
+            updateExpertModeOnlyUIElements();
+            $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
         } else {
             $('.gyroLowpass2').hide();
             $('.gyroLowpass2Type').hide();
             $('.dtermLowpass2').hide();
+        }
+        if (CONFIG.boardIdentifier == "HESP") {
+            $('.dtermfiltertype').hide();
+            $('.stage2FilterWarning').hide();
+            $('.stage2FilterType').hide();
+            $('#profileIndependentFilterSettings').hide();  
+            $('#pidTuningYawLowpassFrequency').hide();  
+            $('.kalmanFilterSettingsPanel').toggle(false);
+            $('#filterTuningHelp').hide();
+            $('#imufFilterSettingsPanel').show();
         }
 
         $('input[id="gyroNotch1Enabled"]').change(function() {
@@ -537,12 +557,18 @@ TABS.pid_tuning.initialize = function (callback) {
         }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            FILTER_CONFIG.gyro_lowpass2_hz = parseInt($('.pid_filter input[name="gyroLowpass2Frequency"]').val());
-            FILTER_CONFIG.gyro_lowpass_type = parseInt($('.pid_filter select[name="gyroLowpassType"]').val());
-            FILTER_CONFIG.gyro_lowpass2_type = parseInt($('.pid_filter select[name="gyroLowpass2Type"]').val());
-            FILTER_CONFIG.dterm_lowpass2_hz = parseInt($('.pid_filter input[name="dtermLowpass2Frequency"]').val());
-            KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
-            KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
+            if (CONFIG.boardIdentifier !== "HESP") {
+                FILTER_CONFIG.gyro_lowpass2_hz = parseInt($('.pid_filter input[name="gyroLowpass2Frequency"]').val());
+                FILTER_CONFIG.gyro_lowpass_type = parseInt($('.pid_filter select[name="gyroLowpassType"]').val());
+                FILTER_CONFIG.gyro_lowpass2_type = parseInt($('.pid_filter select[name="gyroLowpass2Type"]').val());
+                FILTER_CONFIG.dterm_lowpass2_hz = parseInt($('.pid_filter input[name="dtermLowpass2Frequency"]').val());
+                KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
+                KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
+            } else {
+                KALMAN_FILTER_CONFIG.imuf_roll_q = parseInt($('#imuf_roll_q').val());
+                KALMAN_FILTER_CONFIG.imuf_pitch_q = parseInt($('#imuf_pitch_q').val());
+                KALMAN_FILTER_CONFIG.imuf_yaw_q = parseInt($('#imuf_yaw_q').val());
+            }
         }
     }
 
@@ -1210,8 +1236,14 @@ TABS.pid_tuning.initialize = function (callback) {
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_FILTER_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_FILTER_CONFIG));
             }).then(function () {
-                if (semver.gte(CONFIG.apiVersion, "1.40.0") && isKalmanFilterSelected()) {
-                    return MSP.promise(MSPCodes.MSP_SET_FAST_KALMAN, mspHelper.crunch(MSPCodes.MSP_SET_FAST_KALMAN));
+                if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+                    if(CONFIG.boardIdentifier !== "HESP") {
+                        if (isKalmanFilterSelected()) {
+                            return MSP.promise(MSPCodes.MSP_SET_FAST_KALMAN, mspHelper.crunch(MSPCodes.MSP_SET_FAST_KALMAN));
+                        }
+                    } else {
+                        return MSP.promise(MSPCodes.MSP_SET_IMUF_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_IMUF_CONFIG));                        
+                    }
                 }
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_RC_TUNING, mspHelper.crunch(MSPCodes.MSP_SET_RC_TUNING));
