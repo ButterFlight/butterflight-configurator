@@ -2386,6 +2386,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "Configuració del filtre Kalman"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "Configuració del filtre IMU-F"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-Term Lowpass Filter"
     },
@@ -2406,6 +2409,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "Kalman Q Coeficient"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F rol Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "Pitch Q de l'IMU-F"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F yaw Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "Kalman Q Coeficient. La quantitat de confiança en la precisió de dades de gir (valor superior = més confiança i menys filtrat)"

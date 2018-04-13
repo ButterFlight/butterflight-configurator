@@ -2556,6 +2556,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "Kalman filtra iestatījumi"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "IMU-F filtra iestatījumi"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-Term zemfrekvenču filtrs"
     },
@@ -2576,6 +2579,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "Kalman Q koeficients"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F roll Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "IMU-F piķis Q"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F yaw Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "Kalman Q koeficients. Uzticības summa žiroskopa datu precizitātei (lielāka vērtība = lielāka uzticamība un mazāka filtrēšana)"
