@@ -311,10 +311,9 @@ TABS.pid_tuning.initialize = function (callback) {
                 $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
                 $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
             } else {
-                console.log(KALMAN_FILTER_CONFIG);
-                $('#imuf_roll_q').val(KALMAN_FILTER_CONFIG.imuf_roll_q);
-                $('#imuf_pitch_q').val(KALMAN_FILTER_CONFIG.imuf_pitch_q);
-                $('#imuf_yaw_q').val(KALMAN_FILTER_CONFIG.imuf_yaw_q);
+                $('#imuf_roll_q').val(IMUF_FILTER_CONFIG.imuf_roll_q);
+                $('#imuf_pitch_q').val(IMUF_FILTER_CONFIG.imuf_pitch_q);
+                $('#imuf_yaw_q').val(IMUF_FILTER_CONFIG.imuf_yaw_q);
             }
             updateExpertModeOnlyUIElements();
             $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
@@ -565,9 +564,9 @@ TABS.pid_tuning.initialize = function (callback) {
                 KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
                 KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
             } else {
-                KALMAN_FILTER_CONFIG.imuf_roll_q = parseInt($('#imuf_roll_q').val());
-                KALMAN_FILTER_CONFIG.imuf_pitch_q = parseInt($('#imuf_pitch_q').val());
-                KALMAN_FILTER_CONFIG.imuf_yaw_q = parseInt($('#imuf_yaw_q').val());
+                IMUF_FILTER_CONFIG.imuf_roll_q = parseInt($('#imuf_roll_q').val());
+                IMUF_FILTER_CONFIG.imuf_pitch_q = parseInt($('#imuf_pitch_q').val());
+                IMUF_FILTER_CONFIG.imuf_yaw_q = parseInt($('#imuf_yaw_q').val());
             }
         }
     }
