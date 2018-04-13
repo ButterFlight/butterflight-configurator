@@ -2559,6 +2559,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "卡尔曼滤波器设置"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "IMU-F过滤器设置"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-term 低通滤波器"
     },
@@ -2579,6 +2582,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "卡尔曼Q系数"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F卷筒Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "IMU-F间距Q"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F yaw Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "卡尔曼Q系数. 陀螺仪数据准确性的信任量 (更高的值=更多的信任和更少的过滤)"

@@ -2553,6 +2553,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "Paramètres de filtre de Kalman"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "Paramètres du filtre IMU-F"
+    },
     "pidTuningDTermLowpassType": {
         "message": "Filtre D-Term Lowpass"
     },
@@ -2573,6 +2576,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "Coefficient Q de Kalman"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F rouleau Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "IMU-F hauteur Q"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F lacet Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "Coefficient Q de Kalman. La quantité de confiance dans l'exactitude des données gyro (valeur plus élevée = plus de confiance et moins de filtrage)"
