@@ -474,8 +474,9 @@
 }
 
 .tab-configuration .sensoralignment {
-    width: 50%;
+    width: 45%;
     float: left;
+    margin-right: 10px;
 }
 
 .tab-configuration .board_align_content {
@@ -486,6 +487,15 @@
 .tab-configuration .sensoralignment span {
     width: 55%;
     float: left;
+}
+.tab-configuration .sensoralignment span.use_advanced_board_alignment_label {
+    width: initial;
+    float: none;
+    margin-left: 10px;
+}
+.tab-configuration .sensoralignment .use_advanced_board_alignment span{
+    width: 16px;
+    float: none;
 }
 
 .tab-configuration .escprotocol {

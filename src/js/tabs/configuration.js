@@ -673,17 +673,36 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         // i am guessing this is a bug, since this wasn't happening on 37
         // code below is a temporary fix, which we will be able to remove in the future (hopefully)
         $('#content').scrollTop((scrollPosition) ? scrollPosition : 0);
+        
+        $('input[name="board_align_roll"]').val(BOARD_ALIGNMENT_CONFIG.roll);
+        $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
+        $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
 
         if (CONFIG.boardIdentifier != "HESP") {
             // fill board alignment
-            $('input[name="board_align_roll"]').val(BOARD_ALIGNMENT_CONFIG.roll);
-            $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
-            $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
+            $('#use_advanced_board_alignment').hide();
         } else {
-            $('input[name="board_align_roll"]').hide();
-            $('input[name="board_align_pitch"]').hide();
-            $('input[name="board_align_yaw"]').hide(); 
-            $('.board_align_content').hide();            
+            function toggleAdv(){
+                var checked = $(this).is(':checked');
+                if (checked){ 
+                    $('select.gyroalign').val(0).attr('disabled', true);
+                    $('#board_alignment').show(); 
+                } else { 
+                    $('select.gyroalign').val(SENSOR_ALIGNMENT.align_gyro).attr('disabled', null);
+                    $('#board_alignment').hide();
+                    $('input[name="board_align_roll"]').val(0);
+                    $('input[name="board_align_pitch"]').val(0);
+                    $('input[name="board_align_yaw"]').val(0);
+                }
+            }
+            $('#use_advanced_board_alignment').on('change', toggleAdv);
+            $('#use_advanced_board_alignment').show();
+            if (BOARD_ALIGNMENT_CONFIG.roll || BOARD_ALIGNMENT_CONFIG.pitch || BOARD_ALIGNMENT_CONFIG.yaw){
+                $('#use_advanced_board_alignment').prop('checked', true);
+                setTimeout(toggleAdv.bind($('#use_advanced_board_alignment')),10);
+            } 
+
+            $('#board_alignment').hide();            
             $('#sensor_acc_align').hide();
             $('#sensor_mag_align').hide();
         }
