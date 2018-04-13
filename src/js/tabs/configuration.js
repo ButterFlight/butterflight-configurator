@@ -292,8 +292,20 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             'CW 0° flip',
             'CW 90° flip',
             'CW 180° flip',
-            'CW 270° flip'
+            'CW 270° flip',
         ];
+        if (CONFIG.boardIdentifier == 'HESP') {
+            alignments.push(
+                'CW 45°',
+                'CW 135°',
+                'CW 225°',
+                'CW 315°',
+                'CW 45 flip°',
+                'CW 135 flip°',
+                'CW 225 flip°',
+                'CW 315 flip°'
+            );
+        }
 
         var orientation_gyro_e = $('select.gyroalign');
         var orientation_acc_e = $('select.accalign');
