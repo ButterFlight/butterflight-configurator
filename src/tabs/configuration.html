@@ -245,29 +245,15 @@
                                 <div class="spacer_box_title" i18n="configurationBoardAlignment"></div>
                                 <div class="helpicon cf_tip" i18n_title="configHelp2"></div>
                             </div>
-                            <div class="spacer_box">
-                                <div class="board_align_content">
-                                    <div class="number">
-                                        <label> <input type="number" name="board_align_roll" step="1" min="-180" max="360" /> <span
-                                            i18n="configurationBoardAlignmentRoll"></span>
-                                        </label>
-                                        <div class="alignicon roll"></div>
-                                    </div>
-                                    <div class="number">
-                                        <label> <input type="number" name="board_align_pitch" step="1" min="-180" max="360" />
-                                        <span i18n="configurationBoardAlignmentPitch"></span>
-                                        </label>
-                                        <div class="alignicon pitch"></div>
-                                    </div>
-                                    <div class="number">
-                                        <label> <input type="number" name="board_align_yaw" step="1" min="-180" max="360" /> <span
-                                            i18n="configurationBoardAlignmentYaw"></span>
-                                        </label>
-                                        <div class="alignicon yaw"></div>
-                                    </div>
-                                </div>
+                            <div class="spacer_box">    
                                 <div class="sensoralignment">
-                                    <div class="select">
+                                    <div style="display: inline-block;" class="use_advanced_board_alignment">
+                                    <label style="margin: 0;">
+                                        <input id="use_advanced_board_alignment" class="togglesmall" type="checkbox"/>
+                                        <span class="use_advanced_board_alignment_label" i18n="advancedBoardAlignment"></span>
+                                    </label>
+                                    </div>
+                                    <div class="select">                               
                                         <label>
                                             <span i18n="configurationSensorAlignmentGyro"></span>
                                             <select class="gyroalign">
@@ -295,6 +281,26 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div id="board_alignment" class="board_align_content">
+                                        <div class="number">
+                                            <label> <input type="number" name="board_align_roll" step="1" min="-180" max="360" /> <span
+                                                i18n="configurationBoardAlignmentRoll"></span>
+                                            </label>
+                                            <div class="alignicon roll"></div>
+                                        </div>
+                                        <div class="number">
+                                            <label> <input type="number" name="board_align_pitch" step="1" min="-180" max="360" />
+                                            <span i18n="configurationBoardAlignmentPitch"></span>
+                                            </label>
+                                            <div class="alignicon pitch"></div>
+                                        </div>
+                                        <div class="number">
+                                            <label> <input type="number" name="board_align_yaw" step="1" min="-180" max="360" /> <span
+                                                i18n="configurationBoardAlignmentYaw"></span>
+                                            </label>
+                                            <div class="alignicon yaw"></div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                         <div class="gui_box grey">
