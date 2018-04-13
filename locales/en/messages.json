@@ -33,6 +33,9 @@
     "autoConnect": {
         "message": "Auto-Connect"
     },
+    "advancedBoardAlignment": {
+        "message": "Advanced"
+    },
     "close": {
         "message": "Close"
     },
