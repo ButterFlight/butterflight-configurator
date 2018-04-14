@@ -179,28 +179,20 @@ TABS.onboard_logging.initialize = function (callback) {
     function populateLoggingRates(loggingRatesSelect) {
         
         // Offer a reasonable choice of logging rates (if people want weird steps they can use CLI)
-        var loggingRates = [];
         var pidRate = 8000 / PID_ADVANCED_CONFIG.gyro_sync_denom / PID_ADVANCED_CONFIG.pid_process_denom; 
 
         if (semver.gte(CONFIG.apiVersion, "1.36.0")) {
-            loggingRates = [
-                {text: "Disabled", hz: 0,     p_denom: 0},
-                {text: "500 Hz",   hz: 500,   p_denom: 16},
-                {text: "1 kHz",    hz: 1000,  p_denom: 32},
-                {text: "1.5 kHz",  hz: 1500,  p_denom: 48},
-                {text: "2 kHz",    hz: 2000,  p_denom: 64},
-                {text: "4 kHz",    hz: 4000,  p_denom: 128},
-                {text: "8 kHz",    hz: 8000,  p_denom: 256},   
-                {text: "16 kHz",   hz: 16000, p_denom: 512},
-                {text: "32 kHz",   hz: 32000, p_denom: 1024},         
-            ];
-
-            $.each(loggingRates, function(index, item) {
-                if (pidRate >= item.hz || item.hz == 0) {
-                    loggingRatesSelect.append(new Option(item.text, item.p_denom));
-                }
-            });
-
+            loggingRatesSelect.append(new Option("Disabled",   0));
+            loggingRatesSelect.append(new Option("500 Hz",     16));
+            loggingRatesSelect.append(new Option("1 kHz",      32));
+            loggingRatesSelect.append(new Option("1.5 kHz",    48));
+            loggingRatesSelect.append(new Option("2 kHz",      64));
+            loggingRatesSelect.append(new Option("4 kHz",      128));
+            loggingRatesSelect.append(new Option("8 kHz",      256));
+            if (PID_ADVANCED_CONFIG.gyroUse32kHz) {
+                loggingRatesSelect.append(new Option("16 kHz", 512));
+                loggingRatesSelect.append(new Option("32 kHz", 1024));
+            }
             loggingRatesSelect.val(BLACKBOX.blackboxPDenom);
         }
         else {
