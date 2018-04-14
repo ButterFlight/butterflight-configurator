@@ -4,7 +4,7 @@ TABS.firmware_flasher = {
     releases: null,
     releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
     helioReleaseChecker:  new ReleaseChecker('helioFirmware', 'https://api.github.com/repos/heliorc/imuf-release/contents'),
-    helioRgex: new RegExp("butterflight_(\\d\\.\\d\\.\\d).+?IMUF_(\\d\\.\\d\\.\\d(-(\\w{3}))?)(.+)", "i")
+    helioRgex: new RegExp("butterflight_(\\d\\.\\d\\.\\d).+?IMUF_(\\d\\.\\d\\.\\d(-(\\w{3}(.+?)))?)(.+)", "i")
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -75,7 +75,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                         var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/i;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
-                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match)) {
+                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match || match[2] === "HELIOSPRING") ) {
                             return;
                         }
 

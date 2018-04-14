@@ -35,7 +35,11 @@ TABS.pid_tuning.initialize = function (callback) {
         return MSP.promise(MSPCodes.MSP_FILTER_CONFIG);
     }).then(function () {
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+            if (CONFIG.boardIdentifier !== "HESP") {
+                return MSP.promise(MSPCodes.MSP_FAST_KALMAN);
+            } else {
+                return MSP.promise(MSPCodes.MSP_IMUF_CONFIG);
+            }
         }
     }).then(function() {
         return MSP.promise(MSPCodes.MSP_RC_DEADBAND);
@@ -279,22 +283,39 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.dtermfiltertype').hide();
             $('.antigravity').hide();
         }
+        if (CONFIG.boardIdentifier != "HESP") {
+            $('.dtermfiltertype').hide();            
+        }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
             $('.profile select[name="stage2FilterType"]').change(function () {
                 $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
             });
             $('.profile select[name="stage2FilterType"]').val(FILTER_CONFIG.gyro_stage2_filter_type);
-
-            $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
-            $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
-
+            if (CONFIG.boardIdentifier !== "HESP"){
+                $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
+                $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
+            } else {
+                $('#imuf_roll_q').val(IMUF_FILTER_CONFIG.imuf_roll_q);
+                $('#imuf_pitch_q').val(IMUF_FILTER_CONFIG.imuf_pitch_q);
+                $('#imuf_yaw_q').val(IMUF_FILTER_CONFIG.imuf_yaw_q);
+            }
             updateExpertModeOnlyUIElements();
             $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
         } else {
             $('.stage2FilterWarning').hide();
             $('.stage2FilterType').hide();
             $('.kalmanFilterSettingsPanel').hide();
+        }
+        if (CONFIG.boardIdentifier == "HESP") {
+            $('.dtermfiltertype').hide();
+            $('.stage2FilterWarning').hide();
+            $('.stage2FilterType').hide();
+            $('#profileIndependentFilterSettings').hide();  
+            $('#pidTuningYawLowpassFrequency').hide();  
+            $('.kalmanFilterSettingsPanel').toggle(false);
+            $('#filterTuningHelp').hide();
+            $('#imufFilterSettingsPanel').show();
         }
 
         $('input[id="gyroNotch1Enabled"]').change(function() {
@@ -442,11 +463,17 @@ TABS.pid_tuning.initialize = function (callback) {
         }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            if (isExpertModeEnabled()) {
-                FILTER_CONFIG.gyro_stage2_filter_type = $('.profile select[name="stage2FilterType"]').val();
+            if (CONFIG.boardIdentifier !== "HESP") {
+                if (isExpertModeEnabled()) {
+                    FILTER_CONFIG.gyro_stage2_filter_type = $('.profile select[name="stage2FilterType"]').val();
+                }
+                KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
+                KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
+            } else {
+                IMUF_FILTER_CONFIG.imuf_roll_q = parseInt($('#imuf_roll_q').val());
+                IMUF_FILTER_CONFIG.imuf_pitch_q = parseInt($('#imuf_pitch_q').val());
+                IMUF_FILTER_CONFIG.imuf_yaw_q = parseInt($('#imuf_yaw_q').val());
             }
-            KALMAN_FILTER_CONFIG.gyro_filter_q = parseInt($('.pid_filter input[name="kalmanQCoefficient"]').val());
-            KALMAN_FILTER_CONFIG.gyro_filter_r = parseInt($('.pid_filter input[name="kalmanRCoefficient"]').val());
         }
     }
 
@@ -1059,8 +1086,14 @@ TABS.pid_tuning.initialize = function (callback) {
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_FILTER_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_FILTER_CONFIG));
             }).then(function () {
-                if (semver.gte(CONFIG.apiVersion, "1.40.0") && isKalmanFilterSelected()) {
-                    return MSP.promise(MSPCodes.MSP_SET_FAST_KALMAN, mspHelper.crunch(MSPCodes.MSP_SET_FAST_KALMAN));
+                if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
+                    if(CONFIG.boardIdentifier !== "HESP") {
+                        if (isKalmanFilterSelected()) {
+                            return MSP.promise(MSPCodes.MSP_SET_FAST_KALMAN, mspHelper.crunch(MSPCodes.MSP_SET_FAST_KALMAN));
+                        }
+                    } else {
+                        return MSP.promise(MSPCodes.MSP_SET_IMUF_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_IMUF_CONFIG));                        
+                    }
                 }
             }).then(function () {
                 return MSP.promise(MSPCodes.MSP_SET_RC_TUNING, mspHelper.crunch(MSPCodes.MSP_SET_RC_TUNING));

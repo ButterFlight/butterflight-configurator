@@ -2389,6 +2389,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "칼만 필터 설정"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "IMU-F 필터 설정"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-텀 저역통과 필터"
     },
@@ -2409,6 +2412,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "Q 칼만 계수"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F 롤 Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "IMU-F 피치 Q"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F yaw Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "Q 칼만 계수. 자이로 데이터 정확도의 신뢰도 (높은 값 = 신뢰 증가 및 필터링 감소)"

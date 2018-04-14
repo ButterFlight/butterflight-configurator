@@ -846,6 +846,18 @@ MspHelper.prototype.process_data = function(dataHandler) {
                 KALMAN_FILTER_CONFIG.gyro_filter_q = data.readU16();
                 KALMAN_FILTER_CONFIG.gyro_filter_r = data.readU16();
                 break;
+            case MSPCodes.MSP_IMUF_CONFIG:
+                IMUF_FILTER_CONFIG.imuf_mode = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_pitch_q = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_pitch_w = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_roll_q = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_roll_w = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_yaw_q = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_yaw_w = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_pitch_lpf_cutoff_hz = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_roll_lpf_cutoff_hz = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_yaw_lpf_cutoff_hz = data.readU16();
+                break;
             case MSPCodes.MSP_SET_PID_ADVANCED:
                 console.log("Advanced PID settings saved");
                 break;
@@ -1484,6 +1496,18 @@ MspHelper.prototype.crunch = function(code) {
         case MSPCodes.MSP_SET_FAST_KALMAN:
             buffer.push16(KALMAN_FILTER_CONFIG.gyro_filter_q);
             buffer.push16(KALMAN_FILTER_CONFIG.gyro_filter_r);
+            break;
+        case MSPCodes.MSP_SET_IMUF_CONFIG: 
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_mode);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_q);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_w);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_q);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_w);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_q);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_w);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_lpf_cutoff_hz);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_lpf_cutoff_hz);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_lpf_cutoff_hz);
             break;
         case MSPCodes.MSP_SET_PID_ADVANCED:
             if (semver.gte(CONFIG.apiVersion, "1.20.0")) {

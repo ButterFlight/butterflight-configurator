@@ -33,6 +33,9 @@
     "autoConnect": {
         "message": "Auto-Connect"
     },
+    "advancedBoardAlignment": {
+        "message": "Advanced"
+    },
     "close": {
         "message": "Close"
     },
@@ -2470,6 +2473,9 @@
     "pidTuningKalmanFilterSettings": {
         "message": "Kalman Filter Settings"
     },
+    "pidTuningIMUFFilterSettings": {
+        "message": "IMU-F Filter Settings"
+    },
     "pidTuningDTermLowpassType": {
         "message": "D-Term Lowpass Filter"
     },
@@ -2490,6 +2496,15 @@
     },
     "pidTuningKalmanFilterQ": {
         "message": "Kalman Q Coefficient"
+    },
+    "pidTuningImufRollQ": {
+        "message": "IMU-F roll Q"
+    },
+    "pidTuningImufPitchQ": {
+        "message": "IMU-F pitch Q"
+    },
+    "pidTuningImufYawQ": {
+        "message": "IMU-F yaw Q"
     },
     "pidTuningKalmanFilterQHelp": {
         "message": "Kalman filter Q Coefficient. The amount of trust in gyro data accuracy (Higher value = more trust and less filtering)"

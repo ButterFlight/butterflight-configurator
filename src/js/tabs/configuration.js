@@ -289,8 +289,20 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             'CW 0° flip',
             'CW 90° flip',
             'CW 180° flip',
-            'CW 270° flip'
+            'CW 270° flip',
         ];
+        if (CONFIG.boardIdentifier == 'HESP') {
+            alignments.push(
+                'CW 45°',
+                'CW 135°',
+                'CW 225°',
+                'CW 315°',
+                'CW 45 flip°',
+                'CW 135 flip°',
+                'CW 225 flip°',
+                'CW 315 flip°'
+            );
+        }
 
         var orientation_gyro_e = $('select.gyroalign');
         var orientation_acc_e = $('select.accalign');
@@ -307,6 +319,11 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             orientation_gyro_e.val(SENSOR_ALIGNMENT.align_gyro);
             orientation_acc_e.val(SENSOR_ALIGNMENT.align_acc);
             orientation_mag_e.val(SENSOR_ALIGNMENT.align_mag);
+        }
+        if (CONFIG.boardIdentifier == "HESP") { 
+            
+            orientation_acc_e.hide();
+            orientation_mag_e.hide();
         }
 
         // ESC protocols
@@ -354,9 +371,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $('div.maxthrottle').show();
                 $('div.mincommand').show();
                 $('div.checkboxPwm').show();
-                //trigger change unsyncedPWMSwitch to show/hide Motor PWM freq input
-                $("input[id='unsyncedPWMSwitch']").change();
-
+                $("input[id='unsyncedPWMSwitch']").hide();
+                $('div.unsyncedpwmfreq').hide();
                 $('div.digitalIdlePercent').hide();
             }
         }).change();
@@ -638,12 +654,39 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         // i am guessing this is a bug, since this wasn't happening on 37
         // code below is a temporary fix, which we will be able to remove in the future (hopefully)
         $('#content').scrollTop((scrollPosition) ? scrollPosition : 0);
-
-        // fill board alignment
+        
         $('input[name="board_align_roll"]').val(BOARD_ALIGNMENT_CONFIG.roll);
         $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
         $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
 
+        if (CONFIG.boardIdentifier != "HESP") {
+            // fill board alignment
+            $('#use_advanced_board_alignment').hide();
+        } else {
+            function toggleAdv(){
+                var checked = $(this).is(':checked');
+                if (checked){ 
+                    $('select.gyroalign').val(0).attr('disabled', true);
+                    $('#board_alignment').show(); 
+                } else { 
+                    $('select.gyroalign').val(SENSOR_ALIGNMENT.align_gyro).attr('disabled', null);
+                    $('#board_alignment').hide();
+                    $('input[name="board_align_roll"]').val(0);
+                    $('input[name="board_align_pitch"]').val(0);
+                    $('input[name="board_align_yaw"]').val(0);
+                }
+            }
+            $('#use_advanced_board_alignment').on('change', toggleAdv);
+            $('#use_advanced_board_alignment').show();
+            if (BOARD_ALIGNMENT_CONFIG.roll || BOARD_ALIGNMENT_CONFIG.pitch || BOARD_ALIGNMENT_CONFIG.yaw){
+                $('#use_advanced_board_alignment').prop('checked', true);
+                setTimeout(toggleAdv.bind($('#use_advanced_board_alignment')),10);
+            } 
+
+            $('#board_alignment').hide();            
+            $('#sensor_acc_align').hide();
+            $('#sensor_mag_align').hide();
+        }
         // fill accel trims
         $('input[name="roll"]').val(CONFIG.accelerometerTrims[1]);
         $('input[name="pitch"]').val(CONFIG.accelerometerTrims[0]);
@@ -666,12 +709,13 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         }
 
         $('._smallAngle').hide();
-        if(semver.gte(CONFIG.apiVersion, "1.37.0")) {
+        if(CONFIG.boardIdentifier != "HESP" && semver.gte(CONFIG.apiVersion, "1.37.0")) {
             $('input[id="configurationSmallAngle"]').val(ARMING_CONFIG.small_angle);
             if (SENSOR_CONFIG.acc_hardware !== 1) {
-              $('._smallAngle').show();
+                $('._smallAngle').show();
             }
         }
+
 
         // fill throttle
         $('input[name="minthrottle"]').val(MOTOR_CONFIG.minthrottle);
