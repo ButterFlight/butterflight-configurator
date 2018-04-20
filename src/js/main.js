@@ -557,8 +557,10 @@ function updateTabList(features) {
 }
 
 function updateExpertModeOnlyUIElements() {
-    $('.stage2FilterType').toggle(isExpertModeEnabled());
-    $('.stage2FilterWarning').toggle(isExpertModeEnabled());
+    if (CONFIG.boardIdentifier !== "HESP") {
+        $('.stage2FilterType').toggle(isExpertModeEnabled());
+        $('.stage2FilterWarning').toggle(isExpertModeEnabled());
+    }
 }
 
 function zeroPad(value, width) {
