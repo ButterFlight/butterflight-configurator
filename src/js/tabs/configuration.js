@@ -678,9 +678,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         $('input[name="board_align_pitch"]').val(BOARD_ALIGNMENT_CONFIG.pitch);
         $('input[name="board_align_yaw"]').val(BOARD_ALIGNMENT_CONFIG.yaw);
 
-        if (CONFIG.boardIdentifier != "HESP") {
-            // fill board alignment
-            $('#use_advanced_board_alignment').hide();
+        if (CONFIG.boardIdentifier !== "HESP") {
+            $('.use_advanced_board_alignment_container').hide();
         } else {
             function toggleAdv(){
                 var checked = $(this).is(':checked');
@@ -696,7 +695,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 }
             }
             $('#use_advanced_board_alignment').on('change', toggleAdv);
-            $('#use_advanced_board_alignment').show();
+            $('.use_advanced_board_alignment_container').show();
             if (BOARD_ALIGNMENT_CONFIG.roll || BOARD_ALIGNMENT_CONFIG.pitch || BOARD_ALIGNMENT_CONFIG.yaw){
                 $('#use_advanced_board_alignment').prop('checked', true);
                 setTimeout(toggleAdv.bind($('#use_advanced_board_alignment')),10);

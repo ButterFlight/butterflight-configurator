@@ -297,9 +297,6 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.dtermLowpassType').hide();
             $('.antigravity').hide();
         }
-        if (CONFIG.boardIdentifier != "HESP") {
-            $('.dtermfiltertype').hide();            
-        }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
             $('.pid_filter input[name="gyroLowpass2Frequency"]').val(FILTER_CONFIG.gyro_lowpass2_hz);
@@ -307,16 +304,28 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.pid_filter select[name="gyroLowpass2Type"]').val(FILTER_CONFIG.gyro_lowpass2_type);
             $('.pid_filter input[name="dtermLowpass2Frequency"]').val(FILTER_CONFIG.dterm_lowpass2_hz);
 
-            if (CONFIG.boardIdentifier !== "HESP"){
+            if (CONFIG.boardIdentifier !== "HESP") {
+                $('.profile select[name="gyroLowpass2Type"]').change(function () {
+                    $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
+                });
                 $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
                 $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
             } else {
                 $('#imuf_roll_q').val(IMUF_FILTER_CONFIG.imuf_roll_q);
                 $('#imuf_pitch_q').val(IMUF_FILTER_CONFIG.imuf_pitch_q);
                 $('#imuf_yaw_q').val(IMUF_FILTER_CONFIG.imuf_yaw_q);
+
+                //Only show HELIO SPRING compatible settings
+                $('.dtermfiltertype').hide();
+                $('.stage2FilterWarning').hide();
+                $('.stage2FilterType').hide();
+                $('#profileIndependentFilterSettings').hide();
+                $('#pidTuningYawLowpassFrequency').hide();
+                $('.kalmanFilterSettingsPanel').hide();
+                $('#filterTuningHelp').hide();
+                $('#imufFilterSettingsPanel').show();
             }
             updateExpertModeOnlyUIElements();
-            $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
         } else {
             $('.gyroLowpass2').hide();
             $('.gyroLowpass2Type').hide();
