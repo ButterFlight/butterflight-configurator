@@ -848,12 +848,10 @@ MspHelper.prototype.process_data = function(dataHandler) {
                 break;
             case MSPCodes.MSP_IMUF_CONFIG:
                 IMUF_FILTER_CONFIG.imuf_mode = data.readU16();
-                IMUF_FILTER_CONFIG.imuf_pitch_q = data.readU16();
-                IMUF_FILTER_CONFIG.imuf_pitch_w = data.readU16();
                 IMUF_FILTER_CONFIG.imuf_roll_q = data.readU16();
-                IMUF_FILTER_CONFIG.imuf_roll_w = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_pitch_q = data.readU16();
                 IMUF_FILTER_CONFIG.imuf_yaw_q = data.readU16();
-                IMUF_FILTER_CONFIG.imuf_yaw_w = data.readU16();
+                IMUF_FILTER_CONFIG.imuf_w = data.readU16();
                 IMUF_FILTER_CONFIG.imuf_pitch_lpf_cutoff_hz = data.readU16();
                 IMUF_FILTER_CONFIG.imuf_roll_lpf_cutoff_hz = data.readU16();
                 IMUF_FILTER_CONFIG.imuf_yaw_lpf_cutoff_hz = data.readU16();
@@ -1499,12 +1497,10 @@ MspHelper.prototype.crunch = function(code) {
             break;
         case MSPCodes.MSP_SET_IMUF_CONFIG: 
             buffer.push16(IMUF_FILTER_CONFIG.imuf_mode);
-            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_q);
-            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_w);
             buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_q);
-            buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_w);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_q);
             buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_q);
-            buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_w);
+            buffer.push16(IMUF_FILTER_CONFIG.imuf_w);
             buffer.push16(IMUF_FILTER_CONFIG.imuf_pitch_lpf_cutoff_hz);
             buffer.push16(IMUF_FILTER_CONFIG.imuf_roll_lpf_cutoff_hz);
             buffer.push16(IMUF_FILTER_CONFIG.imuf_yaw_lpf_cutoff_hz);

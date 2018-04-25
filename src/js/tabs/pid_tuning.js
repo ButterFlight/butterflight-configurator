@@ -308,6 +308,7 @@ TABS.pid_tuning.initialize = function (callback) {
                 $('#imuf_roll_q').val(IMUF_FILTER_CONFIG.imuf_roll_q);
                 $('#imuf_pitch_q').val(IMUF_FILTER_CONFIG.imuf_pitch_q);
                 $('#imuf_yaw_q').val(IMUF_FILTER_CONFIG.imuf_yaw_q);
+                $('#imuf_w').val(IMUF_FILTER_CONFIG.imuf_w);
 
                 //Only show HELIO SPRING compatible settings
                 $('.dtermfiltertype').hide();
@@ -482,6 +483,7 @@ TABS.pid_tuning.initialize = function (callback) {
                 IMUF_FILTER_CONFIG.imuf_roll_q = parseInt($('#imuf_roll_q').val());
                 IMUF_FILTER_CONFIG.imuf_pitch_q = parseInt($('#imuf_pitch_q').val());
                 IMUF_FILTER_CONFIG.imuf_yaw_q = parseInt($('#imuf_yaw_q').val());
+                IMUF_FILTER_CONFIG.imuf_w = parseInt($('#imuf_w').val());
             }
         }
     }
