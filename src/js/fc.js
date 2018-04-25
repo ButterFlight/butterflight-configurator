@@ -358,11 +358,9 @@ var FC = {
         IMUF_FILTER_CONFIG = {
             imuf_mode:                0,
             imuf_roll_q:              0,
-            imuf_roll_w:              0,
             imuf_pitch_q:             0,
-            imuf_pitch_w:             0,
             imuf_yaw_q:               0,
-            imuf_yaw_w:               0,
+            imuf_w:                   0,
             imuf_roll_lpf_cutoff_hz:  0,
             imuf_pitch_lpf_cutoff_hz: 0,
             imuf_yaw_lpf_cutoff_hz:   0
