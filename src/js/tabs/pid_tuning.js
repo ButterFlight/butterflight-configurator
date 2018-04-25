@@ -283,39 +283,38 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.dtermfiltertype').hide();
             $('.antigravity').hide();
         }
-        if (CONFIG.boardIdentifier != "HESP") {
-            $('.dtermfiltertype').hide();            
-        }
 
         if (semver.gte(CONFIG.apiVersion, "1.40.0")) {
-            $('.profile select[name="stage2FilterType"]').change(function () {
-                $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
-            });
             $('.profile select[name="stage2FilterType"]').val(FILTER_CONFIG.gyro_stage2_filter_type);
-            if (CONFIG.boardIdentifier !== "HESP"){
+
+            if (CONFIG.boardIdentifier !== "HESP") {
+                $('.profile select[name="stage2FilterType"]').change(function () {
+                    $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
+                });
                 $('.pid_filter input[name="kalmanQCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_q);
                 $('.pid_filter input[name="kalmanRCoefficient"]').val(KALMAN_FILTER_CONFIG.gyro_filter_r);
+                $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
             } else {
                 $('#imuf_roll_q').val(IMUF_FILTER_CONFIG.imuf_roll_q);
                 $('#imuf_pitch_q').val(IMUF_FILTER_CONFIG.imuf_pitch_q);
                 $('#imuf_yaw_q').val(IMUF_FILTER_CONFIG.imuf_yaw_q);
+
+                //Only show HELIO SPRING compatible settings
+                $('.dtermfiltertype').hide();
+                $('.stage2FilterWarning').hide();
+                $('.stage2FilterType').hide();
+                $('#profileIndependentFilterSettings').hide();
+                $('#pidTuningYawLowpassFrequency').hide();
+                $('.kalmanFilterSettingsPanel').hide();
+                $('#filterTuningHelp').hide();
+                $('#imufFilterSettingsPanel').show();
             }
             updateExpertModeOnlyUIElements();
-            $('.kalmanFilterSettingsPanel').toggle(isKalmanFilterSelected());
         } else {
             $('.stage2FilterWarning').hide();
             $('.stage2FilterType').hide();
             $('.kalmanFilterSettingsPanel').hide();
-        }
-        if (CONFIG.boardIdentifier == "HESP") {
-            $('.dtermfiltertype').hide();
-            $('.stage2FilterWarning').hide();
-            $('.stage2FilterType').hide();
-            $('#profileIndependentFilterSettings').hide();  
-            $('#pidTuningYawLowpassFrequency').hide();  
-            $('.kalmanFilterSettingsPanel').toggle(false);
-            $('#filterTuningHelp').hide();
-            $('#imufFilterSettingsPanel').show();
+            $('#imufFilterSettingsPanel').hide();
         }
 
         $('input[id="gyroNotch1Enabled"]').change(function() {
