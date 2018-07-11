@@ -3,8 +3,8 @@
 TABS.firmware_flasher = {
     releases: null,
     releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
-    helioReleaseChecker:  new ReleaseChecker('helioFirmware', 'https://api.github.com/repos/heliorc/imuf-release/contents'),
-    helioRgex: new RegExp("butterflight_(\\d\\.\\d\\.\\d).+?IMUF_(\\d\\.\\d\\.\\d(-(\\w{3}(.+?)))?)(.+)", "i")
+    imufReleaseChecker:  new ReleaseChecker('helioFirmware', 'https://api.github.com/repos/heliorc/imuf-release-dev/contents'),
+    imufRegex: new RegExp(".*IMUF_(\\d\\.\\d\\.\\d)-(\\w+)?(\\.hex)", "i")
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -36,26 +36,32 @@ TABS.firmware_flasher.initialize = function (callback) {
         FirmwareCache.onRemoveFromCache(onFirmwareCacheUpdate);
 
         function loadReleases() {
-            self.releaseChecker.loadReleaseData(function(releaseData){
-                self.helioReleaseChecker.loadReleaseData(function(helioReleaseData){
-                    buildBoardOptions(releaseData.concat([
-                        {
-                            "html_url": "https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md",
-                            "body": "You are downloading an aggregate binary from https://github.com/heliorc/imuf-release/. See the release notes here: https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md",
-                            "prerelease": false,
-                            "assets": helioReleaseData.filter(function(item){
-                                return item.name.endsWith('.hex');
-                            }).map(function(item) {
-                                let match = self.helioRgex.exec(item.name);
-                                item.$date = "RELEASE";
-                                item.$target = "HELIOSPRING";
-                                item.$version = match[1] + " | IMUF: " + match[2];
-                                item.$format = "hex";
-                                item.browser_download_url = item.download_url;
-                                return item;
-                            })
-                        }]));
-                });
+            self.releaseChecker.loadReleaseData(buildBoardOptions);
+        }
+        function loadImufReleases() {
+            self.imufReleaseChecker.loadReleaseData(function(imufFiles) {
+                var $body = "You are downloading from https://github.com/heliorc/imuf-release/. See the release notes here: https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md";
+                buildImufOptions({
+                        "html_url": "https://github.com/heliorc/imuf-release/blob/master/CHANGELOG.md",
+                        "body": $body,
+                        "prerelease": false,
+                        "assets": imufFiles.filter(function(item){
+                            return item.name.endsWith('.hex');
+                        }).map(function(asset) {
+                            var match = self.imufRegex.exec(asset.name);
+                            return {
+                                "releaseUrl": asset.download_url,
+                                "name"      : match[2],
+                                "version"   : match[1],
+                                "url"       : asset.download_url,
+                                "file"      : asset.name,
+                                "target"    : match[2],
+                                "date"      : "",
+                                "notes"     : $body,
+                                "status"    : "stable"
+                            }
+                        })
+                    })
             });
         }
         function parse_hex(str, callback) {
@@ -73,7 +79,6 @@ TABS.firmware_flasher.initialize = function (callback) {
 
         function process_hex(data, summary) {
             intel_hex = data;
-
             parse_hex(intel_hex, function (data) {
                 parsed_hex = data;
 
@@ -138,11 +143,11 @@ TABS.firmware_flasher.initialize = function (callback) {
                         var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/i;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
-                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match || match[2] === "HELIOSPRING") ) {
+                        if ((!showDevReleases && release.prerelease) || !match) {
                             return;
                         }
 
-                        var target = asset.$target || match[2];
+                        var target = match[2];
                         if($.inArray(target, unsortedTargets) == -1) {
                             unsortedTargets.push(target);
                         }
@@ -162,12 +167,12 @@ TABS.firmware_flasher.initialize = function (callback) {
                         var targetFromFilenameExpression = /butterflight_([\d.]+)?_?(\w+)(\-.*)?\.(.*)/i;
                         var match = targetFromFilenameExpression.exec(asset.name);
 
-                        if (!asset.$target && ((!showDevReleases && release.prerelease) || !match)) {
+                        if ((!showDevReleases && release.prerelease) || !match) {
                             return;
                         }
 
-                        var target = asset.$target || match[2];
-                        var format = asset.$format || match[4];
+                        var target = match[2];
+                        var format = match[4];
 
                         if (format != 'hex') {
                             return;
@@ -177,8 +182,8 @@ TABS.firmware_flasher.initialize = function (callback) {
                         var formattedDate = asset.$date || ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                         var descriptor = {
                             "releaseUrl": release.html_url,
-                            "name"      : asset.$version || version,
-                            "version"   : asset.$version || version,
+                            "name"      : version,
+                            "version"   : version,
                             "url"       : asset.browser_download_url,
                             "file"      : asset.name,
                             "target"    : target,
@@ -215,12 +220,37 @@ TABS.firmware_flasher.initialize = function (callback) {
             }
         };
 
+        function buildImufOptions(imufData) {
+            if (!imufData) {
+                $('select[name="board"]').empty().append('<option value="0">Offline</option>');
+                $('select[name="firmware_version"]').empty().append('<option value="0">Offline</option>');
+            } else {
+                var boards_e = $('select[name="board"]').empty();
+                boards_e.append($("<option value='IMU-F'>IMU-F</option>".format(i18n.getMessage('imufSelectFirmware'))));
+
+                var versions_e = $('select[name="firmware_version"]').empty();
+                versions_e.append($("<option value='0'>{0}</option>".format(i18n.getMessage('imufSelectFirmwareVersion'))));
+
+                TABS.firmware_flasher.releases = {"IMU-F" : imufData.assets };
+                boards_e.trigger("change");
+            }
+        };
+
         // translate to user-selected language
         i18n.localizePage();
 
         // bind events
         $('input.show_development_releases').click(function () {
             loadReleases();
+        });
+        $('input.show_imuf_releases').click(function () {
+            if (this.checked) {
+                $('.flash-option').hide();
+                loadImufReleases();
+            } else {
+                $('.flash-option').show();
+                loadReleases();
+            }
         });
 
         $('select[name="board"]').change(function() {
@@ -258,7 +288,9 @@ TABS.firmware_flasher.initialize = function (callback) {
                     versions_e.append(select_e);
                 });
             }
-            chrome.storage.local.set({'selected_board': target});
+            if (target != "IMU-F") {
+                chrome.storage.local.set({'selected_board': target});
+            }
         });
 
         // UI Hooks
@@ -363,6 +395,20 @@ TABS.firmware_flasher.initialize = function (callback) {
             if (!$(this).hasClass('disabled')) {
                 if (!GUI.connect_lock) { // button disabled while flashing is in progress
                     if (parsed_hex != false) {
+                        if ($('input.show_imuf_releases').is(':checked')) {
+                            var selected_baud = parseInt($('div#port-picker #baud').val());
+                            var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
+                            if (selected_port === 'DFU') {
+                                GUI.log(i18n.getMessage('dfu_connect_message'));
+                            } else if (selected_port != '0') {
+                                serial.connect(selected_port, {bitrate: selected_baud}, function(){
+                                    MSP.send_message(MSPCodes.MSP_IMUF_UPDATE, parse_hex.data, false, function(){
+                                        serial.disconnect();
+                                    });
+                                });
+                            }
+                            return;
+                        } 
                         var options = {};
 
                         if ($('input.erase_chip').is(':checked')) {

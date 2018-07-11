@@ -151,6 +151,8 @@ var MSPCodes = {
     MSP_SET_FAST_KALMAN:            226,
     MSP_IMUF_CONFIG:                227,
     MSP_SET_IMUF_CONFIG:            228,
+    MSP_IMUF_INFO:                  229,
+    MSP_IMUF_UPDATE:                230,
 
     MSP_SET_ACC_TRIM:               239,
     MSP_ACC_TRIM:                   240,

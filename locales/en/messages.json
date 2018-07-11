@@ -2137,6 +2137,9 @@
     "firmwareFlasherNoReboot": {
         "message": "No reboot sequence"
     },
+    "showImufReleases": {
+        "message": "Show IMU-F releases"
+    },
     "firmwareFlasherOnlineSelectBoardDescription": {
         "message": "Select your board to see available online firmware releases - Select the correct firmware appropriate for your board."
     },

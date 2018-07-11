@@ -3,6 +3,10 @@
         <div class="options gui_box">
             <div class="spacer">
                 <table class="cf_table" style="margin-top: 10px;">
+                    <tr class="option noboarder">
+                    <td><label> <input class="show_imuf_releases toggle" type="checkbox" /> <span i18n="showImufReleases"></span>
+                        </label></td>  <td><span class="description" i18n="showImufReleases"></span></td>
+                    </tr>
                     <tr>
                         <td><select name="board">
                                 <option value="0" i18n="firmwareFlasherOptionLoading">Loading ...</option>
@@ -15,25 +19,25 @@
                         </select></td>
                         <td><span class="description" i18n="firmwareFlasherOnlineSelectFirmwareVersionDescription"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="flash-option">
                         <td><label> <input class="updating toggle" type="checkbox" /> <span
                                 i18n="firmwareFlasherNoReboot"></span>
                         </label></td>
                         <td><span class="description" i18n="firmwareFlasherNoRebootDescription"></span></td>
                     </tr>
-                    <tr class="option flash_on_connect_wrapper">
+                    <tr class="flash-option option flash_on_connect_wrapper">
                         <td><label> <input class="flash_on_connect toggle" type="checkbox" /> <span
                                 i18n="firmwareFlasherFlashOnConnect"></span></label></td>
                         
                         <td><span class="description" i18n="firmwareFlasherFlashOnConnectDescription"></span></td>
                     </tr>
-                    <tr class="option">
+                    <tr class="flash-option option">
                         <td><label> <input class="erase_chip toggle" type="checkbox" /> <span
                                 i18n="firmwareFlasherFullChipErase"></span>
                         </label></td>
                         <td><span class="description" i18n="firmwareFlasherFullChipEraseDescription"></span></td>
                     </tr>
-                    <tr class="option manual_baud_rate">
+                    <tr class="flash-option option manual_baud_rate">
                         <td><label> <input class="flash_manual_baud toggle" type="checkbox" /> <span
                                 i18n="firmwareFlasherManualBaud"></span> <select id="flash_manual_baud_rate"
                                 i18n_title="firmwareFlasherBaudRate">
@@ -50,7 +54,7 @@
                         </label></td>
                         <td><span class="description" i18n="firmwareFlasherManualBaudDescription"></span></td>
                     </tr>
-                    <tr class="option noboarder">
+                    <tr class="flash-option option noboarder">
                         <td><label> <input class="show_development_releases toggle" type="checkbox" /> <span
                                 i18n="firmwareFlasherShowDevelopmentReleases"></span>
                         </label></td>
