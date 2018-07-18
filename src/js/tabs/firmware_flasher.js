@@ -411,9 +411,9 @@ TABS.firmware_flasher.initialize = function (callback) {
                     if (parsed_hex != false) {
                         if ($('input.show_imuf_releases').is(':checked')) {
                             debugger;
-                            for (var i = 0; i < data.length; i+=){
+                            // for (var i = 0; i < data.length; i+=){
 
-                            }
+                            // }
                             var data = parsed_hex.data[0].data;
                             var arrayBuf = new ArrayBuffer(data.length);
                             var arrayBufView = new Uint8Array(arrayBuf);
