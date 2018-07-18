@@ -245,6 +245,20 @@ TABS.firmware_flasher.initialize = function (callback) {
         });
         $('input.show_imuf_releases').click(function () {
             if (this.checked) {
+                var selected_baud = parseInt($('div#port-picker #baud').val());
+                var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
+                if (selected_port === 'DFU') {
+                    GUI.log(i18n.getMessage('dfu_connect_message'));
+                } else if (selected_port != '0') {
+                    serial.connect(selected_port, {bitrate: selected_baud}, function(){
+                        var bufferOut = new ArrayBuffer(1);
+                        var bufView = new Uint8Array(bufferOut);
+
+                        bufView[0] = 0x21; // !
+                        serial.send(bufferOut);
+                    });
+                }
+
                 $('.flash-option').hide();
                 loadImufReleases();
             } else {
@@ -396,17 +410,16 @@ TABS.firmware_flasher.initialize = function (callback) {
                 if (!GUI.connect_lock) { // button disabled while flashing is in progress
                     if (parsed_hex != false) {
                         if ($('input.show_imuf_releases').is(':checked')) {
-                            var selected_baud = parseInt($('div#port-picker #baud').val());
-                            var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
-                            if (selected_port === 'DFU') {
-                                GUI.log(i18n.getMessage('dfu_connect_message'));
-                            } else if (selected_port != '0') {
-                                serial.connect(selected_port, {bitrate: selected_baud}, function(){
-                                    MSP.send_message(MSPCodes.MSP_IMUF_UPDATE, parse_hex.data, false, function(){
-                                        serial.disconnect();
-                                    });
-                                });
+                            debugger;
+                            for (var i = 0; i < data.length; i+=){
+
                             }
+                            var data = parsed_hex.data[0].data;
+                            var arrayBuf = new ArrayBuffer(data.length);
+                            var arrayBufView = new Uint8Array(arrayBuf);
+                            arrayBufView.set(data);  
+                            serial.send(arrayBuf);
+                            
                             return;
                         } 
                         var options = {};
