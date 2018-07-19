@@ -39,7 +39,8 @@
     "i18next-xhr-backend": "^1.5.1",
     "lru_map": "^0.3.3",
     "marked": "^0.3.12",
-    "to-buffer": "^1.1.1"
+    "to-buffer": "^1.1.1",
+    "webcrypto": "0.1.1"
   },
   "devDependencies": {
     "command-exists": "^1.2.2",
@@ -61,12 +62,5 @@
     "rpm-builder": "^0.7.0",
     "targz": "^1.0.1",
     "temp": "^0.8.3"
-  },
-  "config": {
-    "platformDependentModules": {
-      "darwin": [
-        "gulp-appdmg@1.0.3"
-      ]
-    }
   }
 }

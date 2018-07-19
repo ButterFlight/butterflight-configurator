@@ -245,20 +245,6 @@ TABS.firmware_flasher.initialize = function (callback) {
         });
         $('input.show_imuf_releases').click(function () {
             if (this.checked) {
-                var selected_baud = parseInt($('div#port-picker #baud').val());
-                var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
-                if (selected_port === 'DFU') {
-                    GUI.log(i18n.getMessage('dfu_connect_message'));
-                } else if (selected_port != '0') {
-                    serial.connect(selected_port, {bitrate: selected_baud}, function(){
-                        var bufferOut = new ArrayBuffer(1);
-                        var bufView = new Uint8Array(bufferOut);
-
-                        bufView[0] = 0x21; // !
-                        serial.send(bufferOut);
-                    });
-                }
-
                 $('.flash-option').hide();
                 loadImufReleases();
             } else {
@@ -411,14 +397,86 @@ TABS.firmware_flasher.initialize = function (callback) {
                     if (parsed_hex != false) {
                         if ($('input.show_imuf_releases').is(':checked')) {
                             debugger;
-                            for (var i = 0; i < data.length; i+=){
 
+                            var selected_baud = parseInt($('div#port-picker #baud').val());
+                            var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
+                            if (selected_port === 'DFU') {
+                                GUI.log(i18n.getMessage('dfu_connect_message'));
+                            } else if (selected_port != '0') {
+                                serial.connect(selected_port, {bitrate: selected_baud}, function(){
+
+
+                                    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+                                    var oReq = new XMLHttpRequest();
+                                    
+                                    //var sn = btoa('111111111111111111111111');
+                                    //oReq.open("GET", "https://WEBSITEWEBSTIEWEBSITEWEBSTIEWEBSITEWEBSTIE/getbin.php?sn=" + sn, true);
+                                    oReq.open("GET", "https://192.168.0.73/IMUF.bin" + sn, true);
+
+                                    oReq.responseType = "arraybuffer";
+
+                                    oReq.onload = function (oEvent) {
+                                        var arrayBuffer = oReq.response; // Note: not oReq.responseText
+                                        if (arrayBuffer) {
+                                            var byteArray = new Uint8Array(arrayBuffer); // byte array from bin
+                                            var bufferOut = new ArrayBuffer(5); // flash command and size info
+                                            var bufView   = new Uint8Array(bufferOut);  // byte array of command
+                                            bufView.set([
+                                                0x21,
+                                                (byteArray.length >> 0)  & 0xFF,
+                                                (byteArray.length >> 8)  & 0xFF,
+                                                (byteArray.length >> 16) & 0xFF,
+                                                (byteArray.length >> 24) & 0xFF
+                                            ]);
+
+                                            // combine command with binary and send together in combinedSender
+                                            var combinedSender = new (bufView.constructor)(bufView.length + byteArray.length);
+                                            combinedSender.set(bufView, 0);
+                                            combinedSender.set(byteArray, bufView.length);
+
+                                            console.log(combinedSender);
+                                            console.log("preparing to send " + byteArray.length + " bytes!");
+                                            serial.send(combinedSender, function() {
+                                                console.log("Send complete!");
+                                                serial.disconnect();
+                                            });
+                                        } else {
+                                            console.log("Ya dun goofed!!!");
+                                            serial.disconnect();
+                                        }
+
+                                    };
+                                    oReq.onerror = function(event){
+                                        console.log("Ya super dun goofed!!!");
+                                        serial.disconnect();
+                                    };
+                                    oReq.send();
+
+                                });
                             }
-                            var data = parsed_hex.data[0].data;
-                            var arrayBuf = new ArrayBuffer(data.length);
-                            var arrayBufView = new Uint8Array(arrayBuf);
-                            arrayBufView.set(data);  
-                            serial.send(arrayBuf);
+/*
+                                    http://rs2k.hopto.org/F3C.bin
+
+                                    var data = parsed_hex.data[0].data;
+
+                                    console.log("preparing to send " + data.length + " bytes!");
+
+                                    var bufferOut = new ArrayBuffer(data.length+5);
+                                    var bufView   = new Uint8Array(bufferOut);
+
+                                    bufView.set([
+                                        0x21,
+                                        (data.length >> 0)  & 0xFF,
+                                        (data.length >> 8)  & 0xFF,
+                                        (data.length >> 16) & 0xFF,
+                                        (data.length >> 24) & 0xFF
+                                    ].concat(data));
+
+                                    serial.send(bufferOut, function() {
+                                        console.log("Send complete!");
+                                        serial.disconnect();
+                                    });
+*/
                             
                             return;
                         } 
