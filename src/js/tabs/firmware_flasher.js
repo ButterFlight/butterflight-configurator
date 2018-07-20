@@ -4,7 +4,8 @@ TABS.firmware_flasher = {
     releases: null,
     releaseChecker: new ReleaseChecker('firmware', 'https://api.github.com/repos/butterflight/butterflight/releases'),
     imufReleaseChecker:  new ReleaseChecker('helioFirmware', 'https://api.github.com/repos/heliorc/imuf-release-dev/contents'),
-    imufRegex: new RegExp(".*IMUF_(\\d\\.\\d\\.\\d)-(\\w+)?(\\.hex)", "i")
+    imufRegex: new RegExp(".*IMUF_(\\d\\.\\d\\.\\d)-(\\w+)?(\\.bin)", "i"),
+    imufBin: undefined
 };
 
 TABS.firmware_flasher.initialize = function (callback) {
@@ -46,7 +47,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                         "body": $body,
                         "prerelease": false,
                         "assets": imufFiles.filter(function(item){
-                            return item.name.endsWith('.hex');
+                            return item.name.endsWith('.bin');
                         }).map(function(asset) {
                             var match = self.imufRegex.exec(asset.name);
                             return {
@@ -77,6 +78,25 @@ TABS.firmware_flasher.initialize = function (callback) {
             worker.postMessage(str);
         }
 
+        function show_summary(summary){
+
+            $('a.flash_firmware').removeClass('disabled');
+
+            $('div.release_info .target').text(summary.target);
+            $('div.release_info .name').text(summary.version).prop('href', summary.releaseUrl);
+            $('div.release_info .date').text(summary.date);
+            $('div.release_info .status').text(summary.status);
+            $('div.release_info .file').text(summary.file).prop('href', summary.url);
+
+            var formattedNotes = summary.notes.replace(/#(\d+)/g, '[#$1](https://github.com/butterflight/butterflight/pull/$1)');
+            formattedNotes = marked(formattedNotes);
+            $('div.release_info .notes').html(formattedNotes);
+            $('div.release_info .notes').find('a').each(function() {
+                $(this).attr('target', '_blank');
+            });
+
+            $('div.release_info').slideDown();
+        }
         function process_hex(data, summary) {
             intel_hex = data;
             parse_hex(intel_hex, function (data) {
@@ -86,27 +106,10 @@ TABS.firmware_flasher.initialize = function (callback) {
                     if (!FirmwareCache.has(summary)) {
                         FirmwareCache.put(summary, intel_hex);
                     }
-
-                    var url;
-
                     $('span.progressLabel').html('<a class="save_firmware" href="#" title="Save Firmware">Loaded Online Firmware: (' + parsed_hex.bytes_total + ' bytes)</a>');
 
-                    $('a.flash_firmware').removeClass('disabled');
-
-                    $('div.release_info .target').text(summary.target);
-                    $('div.release_info .name').text(summary.version).prop('href', summary.releaseUrl);
-                    $('div.release_info .date').text(summary.date);
-                    $('div.release_info .status').text(summary.status);
-                    $('div.release_info .file').text(summary.file).prop('href', summary.url);
-
-                    var formattedNotes = summary.notes.replace(/#(\d+)/g, '[#$1](https://github.com/butterflight/butterflight/pull/$1)');
-                    formattedNotes = marked(formattedNotes);
-                    $('div.release_info .notes').html(formattedNotes);
-                    $('div.release_info .notes').find('a').each(function() {
-                        $(this).attr('target', '_blank');
-                    });
-
-                    $('div.release_info').slideDown();
+                    show_summary(summary);
+                    
 
                 } else {
                     $('span.progressLabel').text(i18n.getMessage('firmwareFlasherHexCorrupted'));
@@ -118,7 +121,14 @@ TABS.firmware_flasher.initialize = function (callback) {
             summary = typeof summary === "object" 
                 ? summary 
                 : $('select[name="firmware_version"] option:selected').data('summary');
-            process_hex(data, summary);
+                if ($('input.show_imuf_releases').is(':checked')) {
+                    self.imufBin = data;
+                    $('span.progressLabel').html('<a class="save_firmware" href="#" title="Save Firmware">Loaded Online Firmware: (' + self.imufBin.byteLength + ' bytes)</a>');
+
+                    show_summary(summary);
+                } else {
+                    process_hex(data, summary);
+                }
             $("a.load_remote_file").removeClass('disabled');
             $("a.load_remote_file").text(i18n.getMessage('firmwareFlasherButtonLoadOnline'));
         };
@@ -385,7 +395,24 @@ TABS.firmware_flasher.initialize = function (callback) {
             if (summary) { // undefined while list is loading or while running offline
                 $("a.load_remote_file").text(i18n.getMessage('firmwareFlasherButtonDownloading'));
                 $("a.load_remote_file").addClass('disabled');
-                $.get(summary.url, onLoadSuccess).fail(failed_to_load);
+                if ($('input.show_imuf_releases').is(':checked')) {
+                    var oReq = new XMLHttpRequest();
+                                    
+                    oReq.open("GET", summary.url, true);
+
+                    oReq.responseType = "arraybuffer";
+
+                    oReq.onload = function () {
+                        $('.progress').val(0);
+                        onLoadSuccess(oReq.response);
+                    };
+                    oReq.onerror = function(event){
+                        failed_to_load(event);
+                    };
+                    oReq.send();
+                } else {
+                    $.get(summary.url, onLoadSuccess).fail(failed_to_load);
+                }
             } else {
                 $('span.progressLabel').text(i18n.getMessage('firmwareFlasherFailedToLoadOnlineFirmware'));
             }
@@ -394,92 +421,44 @@ TABS.firmware_flasher.initialize = function (callback) {
         $('a.flash_firmware').click(function () {
             if (!$(this).hasClass('disabled')) {
                 if (!GUI.connect_lock) { // button disabled while flashing is in progress
-                    if (parsed_hex != false) {
-                        if ($('input.show_imuf_releases').is(':checked')) {
-                            debugger;
+                    if ($('input.show_imuf_releases').is(':checked')) {
+                        var selected_baud = parseInt($('div#port-picker #baud').val());
+                        var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
+                        if (selected_port === 'DFU') {
+                            GUI.log(i18n.getMessage('dfu_connect_message'));
+                        } else if (selected_port != '0') {
+                            serial.connect(selected_port, {bitrate: selected_baud}, function(){
+                                var hexArray = new Uint8Array(self.imufBin); // byte array from bin
+                                var headerArray = new Uint8Array(new ArrayBuffer(5));  // byte array of command
+                                headerArray.set([
+                                    0x21,
+                                    (hexArray.length >> 0)  & 0xFF,
+                                    (hexArray.length >> 8)  & 0xFF,
+                                    (hexArray.length >> 16) & 0xFF,
+                                    (hexArray.length >> 24) & 0xFF
+                                ]);
 
-                            var selected_baud = parseInt($('div#port-picker #baud').val());
-                            var selected_port = $('div#port-picker #port option:selected').data().isManual ? $('#port-override').val() : String($('div#port-picker #port').val());
-                            if (selected_port === 'DFU') {
-                                GUI.log(i18n.getMessage('dfu_connect_message'));
-                            } else if (selected_port != '0') {
-                                serial.connect(selected_port, {bitrate: selected_baud}, function(){
+                                // combine command with binary and send together in combinedSender
+                                var combinedSender = new (headerArray.constructor)(headerArray.length + hexArray.length);
+                                combinedSender.set(headerArray, 0);
+                                combinedSender.set(hexArray, headerArray.length);
 
-
-                                    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-                                    var oReq = new XMLHttpRequest();
-                                    
-                                    //var sn = btoa('111111111111111111111111');
-                                    //oReq.open("GET", "https://WEBSITEWEBSTIEWEBSITEWEBSTIEWEBSITEWEBSTIE/getbin.php?sn=" + sn, true);
-                                    oReq.open("GET", "https://192.168.0.73/IMUF.bin" + sn, true);
-
-                                    oReq.responseType = "arraybuffer";
-
-                                    oReq.onload = function (oEvent) {
-                                        var arrayBuffer = oReq.response; // Note: not oReq.responseText
-                                        if (arrayBuffer) {
-                                            var byteArray = new Uint8Array(arrayBuffer); // byte array from bin
-                                            var bufferOut = new ArrayBuffer(5); // flash command and size info
-                                            var bufView   = new Uint8Array(bufferOut);  // byte array of command
-                                            bufView.set([
-                                                0x21,
-                                                (byteArray.length >> 0)  & 0xFF,
-                                                (byteArray.length >> 8)  & 0xFF,
-                                                (byteArray.length >> 16) & 0xFF,
-                                                (byteArray.length >> 24) & 0xFF
-                                            ]);
-
-                                            // combine command with binary and send together in combinedSender
-                                            var combinedSender = new (bufView.constructor)(bufView.length + byteArray.length);
-                                            combinedSender.set(bufView, 0);
-                                            combinedSender.set(byteArray, bufView.length);
-
-                                            console.log(combinedSender);
-                                            console.log("preparing to send " + byteArray.length + " bytes!");
-                                            serial.send(combinedSender, function() {
-                                                console.log("Send complete!");
-                                                serial.disconnect();
-                                            });
-                                        } else {
-                                            console.log("Ya dun goofed!!!");
-                                            serial.disconnect();
-                                        }
-
-                                    };
-                                    oReq.onerror = function(event){
-                                        console.log("Ya super dun goofed!!!");
-                                        serial.disconnect();
-                                    };
-                                    oReq.send();
-
-                                });
-                            }
-/*
-                                    http://rs2k.hopto.org/F3C.bin
-
-                                    var data = parsed_hex.data[0].data;
-
-                                    console.log("preparing to send " + data.length + " bytes!");
-
-                                    var bufferOut = new ArrayBuffer(data.length+5);
-                                    var bufView   = new Uint8Array(bufferOut);
-
-                                    bufView.set([
-                                        0x21,
-                                        (data.length >> 0)  & 0xFF,
-                                        (data.length >> 8)  & 0xFF,
-                                        (data.length >> 16) & 0xFF,
-                                        (data.length >> 24) & 0xFF
-                                    ].concat(data));
-
-                                    serial.send(bufferOut, function() {
-                                        console.log("Send complete!");
-                                        serial.disconnect();
+                                console.log(combinedSender);
+                                console.log("preparing to send " + hexArray.length + " bytes!");
+                                serial.send(combinedSender, function() {
+                                    console.log("Send complete!");
+                                    serial.disconnect(function(){
+                                        $('.progress').val(100);
+                                        $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
                                     });
-*/
-                            
-                            return;
-                        } 
+                                });
+
+                            });
+                        }
+                        return;
+                    } 
+                    
+                    if (parsed_hex != false) {
                         var options = {};
 
                         if ($('input.erase_chip').is(':checked')) {
