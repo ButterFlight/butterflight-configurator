@@ -444,13 +444,15 @@ TABS.firmware_flasher.initialize = function (callback) {
                                 combinedSender.set(hexArray, headerArray.length);
 
                                 console.log(combinedSender);
-                                console.log("preparing to send " + hexArray.length + " bytes!");
+                                console.log("preparing to send " + combinedSender.length + " bytes!");
                                 serial.send(combinedSender, function() {
                                     console.log("Send complete!");
                                     serial.disconnect(function(){
-                                        $('.progress').val(100);
                                         $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
                                     });
+                                }, function(progress) {
+                                    debugger;
+                                    $('.progress').val(progress.bytesSent/data.length * 100);
                                 });
 
                             });

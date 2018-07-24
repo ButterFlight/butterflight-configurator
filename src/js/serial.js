@@ -299,15 +299,16 @@ var serial = {
     setControlSignals: function (signals, callback) {
         if (this.connectionType == 'serial') chrome.serial.setControlSignals(this.connectionId, signals, callback);
     },
-    send: function (data, callback) {
+    send: function (data, callback, progressFn) {
         var self = this;
         this.outputBuffer.push({'data': data, 'callback': callback});
 
         function send() {
             // store inside separate variables in case array gets destroyed
             var data = self.outputBuffer[0].data,
-                callback = self.outputBuffer[0].callback;
-            
+                callback = self.outputBuffer[0].callback,
+                chunks = 1;
+
             if (!self.connected) {
                 console.log('attempting to send when disconnected');
                 if (callback) callback({
@@ -318,7 +319,7 @@ var serial = {
             }
 
             var sendFn = (self.connectionType == 'serial') ? chrome.serial.send : chrome.sockets.tcp.send;
-            sendFn(self.connectionId, data, function (sendInfo) {
+            sendFn(self.connectionId, data, function sendHandler (sendInfo) {
                 if (sendInfo === undefined) {
                     console.log('undefined send error');
                     if (callback) callback({
@@ -350,7 +351,14 @@ var serial = {
 
                 // track sent bytes for statistics
                 self.bytesSent += sendInfo.bytesSent;
-
+                if (self.bytesSent < data.length){
+                    progressFn && progressFn({
+                        chunk: chunks,
+                        bytesSent: self.bytesSent
+                    });
+                    chunks++;
+                    return sendFn(self.connectionId, data.slice(self.bytesSent), sendHandler);
+                }
                 // fire callback
                 if (callback) callback(sendInfo);
 
