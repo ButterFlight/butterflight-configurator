@@ -451,8 +451,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                                         $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
                                     });
                                 }, function(progress) {
-                                    debugger;
-                                    $('.progress').val(progress.bytesSent/data.length * 100);
+                                    $('.progress').val(progress.bytesSent/combinedSender.length * 100);
                                 });
 
                             });
