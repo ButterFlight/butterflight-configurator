@@ -448,6 +448,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                                 serial.send(combinedSender, function() {
                                     console.log("Send complete!");
                                     serial.disconnect(function(){
+                                        $('.progress').val(100);
                                         $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
                                     });
                                 }, function(progress) {
