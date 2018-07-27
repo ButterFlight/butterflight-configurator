@@ -428,32 +428,72 @@ TABS.firmware_flasher.initialize = function (callback) {
                             GUI.log(i18n.getMessage('dfu_connect_message'));
                         } else if (selected_port != '0') {
                             serial.connect(selected_port, {bitrate: selected_baud}, function(){
-                                var hexArray = new Uint8Array(self.imufBin); // byte array from bin
-                                var headerArray = new Uint8Array(new ArrayBuffer(5));  // byte array of command
-                                headerArray.set([
-                                    0x21,
-                                    (hexArray.length >> 0)  & 0xFF,
-                                    (hexArray.length >> 8)  & 0xFF,
-                                    (hexArray.length >> 16) & 0xFF,
-                                    (hexArray.length >> 24) & 0xFF
-                                ]);
 
-                                // combine command with binary and send together in combinedSender
-                                var combinedSender = new (headerArray.constructor)(headerArray.length + hexArray.length);
-                                combinedSender.set(headerArray, 0);
-                                combinedSender.set(hexArray, headerArray.length);
-
-                                console.log(combinedSender);
-                                console.log("preparing to send " + combinedSender.length + " bytes!");
-                                serial.send(combinedSender, function() {
-                                    console.log("Send complete!");
-                                    serial.disconnect(function(){
-                                        $('.progress').val(100);
-                                        $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
-                                    });
-                                }, function(progress) {
-                                    $('.progress').val(progress.bytesSent/combinedSender.length * 100);
+                                var enc = new TextEncoder();
+                                //serial.onReceive.addListener(read_serial);
+                                serial.send(enc.encode("#"), function() {
+                                    GUI.log("CLI mode entered");
+                                    setTimeout(function(){
+                                        serial.send(enc.encode("imufbootloader\n"), function() {
+                                            setTimeout(function(){
+                                                GUI.log("imufbootloader entered");
+                                                serial.send(enc.encode("imufloadbin !\n"), function() {
+                                                    GUI.log("loading binary, yo!");
+                                                    var hexArray = new Uint8Array(self.imufBin); // byte array from bin
+                                                    var headerArray = new Uint8Array(new ArrayBuffer(16));  // byte array of command
+                                                    headerArray.set([
+                                                        'i',
+                                                        'm',
+                                                        'u',
+                                                        'f',
+                                                        'l',
+                                                        'o',
+                                                        'a',
+                                                        'd',
+                                                        'b',
+                                                        'i',
+                                                        'n',
+                                                        ' ',
+                                                        (128 >> 0)  & 0xFF,
+                                                        (128 >> 8)  & 0xFF,
+                                                        (128 >> 16) & 0xFF,
+                                                        (128 >> 24) & 0xFF
+                                                    ]);
+                                                    //todo: attatch 128 bytes, and a \n, escape special chars?
+                                                });
+                                            },5000);
+                                        });
+                                    }, 1000);
                                 });
+                                if (0)
+                                {
+                                    var hexArray = new Uint8Array(self.imufBin); // byte array from bin
+                                    var headerArray = new Uint8Array(new ArrayBuffer(5));  // byte array of command
+                                    headerArray.set([
+                                        0x21,
+                                        (hexArray.length >> 0)  & 0xFF,
+                                        (hexArray.length >> 8)  & 0xFF,
+                                        (hexArray.length >> 16) & 0xFF,
+                                        (hexArray.length >> 24) & 0xFF
+                                    ]);
+
+                                    // combine command with binary and send together in combinedSender
+                                    var combinedSender = new (headerArray.constructor)(headerArray.length + hexArray.length);
+                                    combinedSender.set(headerArray, 0);
+                                    combinedSender.set(hexArray, headerArray.length);
+
+                                    console.log(combinedSender);
+                                    console.log("preparing to send " + combinedSender.length + " bytes!");
+                                    serial.send(combinedSender, function() {
+                                        console.log("Send complete!");
+                                        serial.disconnect(function(){
+                                            $('.progress').val(100);
+                                            $('span.progressLabel').text(i18n.getMessage('stm32ProgrammingSuccessful'));
+                                        });
+                                    }, function(progress) {
+                                        $('.progress').val(progress.bytesSent/combinedSender.length * 100);
+                                    });
+                                }
 
                             });
                         }
