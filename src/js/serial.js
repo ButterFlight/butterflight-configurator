@@ -299,9 +299,13 @@ var serial = {
     setControlSignals: function (signals, callback) {
         if (this.connectionType == 'serial') chrome.serial.setControlSignals(this.connectionId, signals, callback);
     },
-    send: function (data, callback, progressFn) {
+    send: function (dataToSend, callback, progressFn, options) {
         var self = this;
-        this.outputBuffer.push({'data': data, 'callback': callback});
+        options = options || {
+            head: undefined,
+            tail: undefined,
+        };
+        this.outputBuffer.push({'data': dataToSend, 'callback': callback});
 
         function send() {
             // store inside separate variables in case array gets destroyed
@@ -319,7 +323,7 @@ var serial = {
             }
 
             var sendFn = (self.connectionType == 'serial') ? chrome.serial.send : chrome.sockets.tcp.send;
-            sendFn(self.connectionId, data, function sendHandler (sendInfo) {
+            sendFn(self.connectionId, data.slice(0, 127), function sendHandler(sendInfo) {
                 if (sendInfo === undefined) {
                     console.log('undefined send error');
                     if (callback) callback({
@@ -357,7 +361,15 @@ var serial = {
                         bytesSent: self.bytesSent
                     });
                     chunks++;
-                    return sendFn(self.connectionId, data.slice(self.bytesSent), sendHandler);
+                    var chunkedBytes = new Uint8Array(new ArrayBuffer(128));
+                    let headLength = options.head ? options.head.length : 0;
+                    let tailLength = options.tail ? options.tail.length : 0;
+                    let chunkLength = 128 - (headLength + tailLength) ;
+                    var remainder = data.slice(self.bytesSent, chunkLength);
+                    headLength && chunkedBytes.set(options.head, 0); 
+                    chunkedBytes.set(remainder, headLength);
+                    tailLength && chunkedBytes.set(options.tail, chunkLength);
+                    return sendFn(self.connectionId, chunkedBytes, sendHandler);
                 }
                 // fire callback
                 if (callback) callback(sendInfo);

@@ -428,7 +428,6 @@ TABS.firmware_flasher.initialize = function (callback) {
                             GUI.log(i18n.getMessage('dfu_connect_message'));
                         } else if (selected_port != '0') {
                             serial.connect(selected_port, {bitrate: selected_baud}, function(){
-
                                 var enc = new TextEncoder();
                                 //serial.onReceive.addListener(read_serial);
                                 serial.send(enc.encode("#"), function() {
@@ -476,12 +475,12 @@ TABS.firmware_flasher.initialize = function (callback) {
                                         (hexArray.length >> 16) & 0xFF,
                                         (hexArray.length >> 24) & 0xFF
                                     ]);
-
+    
                                     // combine command with binary and send together in combinedSender
-                                    var combinedSender = new (headerArray.constructor)(headerArray.length + hexArray.length);
+                                    var combinedSender = new Uint8Array(headerArray.length + hexArray.length);
                                     combinedSender.set(headerArray, 0);
                                     combinedSender.set(hexArray, headerArray.length);
-
+    
                                     console.log(combinedSender);
                                     console.log("preparing to send " + combinedSender.length + " bytes!");
                                     serial.send(combinedSender, function() {
@@ -492,6 +491,9 @@ TABS.firmware_flasher.initialize = function (callback) {
                                         });
                                     }, function(progress) {
                                         $('.progress').val(progress.bytesSent/combinedSender.length * 100);
+                                    }, {
+                                        head: ['i', 'm', 'u', 'f', 'l', 'o', 'a', 'd', 'b', 'i', 'n', ' '],
+                                        tail: ['\n']
                                     });
                                 }
 
